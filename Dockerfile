@@ -17,6 +17,8 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXTAUTH_SECRET=placeholder-secret-for-build-time-only
+ENV AUTH_SECRET=placeholder-secret-for-build-time-only
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
