@@ -233,6 +233,31 @@ async function upsertTenant() {
       status: 'ACTIVE',
     },
   })
+
+  // Seed raviprakashsa17@gmail.com User
+  await prisma.user.upsert({
+    where: {
+      tenantId_email: {
+        tenantId: tenant.id,
+        email: 'raviprakashsa17@gmail.com',
+      },
+    },
+    update: {
+      name: 'Ravi Prakash',
+      passwordHash: hashedPassword,
+      roleId: adminRole.id,
+      status: 'ACTIVE',
+      deletedAt: null,
+    },
+    create: {
+      tenantId: tenant.id,
+      email: 'raviprakashsa17@gmail.com',
+      passwordHash: hashedPassword,
+      name: 'Ravi Prakash',
+      roleId: adminRole.id,
+      status: 'ACTIVE',
+    },
+  })
 }
 
 async function main() {

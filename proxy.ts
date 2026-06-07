@@ -29,6 +29,8 @@ export async function proxy(req: NextRequest) {
         pathname === "/api/v1/health" ||
         pathname.startsWith("/_next") ||
         pathname === "/login" ||
+        pathname === "/forgot-password" ||
+        pathname === "/reset-password" ||
         pathname.startsWith("/apply/") ||
         pathname === "/forbidden" ||
         pathname === "/"

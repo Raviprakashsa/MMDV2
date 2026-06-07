@@ -91,6 +91,26 @@ export async function POST(req: NextRequest) {
     })
     results.push(`User: ${user.email} (${user.status})`)
 
+    const userRavi = await prisma.user.upsert({
+      where: { tenantId_email: { tenantId: tenant.id, email: 'raviprakashsa17@gmail.com' } },
+      update: {
+        passwordHash,
+        status: 'ACTIVE',
+        deletedAt: null,
+        roleId: role.id,
+        name: 'Ravi Prakash',
+      },
+      create: {
+        tenantId: tenant.id,
+        email: 'raviprakashsa17@gmail.com',
+        passwordHash,
+        name: 'Ravi Prakash',
+        roleId: role.id,
+        status: 'ACTIVE',
+      },
+    })
+    results.push(`User: ${userRavi.email} (${userRavi.status})`)
+
     return NextResponse.json({
       ok: true,
       message: 'PostgreSQL admin user seeded successfully',
