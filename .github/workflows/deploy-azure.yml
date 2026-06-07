@@ -6,10 +6,10 @@ on:
   workflow_dispatch: {}
 
 env:
-  RESOURCE_GROUP: mmd-recruit-rg
-  CONTAINER_REGISTRY: mmdrecruitregistry
+  RESOURCE_GROUP: mmd-recruit-india-rg
+  CONTAINER_REGISTRY: mmdrecruitreg17
   CONTAINER_APP_NAME: mmd-recruit-crm
-  LOCATION: eastus
+  LOCATION: centralindia
 
 jobs:
   # ──────────────────────────────────────────────
