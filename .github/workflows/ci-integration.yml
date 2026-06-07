@@ -34,6 +34,11 @@ jobs:
       AUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET || 'ci-test-secret-not-for-production-use' }}
       NEXTAUTH_URL: http://localhost:3000
       NODE_ENV: production
+      # Prevent the throttle middleware from throwing because Redis is not configured in CI
+      THROTTLE_BACKEND: memory
+      # Stub secrets so the app starts — real values are only needed in production
+      CRON_SECRET: ci-cron-secret-stub
+      DOCUMENT_DOWNLOAD_SECRET: ci-doc-secret-stub
 
     steps:
       - name: Checkout
@@ -78,16 +83,17 @@ jobs:
       - name: Run Prisma migrations
         run: npx prisma migrate deploy
 
-      - name: Seed PostgreSQL (creates admin@magnuscopo.com in PostgreSQL)
-        run: npm run db:seed:prisma || true
+      - name: Seed PostgreSQL (creates admin@magnuscopo.com — required for login tests)
+        run: npm run db:seed:prisma
 
-      - name: Run MongoDB migrations
+      - name: Run MongoDB migrations (best-effort — not needed for auth)
         run: |
           npm run migrate:status || true
           npm run migrate || true
 
-      - name: Seed MongoDB (creates admin@magnuscopo.com in MongoDB)
-        run: npm run db:seed || true
+      # NOTE: We intentionally skip 'npm run db:seed' (MongoDB seed) in CI.
+      # It takes 3-5 minutes and creates hundreds of records not needed for tests.
+      # Auth now uses PostgreSQL, so only the Prisma seed above matters.
 
       - name: Build Next.js application
         run: npm run build
