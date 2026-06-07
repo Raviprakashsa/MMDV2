@@ -1,0 +1,89 @@
+name: Deploy to Azure Container Apps
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+env:
+  RESOURCE_GROUP: mmd-recruit-rg
+  CONTAINER_REGISTRY: mmdrecruitregistry
+  CONTAINER_APP_NAME: mmd-recruit-crm
+  LOCATION: eastus
+
+jobs:
+  # ──────────────────────────────────────────────
+  # Job 1: Quality Gate (typecheck + lint)
+  # ──────────────────────────────────────────────
+  quality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+  # ──────────────────────────────────────────────
+  # Job 2: Build & Deploy to Azure Container Apps
+  # ──────────────────────────────────────────────
+  deploy:
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Log in to Azure using Service Principal Credentials
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Log in to Azure Container Registry
+      - name: Log in to Azure Container Registry (ACR)
+        run: |
+          az acr login --name ${{ env.CONTAINER_REGISTRY }}
+
+      # Build and push Docker image to ACR
+      - name: Build and Push Docker Image
+        run: |
+          IMAGE_URI="${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}"
+          docker build -t $IMAGE_URI .
+          docker push $IMAGE_URI
+          
+          # Tag as latest
+          docker tag $IMAGE_URI "${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:latest"
+          docker push "${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:latest"
+
+      # Deploy to Azure Container Apps
+      - name: Deploy to Azure Container Apps
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          acrName: ${{ env.CONTAINER_REGISTRY }}
+          containerAppName: ${{ env.CONTAINER_APP_NAME }}
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
+          imageToDeploy: ${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
+          environmentVariables: |
+            NODE_ENV=production
+            NEXT_TELEMETRY_DISABLED=1
+            DATABASE_URL=secretref:database-url
+            POSTGRES_DATABASE_URL=secretref:postgres-database-url
+            NEXTAUTH_SECRET=secretref:nextauth-secret
+            AUTH_SECRET=secretref:auth-secret
+            NEXTAUTH_URL=secretref:nextauth-url
