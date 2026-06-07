@@ -91,31 +91,33 @@ jobs:
             --image ${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
 
       # ── Run Prisma Migrations against production PostgreSQL ──
-      # This runs AFTER the image is deployed so the DB schema is always
-      # in sync with the running container.
-      - name: Setup Node for DB operations
+      - name: Setup Node for migrations
+        if: ${{ secrets.POSTGRES_DATABASE_URL != '' }}
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies for DB operations
+      - name: Install dependencies for migration
+        if: ${{ secrets.POSTGRES_DATABASE_URL != '' }}
         run: npm ci --legacy-peer-deps
 
       - name: Run Prisma migrations against production PostgreSQL
+        if: ${{ secrets.POSTGRES_DATABASE_URL != '' }}
         env:
           POSTGRES_DATABASE_URL: ${{ secrets.POSTGRES_DATABASE_URL }}
         run: |
-          echo "Running Prisma migrate deploy..."
+          echo "Running Prisma migrate deploy against production PostgreSQL..."
           npx prisma generate
           npx prisma migrate deploy
           echo "✅ Migrations complete"
 
-      - name: Seed production PostgreSQL (idempotent upsert — safe to run every deploy)
+      - name: Seed PostgreSQL admin user (idempotent)
+        if: ${{ secrets.POSTGRES_DATABASE_URL != '' }}
         env:
           POSTGRES_DATABASE_URL: ${{ secrets.POSTGRES_DATABASE_URL }}
         run: |
-          echo "Running Prisma seed (idempotent)..."
+          echo "Seeding PostgreSQL (idempotent upsert)..."
           npm run db:seed:prisma
           echo "✅ Seed complete"
 
