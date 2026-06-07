@@ -1,16 +1,13 @@
 import NextAuth, { type DefaultSession } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { compare } from "bcryptjs"
-import connectDB from "@/lib/db/mongodb"
-import User, { type UserRole } from "@/lib/db/models/User"
-import AuditLog from "@/lib/db/models/AuditLog"
 
 // Extend NextAuth types
 declare module "next-auth" {
   interface Session {
     user: {
       id: string
-      role: UserRole
+      role: string
       isActive: boolean
       tenantId?: string
       userId?: string
@@ -21,7 +18,7 @@ declare module "next-auth" {
     id: string
     email: string
     name: string
-    role: UserRole
+    role: string
     isActive: boolean
     tenantId?: string
     userId?: string
@@ -51,8 +48,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/login",
     error: "/login",
   },
-  // Enable debug logging in non-production to surface detailed auth errors
-  debug: process.env.NODE_ENV !== 'production',
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -65,88 +60,75 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null
         }
 
-        await connectDB()
+        // ── Query PostgreSQL via Prisma (the source of truth for users) ──
+        // NOTE: MongoDB (lib/db/models/User) is the legacy operational DB for
+        // ATS data (candidates, requirements, etc.) but auth users live in
+        // PostgreSQL as seeded by prisma/seed.ts.
+        const { prisma } = await import('@/lib/prisma')
 
         const normalizedEmail =
           typeof credentials.email === "string"
             ? credentials.email.toLowerCase().trim()
             : ""
 
-        const user = await User.findOne({
-          email: normalizedEmail,
-          deletedAt: null, // Exclude soft-deleted users
-          isActive: true,
+        const dbUser = await prisma.user.findFirst({
+          where: {
+            email: normalizedEmail,
+            status: 'ACTIVE',
+            deletedAt: null,
+          },
+          include: {
+            role: true,
+          },
         })
 
-        if (!user) {
+        if (!dbUser) {
           return null
         }
 
+        // Prisma User model stores the hash in `passwordHash` (not `password`)
         const isPasswordValid = await compare(
           credentials.password as string,
-          user.password
+          dbUser.passwordHash
         )
 
         if (!isPasswordValid) {
           return null
         }
 
-        await AuditLog.create({
-          userId: user._id,
-          action: "USER_AUTHENTICATED",
-          entity: "User",
-          entityId: user._id.toString(),
-          newValue: { email: user.email, role: user.role },
-        })
-
         return {
-          id: user._id.toString(),
-          email: user.email,
-          name: user.name,
-          role: user.role,
-          isActive: user.isActive,
+          id: dbUser.id,
+          email: dbUser.email,
+          name: dbUser.name,
+          // role.code is e.g. "super_admin" — normalise to uppercase for app
+          role: dbUser.role.code.toUpperCase(),
+          isActive: dbUser.status === 'ACTIVE',
+          tenantId: dbUser.tenantId,
+          userId: dbUser.id,
         }
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
-      const mutable = token as typeof token & {
-        id?: string
-        role?: UserRole
-        name?: string
-        isActive?: boolean
-        tenantId?: string
-        userId?: string
-      }
-
       if (user) {
-        mutable.id = (user as any).id
-        mutable.role = (user as any).role
-        mutable.name = (user as any).name
-        mutable.isActive = (user as any).isActive
-
-        // Resolve tenantId and userId only during sign-in from PostgreSQL
-        const { prisma } = await import('@/lib/prisma')
-        const dbUser = await prisma.user.findFirst({
-          where: {
-            email: user.email,
-            deletedAt: null,
-          },
-        })
-        if (!dbUser) {
-          throw new Error('Unauthorized: User not found in database')
-        }
-        mutable.tenantId = dbUser.tenantId
-        mutable.userId = dbUser.id
+        // On initial sign-in, user object is populated by authorize() above.
+        // Persist all fields into the JWT so we don't need another DB query
+        // on every request.
+        token.id = user.id
+        token.role = user.role
+        token.name = user.name
+        token.isActive = user.isActive
+        token.tenantId = user.tenantId
+        token.userId = user.userId
       }
-      return mutable
+      return token
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string
-        session.user.role = token.role as UserRole
-        session.user.name = (token as any).name ?? session.user.name
+        session.user.role = token.role as string
+        session.user.name = (token.name as string) ?? session.user.name
         session.user.isActive = token.isActive as boolean
         session.user.tenantId = token.tenantId as string
         session.user.userId = token.userId as string
@@ -157,9 +139,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 })
 
 /**
- * Role-based authorization check
+ * Role-based authorization check.
+ * SUPER_ADMIN is always included when ADMIN is allowed.
  */
-export async function requireRole(allowedRoles: UserRole[]) {
+export async function requireRole(allowedRoles: string[]) {
   const session = await auth()
 
   if (!session?.user) {
@@ -170,13 +153,12 @@ export async function requireRole(allowedRoles: UserRole[]) {
     throw new Error("Account is inactive")
   }
 
-  if (allowedRoles.includes("ADMIN" as UserRole)) {
-    if (!allowedRoles.includes("SUPER_ADMIN" as UserRole)) {
-      allowedRoles.push("SUPER_ADMIN" as UserRole)
-    }
+  const roles = [...allowedRoles]
+  if (roles.includes("ADMIN") && !roles.includes("SUPER_ADMIN")) {
+    roles.push("SUPER_ADMIN")
   }
 
-  if (!allowedRoles.includes(session.user.role)) {
+  if (!roles.includes(session.user.role)) {
     throw new Error("Forbidden: Insufficient permissions")
   }
 

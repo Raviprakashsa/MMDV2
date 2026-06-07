@@ -26,14 +26,14 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
     env:
       DATABASE_URL: mongodb://localhost:27017/mmdss
       POSTGRES_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mmd_v2?schema=public
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET || 'ci-test-secret-not-for-production-use' }}
       AUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET || 'ci-test-secret-not-for-production-use' }}
       NEXTAUTH_URL: http://localhost:3000
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-      SENTRY_RELEASE: ${{ github.sha }}
+      NODE_ENV: production
 
     steps:
       - name: Checkout
@@ -52,99 +52,86 @@ jobs:
         run: npx prisma generate
 
       - name: Wait for MongoDB
-        run: npx wait-on tcp:localhost:27017 --timeout 60000
+        run: |
+          echo "Waiting for MongoDB on port 27017..."
+          for i in $(seq 1 30); do
+            if nc -z localhost 27017 2>/dev/null; then
+              echo "✅ MongoDB is ready"
+              break
+            fi
+            echo "Attempt $i/30 — retrying in 2s..."
+            sleep 2
+          done
 
       - name: Wait for PostgreSQL
-        run: npx wait-on tcp:localhost:5432 --timeout 60000
+        run: |
+          echo "Waiting for PostgreSQL on port 5432..."
+          for i in $(seq 1 30); do
+            if pg_isready -h localhost -p 5432 -U postgres 2>/dev/null; then
+              echo "✅ PostgreSQL is ready"
+              break
+            fi
+            echo "Attempt $i/30 — retrying in 2s..."
+            sleep 2
+          done
+
+      - name: Run Prisma migrations
+        run: npx prisma migrate deploy
+
+      - name: Seed PostgreSQL (creates admin@magnuscopo.com in PostgreSQL)
+        run: npm run db:seed:prisma || true
 
       - name: Run MongoDB migrations
         run: |
           npm run migrate:status || true
           npm run migrate || true
 
-      - name: Seed MongoDB
+      - name: Seed MongoDB (creates admin@magnuscopo.com in MongoDB)
         run: npm run db:seed || true
-
-      - name: Run Prisma migrations and seed
-        env:
-          POSTGRES_DATABASE_URL: ${{ env.POSTGRES_DATABASE_URL }}
-        run: |
-          npx prisma db push --accept-data-loss
-          npm run db:seed:prisma || true
 
       - name: Build Next.js application
         run: npm run build
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
 
-      - name: Start Next.js (production)
+      - name: Start Next.js (production mode)
         run: |
           nohup npm run start > server.log 2>&1 &
-          echo "Waiting for application health endpoint..."
-          for i in {1..30}; do
+          echo "Waiting for /api/health to respond..."
+          for i in $(seq 1 30); do
             if curl -fsS http://localhost:3000/api/health > /dev/null 2>&1; then
-              echo "Application is healthy"
+              echo "✅ Application is healthy"
               exit 0
             fi
-            echo "Health check attempt $i/30 failed, retrying in 4s..."
+            echo "Health check attempt $i/30 failed — retrying in 4s..."
             sleep 4
           done
-          echo "Application failed to become healthy after 120s. Dumping server.log (last 500 lines):"
-          tail -n 500 server.log || true
+          echo "❌ Application failed to start after 120s. Last 200 lines of server.log:"
+          tail -n 200 server.log || true
           exit 1
 
       - name: Run Playwright tests
         env:
           E2E_USE_SEEDED_USERS: '1'
+          E2E_ADMIN_EMAIL: admin@magnuscopo.com
+          E2E_ADMIN_PASSWORD: Admin123!
+          E2E_SUPER_ADMIN_EMAIL: admin@magnuscopo.com
+          E2E_SUPER_ADMIN_PASSWORD: Admin123!
         run: npx playwright test --reporter=list
 
-      - name: Dump logs to console on failure
+      - name: Dump server.log on failure
         if: failure()
         run: |
-          echo "========= CI: Dumping server.log (tail 500) ========="
-          if [ -f server.log ]; then
-            tail -n 500 server.log || true
-          else
-            echo "(no server.log found)"
-          fi
-          echo "========= CI: Dumping test-results files (first 200 lines each) ========="
-          if [ -d test-results ]; then
-            find test-results -type f -maxdepth 3 -print -exec sh -c 'echo "--- File: {} ---"; sed -n "1,200p" "{}"; echo ""' \;
-          else
-            echo "(no test-results directory)"
-          fi
-          echo "========= CI: Playwright report files ========="
-          if [ -d playwright-report ]; then
-            ls -R playwright-report | head -n 200 || true
-          else
-            echo "(no playwright-report directory)"
-          fi
+          echo "========= server.log (last 500 lines) ========="
+          tail -n 500 server.log || echo "(no server.log found)"
 
-      - name: Upload server.log on failure
+      - name: Upload failure artifacts
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: server-log
-          path: server.log
-
-      - name: Upload Playwright report on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report/
-
-      - name: Upload test results on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: test-results/
-
-      - name: Upload .next on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: next-build
-          path: .next/**
+          name: ci-failure-artifacts
+          path: |
+            server.log
+            playwright-report/
+            test-results/

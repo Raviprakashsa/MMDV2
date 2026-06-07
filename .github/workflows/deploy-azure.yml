@@ -49,7 +49,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Sanitize Azure Credentials to strip any copy-pasted whitespaces/tabs
+      # Sanitize Azure Credentials to strip any copy-pasted whitespace
       - name: Sanitize Azure Credentials
         id: sanitize
         run: |
@@ -61,33 +61,28 @@ jobs:
           echo "::add-mask::$CREDS_JSON"
           echo "creds=$CREDS_JSON" >> $GITHUB_OUTPUT
 
-      # Log in to Azure using Service Principal Credentials (JSON creds blob)
       - name: Log in to Azure
         uses: azure/login@v1
         with:
           creds: ${{ steps.sanitize.outputs.creds }}
 
-      # Log in to Azure Container Registry
       - name: Log in to Azure Container Registry (ACR)
         run: |
           az acr login --name ${{ env.CONTAINER_REGISTRY }}
 
-      # Build and push Docker image to ACR
       - name: Build and Push Docker Image
         run: |
           IMAGE_URI="${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}"
           docker build -t $IMAGE_URI .
           docker push $IMAGE_URI
-          
+
           # Tag as latest
           docker tag $IMAGE_URI "${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:latest"
           docker push "${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:latest"
 
-      # Install Container Apps extension on CI runner
       - name: Install Azure Container Apps CLI extension
         run: az extension add --name containerapp --upgrade --yes
 
-      # Deploy to Azure Container Apps
       - name: Deploy to Azure Container Apps
         run: |
           az containerapp update \
@@ -95,8 +90,36 @@ jobs:
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --image ${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
 
-      # Print live URL
-      - name: Show Live App URL
+      # ── Run Prisma Migrations against production PostgreSQL ──
+      # This runs AFTER the image is deployed so the DB schema is always
+      # in sync with the running container.
+      - name: Setup Node for DB operations
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies for DB operations
+        run: npm ci --legacy-peer-deps
+
+      - name: Run Prisma migrations against production PostgreSQL
+        env:
+          POSTGRES_DATABASE_URL: ${{ secrets.POSTGRES_DATABASE_URL }}
+        run: |
+          echo "Running Prisma migrate deploy..."
+          npx prisma generate
+          npx prisma migrate deploy
+          echo "✅ Migrations complete"
+
+      - name: Seed production PostgreSQL (idempotent upsert — safe to run every deploy)
+        env:
+          POSTGRES_DATABASE_URL: ${{ secrets.POSTGRES_DATABASE_URL }}
+        run: |
+          echo "Running Prisma seed (idempotent)..."
+          npm run db:seed:prisma
+          echo "✅ Seed complete"
+
+      - name: Print Live App URL
         run: |
           URL=$(az containerapp show \
             --name ${{ env.CONTAINER_APP_NAME }} \
