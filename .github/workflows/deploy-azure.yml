@@ -49,11 +49,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Sanitize Azure Credentials to strip any copy-pasted whitespaces/tabs
+      - name: Sanitize Azure Credentials
+        id: sanitize
+        run: |
+          CLIENT_ID=$(echo "${{ secrets.AZURE_CLIENT_ID }}" | tr -d '[:space:]')
+          CLIENT_SECRET=$(echo "${{ secrets.AZURE_CLIENT_SECRET }}" | tr -d '[:space:]')
+          TENANT_ID=$(echo "${{ secrets.AZURE_TENANT_ID }}" | tr -d '[:space:]')
+          SUBSCRIPTION_ID=$(echo "${{ secrets.AZURE_SUBSCRIPTION_ID }}" | tr -d '[:space:]')
+          CREDS_JSON="{\"clientId\":\"$CLIENT_ID\",\"clientSecret\":\"$CLIENT_SECRET\",\"tenantId\":\"$TENANT_ID\",\"subscriptionId\":\"$SUBSCRIPTION_ID\"}"
+          echo "::add-mask::$CREDS_JSON"
+          echo "creds=$CREDS_JSON" >> $GITHUB_OUTPUT
+
       # Log in to Azure using Service Principal Credentials (JSON creds blob)
       - name: Log in to Azure
         uses: azure/login@v1
         with:
-          creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}"}'
+          creds: ${{ steps.sanitize.outputs.creds }}
 
       # Log in to Azure Container Registry
       - name: Log in to Azure Container Registry (ACR)
