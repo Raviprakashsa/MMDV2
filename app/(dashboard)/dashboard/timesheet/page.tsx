@@ -3,521 +3,275 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   Clock,
-  Plus,
-  Check,
-  AlertCircle,
+  Activity,
+  TrendingUp,
+  Calendar,
   ChevronLeft,
   ChevronRight,
-  Edit2,
-  Trash2,
-  CalendarDays,
-  Briefcase,
+  Monitor,
+  Eye,
+  Plus,
+  Edit,
+  Trash,
+  LogIn,
+  LogOut,
+  AlertCircle,
+  Zap,
+  MousePointer,
+  Compass,
 } from 'lucide-react'
-import { format, startOfWeek, addDays, addWeeks, subWeeks, startOfMonth, endOfMonth } from 'date-fns'
+import { format, startOfWeek, addDays, addWeeks, subWeeks, parseISO } from 'date-fns'
 import { cn } from '@/lib/utils'
 import Button, { IconButton } from '@/components/ui/Button'
-import { Modal, ConfirmDialog } from '@/components/ui/Modal'
 import { useToast } from '@/components/ui/Toast'
-import {
-  logWork,
-  getTimesheet,
-  updateTimesheet,
-  deleteTimesheet,
-  getPendingTimesheets,
-  approveTimesheet,
-} from '@/lib/actions/module10-timesheet'
-import { getRequirements } from '@/lib/actions/module4-requirement'
+import { getUserDailySummariesAction, getUserActivityTimelineAction } from '@/lib/actions/productivity'
 
-const workTypes = [
-  'JD Creation',
-  'Sourcing',
-  'Screening',
-  'Interview Coordination',
-  'Client Follow-up',
-  'Database Update',
-  'Administrative',
-] as const
-
-type WorkType = (typeof workTypes)[number]
-
-interface TimesheetEntry {
-  _id: string
-  date: Date | string
-  hours: number
-  workType: WorkType
-  description: string
-  requirementId?: string
-  isBackdated?: boolean
-  requiresApproval?: boolean
-}
-
-interface DaySummary {
-  date: Date
-  totalHours: number
-  missing: boolean
-  backdated: boolean
-  requiresApproval?: boolean
-}
-
-interface Requirement {
+interface DailyWorkSummary {
   id: string
-  mmdId?: string
-  title: string
-  company: string
+  tenantId: string
+  userId: string
+  date: string | Date
+  loginHours: number
+  activeHours: number
+  idleHours: number
+  totalActions: number
+  productivityScore: number
 }
 
-function hoursTone(hours: number) {
-  if (hours === 0) return 'bg-white text-[var(--foreground-subtle)] border-[var(--border)]'
-  if (hours < 8) return 'bg-amber-50 text-amber-700 border-amber-200'
-  if (hours < 10) return 'bg-emerald-50 text-emerald-700 border-emerald-200'
-  return 'bg-emerald-100 text-emerald-800 border-emerald-300'
+interface ActivityLog {
+  id: string
+  tenantId: string
+  userId: string
+  module: string
+  entityType: string
+  entityId: string | null
+  action: string
+  metadata: any
+  createdAt: string | Date
 }
 
-function WeekCalendar({
-  weekStart: _weekStart,
-  days,
-  selectedDate,
-  onSelectDate,
-}: Readonly<{
-  weekStart: Date
-  days: DaySummary[]
-  selectedDate: Date | null
-  onSelectDate: (date: Date) => void
-}>) {
-  const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  const today = new Date()
-  const todayStr = format(today, 'yyyy-MM-dd')
-
-  return (
-    <div className="grid grid-cols-7 gap-2" suppressHydrationWarning>
-      {days.map((day, i) => {
-        const dateStr = format(new Date(day.date), 'yyyy-MM-dd')
-        const isToday = dateStr === todayStr
-        const isSelected = selectedDate && format(selectedDate, 'yyyy-MM-dd') === dateStr
-        const isWeekend = i >= 5
-
-        return (
-          <button
-            key={dateStr}
-            onClick={() => onSelectDate(new Date(day.date))}
-            className={cn(
-              'relative p-3 rounded-xl border transition-all text-left',
-              hoursTone(day.totalHours),
-              isSelected && 'ring-2 ring-[var(--primary)] ring-offset-2',
-              isToday && 'ring-2 ring-[var(--primary)]/30',
-              isWeekend && 'opacity-80'
-            )}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold">{dayNames[i]}</span>
-              {day.requiresApproval && (
-                <span className="text-amber-600" title="Pending approval">
-                  <AlertCircle className="w-3.5 h-3.5" />
-                </span>
-              )}
-            </div>
-            <div className="text-sm font-medium">{format(new Date(day.date), 'd')}</div>
-            <div className="text-lg font-bold tabular-nums mt-1">{day.totalHours.toFixed(1)}h</div>
-            {day.totalHours > 0 && day.totalHours < 8 && (
-              <span className="text-[10px] text-amber-600">&lt;8h</span>
-            )}
-          </button>
-        )
-      })}
-    </div>
-  )
+function productivityColor(score: number) {
+  if (score >= 80) return 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900/50'
+  if (score >= 50) return 'text-amber-600 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-900/50'
+  return 'text-rose-600 bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-900/50'
 }
 
-function MonthCalendar({
-  month,
-  entries,
-  onSelectDate,
-}: Readonly<{
-  month: Date
-  entries: TimesheetEntry[]
-  onSelectDate: (date: Date) => void
-}>) {
-  const start = startOfWeek(startOfMonth(month), { weekStartsOn: 1 })
-  const end = startOfWeek(endOfMonth(month), { weekStartsOn: 1 })
+function getActionIcon(action: string, entityType: string) {
+  const act = action.toUpperCase()
+  if (act.includes('LOGIN')) return <LogIn className="w-4 h-4 text-blue-500" />
+  if (act.includes('LOGOUT')) return <LogOut className="w-4 h-4 text-orange-500" />
+  if (act.includes('CREATE') || act.includes('ADD')) return <Plus className="w-4 h-4 text-emerald-500" />
+  if (act.includes('UPDATE') || act.includes('EDIT')) return <Edit className="w-4 h-4 text-amber-500" />
+  if (act.includes('DELETE') || act.includes('REMOVE')) return <Trash className="w-4 h-4 text-rose-500" />
+  if (act.includes('PAGE_VIEW') || entityType.toLowerCase() === 'page') return <Eye className="w-4 h-4 text-slate-500" />
+  return <MousePointer className="w-4 h-4 text-indigo-500" />
+}
 
-  const cells: Array<{ date: Date; totalHours: number }> = []
-  let cursor = start
-  const dateMap = new Map<string, number>()
-
-  entries.forEach((e) => {
-    const key = format(new Date(e.date), 'yyyy-MM-dd')
-    dateMap.set(key, (dateMap.get(key) || 0) + e.hours)
-  })
-
-  while (cursor <= end || cells.length % 7 !== 0) {
-    const key = format(cursor, 'yyyy-MM-dd')
-    cells.push({ date: cursor, totalHours: dateMap.get(key) || 0 })
-    cursor = addDays(cursor, 1)
-  }
-
-  const today = format(new Date(), 'yyyy-MM-dd')
-
-  return (
-    <div className="grid grid-cols-7 gap-1 text-xs" suppressHydrationWarning>
-      {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) => (
-        <div key={d} className="text-center font-semibold text-[var(--foreground-muted)] py-2">
-          {d}
-        </div>
-      ))}
-      {cells.map((cell) => {
-        const dateStr = format(cell.date, 'yyyy-MM-dd')
-        const isCurrentMonth = cell.date.getMonth() === month.getMonth()
-        const isToday = dateStr === today
-
-        return (
-          <button
-            key={dateStr}
-            onClick={() => onSelectDate(cell.date)}
-            className={cn(
-              'p-2 rounded-lg border text-left transition-all hover:ring-1 hover:ring-[var(--primary)]/30',
-              hoursTone(cell.totalHours),
-              !isCurrentMonth && 'opacity-40',
-              isToday && 'ring-2 ring-[var(--primary)]/40'
-            )}
-          >
-            <div className="font-semibold">{cell.date.getDate()}</div>
-            {cell.totalHours > 0 && (
-              <div className="text-sm font-bold mt-1">{cell.totalHours.toFixed(1)}h</div>
-            )}
-          </button>
-        )
-      })}
-    </div>
-  )
+function getActionColor(action: string) {
+  const act = action.toUpperCase()
+  if (act.includes('CREATE')) return 'bg-emerald-100/70 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400'
+  if (act.includes('UPDATE')) return 'bg-amber-100/70 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400'
+  if (act.includes('DELETE')) return 'bg-rose-100/70 text-rose-700 dark:bg-rose-950/40 dark:text-rose-400'
+  if (act.includes('LOGIN')) return 'bg-blue-100/70 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400'
+  return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
 }
 
 export default function TimesheetPage() {
   const toast = useToast()
   const [isLoading, setIsLoading] = useState(true)
+  const [isTimelineLoading, setIsTimelineLoading] = useState(false)
   const [weekStart, setWeekStart] = useState(() => startOfWeek(new Date(), { weekStartsOn: 1 }))
-  const [days, setDays] = useState<DaySummary[]>([])
-  const [entries, setEntries] = useState<TimesheetEntry[]>([])
-  const [requirements, setRequirements] = useState<Requirement[]>([])
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
+  const [summaries, setSummaries] = useState<DailyWorkSummary[]>([])
+  const [selectedDate, setSelectedDate] = useState<Date>(() => new Date())
+  const [timelineLogs, setTimelineLogs] = useState<ActivityLog[]>([])
 
-  // Modal states
-  const [isLogModalOpen, setIsLogModalOpen] = useState(false)
-  const [isEditingEntry, setIsEditingEntry] = useState<TimesheetEntry | null>(null)
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
-  const [deletingEntry, setDeletingEntry] = useState<TimesheetEntry | null>(null)
-  const [isSaving, setIsSaving] = useState(false)
-
-  // Form state
-  const [formDate, setFormDate] = useState<string>(format(new Date(), 'yyyy-MM-dd'))
-  const [formHours, setFormHours] = useState<number>(1)
-  const [formWorkType, setFormWorkType] = useState<WorkType>('Sourcing')
-  const [formDescription, setFormDescription] = useState('')
-  const [formRequirementId, setFormRequirementId] = useState('')
-
-  // View mode
-  const [viewMode, setViewMode] = useState<'week' | 'month'>('week')
-  const [monthView] = useState(new Date())
-
-  // Admin pending approvals
-  const [pendingApprovals, setPendingApprovals] = useState<TimesheetEntry[]>([])
-  const [showPending, setShowPending] = useState(false)
-
-  const fetchTimesheet = async () => {
+  // Fetch summaries for the selected week
+  const fetchWeeklySummaries = async () => {
     setIsLoading(true)
-    const result = await getTimesheet({ weekStart })
-    if (result.success && result.data) {
-      setDays(result.data.days as DaySummary[])
-      setEntries(
-        result.data.entries.map((e: any) => ({
-          ...e,
-          _id: e._id.toString(),
-          date: e.date,
-        }))
-      )
-    } else {
-      toast.error('Failed to load timesheet', result.error || 'Unknown error')
-    }
-    setIsLoading(false)
-  }
+    const startDateStr = format(weekStart, 'yyyy-MM-dd')
+    const endDateStr = format(addDays(weekStart, 6), 'yyyy-MM-dd')
 
-  const fetchRequirements = async () => {
-    const result = await getRequirements({})
-    if (result.success && result.data) {
-      const normalizedRequirements: Requirement[] = []
+    try {
+      const result = await getUserDailySummariesAction({
+        startDate: startDateStr,
+        endDate: endDateStr,
+      })
 
-      for (const item of result.data as Array<Record<string, unknown>>) {
-          const itemId = typeof item._id === 'string'
-            ? item._id
-            : (typeof item.id === 'string' ? item.id : '')
-          if (!itemId) continue
-
-          const itemCompany = typeof item.company === 'string'
-            ? item.company
-            : (typeof item.companyName === 'string' ? item.companyName : '')
-
-          const jobTitle = typeof item.jobTitle === 'string'
-            ? item.jobTitle
-            : (typeof item.title === 'string' ? item.title : 'Untitled Requirement')
-
-          normalizedRequirements.push({
-            id: itemId,
-            mmdId: typeof item.mmdId === 'string' ? item.mmdId : undefined,
-            title: jobTitle,
-            company: itemCompany || 'Unknown Company',
-          })
+      if (result?.success && result.data) {
+        setSummaries(result.data as DailyWorkSummary[])
+      } else {
+        toast.error('Failed to load summaries', result?.error || 'Unknown error')
       }
-
-      setRequirements(
-        normalizedRequirements
-      )
+    } catch (err: any) {
+      toast.error('Error loading summaries', err.message || 'Unknown error')
+    } finally {
+      setIsLoading(false)
     }
   }
 
-  const fetchPendingApprovals = async () => {
-    const result = await getPendingTimesheets({})
-    if (result.success && result.data) {
-      setPendingApprovals(
-        result.data.map((e: any) => ({
-          _id: e._id,
-          date: e.date,
-          hours: e.hours,
-          workType: e.workType as WorkType,
-          description: e.description,
-          requirementId: e.requirementId || undefined,
-          isBackdated: e.isBackdated,
-          requiresApproval: e.requiresApproval,
-        }))
-      )
+  // Fetch daily activity timeline
+  const fetchTimeline = async (date: Date) => {
+    setIsTimelineLoading(true)
+    const dateStr = format(date, 'yyyy-MM-dd')
+    try {
+      const result = await getUserActivityTimelineAction({ date: dateStr })
+      if (result?.success && result.data) {
+        setTimelineLogs(result.data as ActivityLog[])
+      } else {
+        toast.error('Failed to load timeline', result?.error || 'Unknown error')
+      }
+    } catch (err: any) {
+      toast.error('Error loading timeline', err.message || 'Unknown error')
+    } finally {
+      setIsTimelineLoading(false)
     }
   }
 
   useEffect(() => {
-    fetchTimesheet()
-    fetchRequirements()
-    fetchPendingApprovals()
+    fetchWeeklySummaries()
   }, [weekStart])
 
-  const selectedDateEntries = useMemo(() => {
-    if (!selectedDate) return []
-    const dateStr = format(selectedDate, 'yyyy-MM-dd')
-    return entries.filter((e) => format(new Date(e.date), 'yyyy-MM-dd') === dateStr)
-  }, [entries, selectedDate])
+  useEffect(() => {
+    if (selectedDate) {
+      fetchTimeline(selectedDate)
+    }
+  }, [selectedDate])
 
+  // Map summaries to Mon-Sun array
+  const weekDays = useMemo(() => {
+    const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    const todayStr = format(new Date(), 'yyyy-MM-dd')
+
+    return Array.from({ length: 7 }).map((_, i) => {
+      const date = addDays(weekStart, i)
+      const dateStr = format(date, 'yyyy-MM-dd')
+      const isToday = dateStr === todayStr
+
+      // Find summary matching this date
+      const summary = summaries.find((s) => {
+        const sDate = typeof s.date === 'string' ? parseISO(s.date) : new Date(s.date)
+        return format(sDate, 'yyyy-MM-dd') === dateStr
+      })
+
+      return {
+        date,
+        dateStr,
+        dayName: dayNames[i],
+        isToday,
+        activeHours: summary?.activeHours || 0,
+        idleHours: summary?.idleHours || 0,
+        totalActions: summary?.totalActions || 0,
+        productivityScore: summary?.productivityScore || 0,
+        hasData: !!summary,
+      }
+    })
+  }, [weekStart, summaries])
+
+  // Compute stats for the current week
   const weekStats = useMemo(() => {
-    const total = days.reduce((sum, d) => sum + d.totalHours, 0)
-    const daysLogged = days.filter((d) => d.totalHours > 0).length
-    const pendingDays = days.filter((d) => d.requiresApproval).length
-    return { total, daysLogged, pendingDays }
-  }, [days])
+    let totalActive = 0
+    let totalIdle = 0
+    let totalActions = 0
+    let scoreSum = 0
+    let activeDaysCount = 0
 
-  const openLogModal = (date?: Date) => {
-    // Anti-fraud: Restrict past date logging
-    const targetDate = date || new Date()
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-    
-    const targetCheck = new Date(targetDate)
-    targetCheck.setHours(0, 0, 0, 0)
-    
-    if (targetCheck < today) {
-      toast.error('Restricted Action', 'You cannot log work for past dates. Please log work daily.')
-      return
-    }
-
-    setIsEditingEntry(null)
-    setFormDate(format(date || new Date(), 'yyyy-MM-dd'))
-    setFormHours(1)
-    setFormWorkType('Sourcing')
-    setFormDescription('')
-    setFormRequirementId('')
-    setIsLogModalOpen(true)
-  }
-
-  const openEditModal = (entry: TimesheetEntry) => {
-    // Anti-fraud: Restrict modifying past entries
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-    
-    const entryDate = new Date(entry.date)
-    entryDate.setHours(0, 0, 0, 0)
-    
-    if (entryDate < today) {
-      toast.error('Restricted Action', 'You cannot modify confirmed timesheets from past dates.')
-      return
-    }
-
-    setIsEditingEntry(entry)
-    setFormDate(format(new Date(entry.date), 'yyyy-MM-dd'))
-    setFormHours(entry.hours)
-    setFormWorkType(entry.workType)
-    setFormDescription(entry.description)
-    setFormRequirementId(entry.requirementId || '')
-    setIsLogModalOpen(true)
-  }
-
-  const handleSave = async () => {
-    if (formHours <= 0 || formHours > 8) {
-      toast.error('Invalid hours', 'Hours must be between 0.5 and 8')
-      return
-    }
-    if (formDescription.length < 10) {
-      toast.error('Description too short', 'Please provide at least 10 characters')
-      return
-    }
-
-    setIsSaving(true)
-
-    if (isEditingEntry) {
-      const result = await updateTimesheet({
-        id: isEditingEntry._id,
-        hours: formHours,
-        workType: formWorkType,
-        description: formDescription,
-      })
-
-      if (result.success) {
-        toast.success('Entry updated', 'Timesheet entry has been saved')
-        fetchTimesheet()
-      } else {
-        toast.error('Update failed', result.error || 'Unknown error')
+    weekDays.forEach((day) => {
+      totalActive += day.activeHours
+      totalIdle += day.idleHours
+      totalActions += day.totalActions
+      if (day.activeHours > 0) {
+        scoreSum += day.productivityScore
+        activeDaysCount++
       }
-    } else {
-      const result = await logWork({
-        date: new Date(formDate),
-        hours: formHours,
-        workType: formWorkType,
-        description: formDescription,
-        requirementId: formRequirementId || undefined,
-      })
+    })
 
-      if (result.success) {
-        toast.success('Work logged', `${formHours} hours logged successfully`)
-        fetchTimesheet()
-      } else {
-        toast.error('Log failed', result.error || 'Unknown error')
-      }
+    const avgScore = activeDaysCount > 0 ? Math.round(scoreSum / activeDaysCount) : 0
+
+    return {
+      totalActive,
+      totalIdle,
+      totalActions,
+      avgScore,
     }
-
-    setIsSaving(false)
-    setIsLogModalOpen(false)
-  }
-
-  const handleDelete = async () => {
-    if (!deletingEntry) return
-
-    // Anti-fraud check
-    const today = new Date()
-    today.setHours(0,0,0,0)
-    const entryDate = new Date(deletingEntry.date)
-    entryDate.setHours(0,0,0,0)
-    
-    if (entryDate < today) {
-       toast.error("Restricted Action", "Cannot delete past timesheet records.")
-       setIsDeleteDialogOpen(false)
-       return
-    }
-
-    const result = await deleteTimesheet({ id: deletingEntry._id })
-    if (result.success) {
-      toast.success('Entry deleted', 'Timesheet entry has been removed')
-      fetchTimesheet()
-    } else {
-      toast.error('Delete failed', result.error || 'Unknown error')
-    }
-
-    setDeletingEntry(null)
-    setIsDeleteDialogOpen(false)
-  }
-
-  const handleApprove = async (entryId: string) => {
-    const result = await approveTimesheet({ id: entryId })
-    if (result.success) {
-      toast.success('Entry approved', 'Timesheet entry has been approved')
-      fetchPendingApprovals()
-      fetchTimesheet()
-    } else {
-      toast.error('Approval failed', result.error || 'Unknown error')
-    }
-  }
+  }, [weekDays])
 
   const goToPreviousWeek = () => setWeekStart(subWeeks(weekStart, 1))
   const goToNextWeek = () => setWeekStart(addWeeks(weekStart, 1))
-  const goToCurrentWeek = () => setWeekStart(startOfWeek(new Date(), { weekStartsOn: 1 }))
+  const goToCurrentWeek = () => {
+    setWeekStart(startOfWeek(new Date(), { weekStartsOn: 1 }))
+    setSelectedDate(new Date())
+  }
+
+  const selectedDayData = useMemo(() => {
+    const selStr = format(selectedDate, 'yyyy-MM-dd')
+    return weekDays.find((d) => d.dateStr === selStr)
+  }, [weekDays, selectedDate])
 
   return (
     <div className="space-y-6 text-[var(--foreground)]">
+      {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-4">
-          <div className="p-3 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-lg shadow-amber-500/20">
-            <Clock className="w-7 h-7" />
+          <div className="p-3 rounded-2xl bg-gradient-to-br from-indigo-500 via-brand-600 to-brand-800 text-white shadow-lg shadow-indigo-500/20">
+            <Activity className="w-7 h-7" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">Timesheet</h1>
-            <p className="text-[var(--foreground-muted)]">Log and track your working hours</p>
+            <h1 className="text-2xl font-bold tracking-tight">Work Intelligence Timesheet</h1>
+            <p className="text-[var(--foreground-muted)] text-sm">
+              Automated, activity-based tracking engine capturing passive active time and platform interactions.
+            </p>
           </div>
         </div>
-        <div className="flex gap-2">
-          {pendingApprovals.length > 0 && (
-            <Button variant="secondary" leftIcon={<AlertCircle className="w-4 h-4" />} onClick={() => setShowPending(!showPending)}>
-              {pendingApprovals.length} Pending
-            </Button>
-          )}
-          <Button variant="gradient" leftIcon={<Plus className="w-4 h-4" />} onClick={() => openLogModal(selectedDate || new Date())}>
-            Log Work
-          </Button>
+        <div className="flex items-center gap-2 bg-indigo-50/60 dark:bg-slate-900 border border-indigo-100/50 dark:border-slate-800 px-4 py-2 rounded-xl text-xs text-indigo-700 dark:text-indigo-300">
+          <Zap className="w-3.5 h-3.5 text-indigo-500 animate-pulse" />
+          <span>No manual entry required. System logs activity and compiles stats.</span>
         </div>
       </div>
 
-      {/* Week Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="card-stat">
-          <p className="text-sm text-[var(--foreground-muted)]">Total This Week</p>
-          <p className="text-2xl font-bold text-[var(--foreground)]">{weekStats.total.toFixed(1)}h</p>
+      {/* Week Metrics Summary */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="card-stat bg-white dark:bg-slate-900 border border-[var(--border)] p-4 rounded-2xl shadow-sm">
+          <p className="text-xs font-medium text-[var(--foreground-muted)] uppercase tracking-wider">Active Hours This Week</p>
+          <div className="flex items-baseline gap-2 mt-2">
+            <span className="text-3xl font-extrabold text-[var(--foreground)] tabular-nums">
+              {weekStats.totalActive.toFixed(1)}h
+            </span>
+            <span className="text-xs text-[var(--foreground-muted)]">logged</span>
+          </div>
         </div>
-        <div className="card-stat card-stat-success">
-          <p className="text-sm text-[var(--foreground-muted)]">Days Logged</p>
-          <p className="text-2xl font-bold text-emerald-600">{weekStats.daysLogged}/7</p>
+        <div className="card-stat bg-white dark:bg-slate-900 border border-[var(--border)] p-4 rounded-2xl shadow-sm">
+          <p className="text-xs font-medium text-[var(--foreground-muted)] uppercase tracking-wider">Total Idle Time</p>
+          <div className="flex items-baseline gap-2 mt-2">
+            <span className="text-3xl font-extrabold text-amber-600 dark:text-amber-500 tabular-nums">
+              {weekStats.totalIdle.toFixed(1)}h
+            </span>
+            <span className="text-xs text-[var(--foreground-muted)]">detected</span>
+          </div>
         </div>
-        <div className="card-stat">
-          <p className="text-sm text-[var(--foreground-muted)]">Daily Average</p>
-          <p className="text-2xl font-bold text-[var(--foreground)]">
-            {weekStats.daysLogged > 0 ? (weekStats.total / weekStats.daysLogged).toFixed(1) : '0.0'}h
-          </p>
+        <div className="card-stat bg-white dark:bg-slate-900 border border-[var(--border)] p-4 rounded-2xl shadow-sm">
+          <p className="text-xs font-medium text-[var(--foreground-muted)] uppercase tracking-wider">Weekly Productivity Score</p>
+          <div className="flex items-baseline gap-2 mt-2">
+            <span className={cn("text-3xl font-extrabold tabular-nums", 
+              weekStats.avgScore >= 80 ? "text-emerald-600" : weekStats.avgScore >= 50 ? "text-amber-600" : "text-rose-600"
+            )}>
+              {weekStats.avgScore}%
+            </span>
+            <span className="text-xs text-[var(--foreground-muted)]">efficiency</span>
+          </div>
         </div>
-        <div className="card-stat card-stat-warning">
-          <p className="text-sm text-[var(--foreground-muted)]">Pending Approval</p>
-          <p className="text-2xl font-bold text-amber-600">{weekStats.pendingDays}</p>
+        <div className="card-stat bg-white dark:bg-slate-900 border border-[var(--border)] p-4 rounded-2xl shadow-sm">
+          <p className="text-xs font-medium text-[var(--foreground-muted)] uppercase tracking-wider">Captured Actions</p>
+          <div className="flex items-baseline gap-2 mt-2">
+            <span className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 tabular-nums">
+              {weekStats.totalActions}
+            </span>
+            <span className="text-xs text-[var(--foreground-muted)]">mutations & views</span>
+          </div>
         </div>
       </div>
 
-      {/* Pending Approvals (Admin) */}
-      {showPending && pendingApprovals.length > 0 && (
-        <div className="card-premium p-5">
-          <h3 className="font-semibold mb-4 flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 text-amber-500" />
-            Pending Approvals
-          </h3>
-          <div className="space-y-3">
-            {pendingApprovals.map((entry) => (
-              <div key={entry._id} className="flex items-center justify-between bg-amber-50 rounded-xl p-4 border border-amber-200">
-                <div>
-                  <p className="font-semibold">{entry.workType}</p>
-                  <p className="text-sm text-[var(--foreground-muted)]">
-                    {format(new Date(entry.date), 'MMM d, yyyy')} · {entry.hours}h
-                  </p>
-                  <p className="text-xs text-[var(--foreground-muted)] mt-1">{entry.description}</p>
-                </div>
-                <Button variant="gradient" size="sm" leftIcon={<Check className="w-4 h-4" />} onClick={() => handleApprove(entry._id)}>
-                  Approve
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Week Navigation */}
-      <div className="flex items-center justify-between bg-white rounded-2xl border border-[var(--border)] p-4 shadow-sm">
+      {/* Week Navigator */}
+      <div className="flex items-center justify-between bg-white dark:bg-slate-900 rounded-2xl border border-[var(--border)] p-4 shadow-sm">
         <div className="flex items-center gap-2">
           <IconButton aria-label="Previous week" variant="secondary" onClick={goToPreviousWeek}>
             <ChevronLeft className="w-5 h-5" />
@@ -530,206 +284,227 @@ export default function TimesheetPage() {
           </Button>
         </div>
         <div className="text-center">
-          <p className="font-semibold text-[var(--foreground)]">
+          <p className="font-semibold text-sm md:text-base text-[var(--foreground)]">
             {format(weekStart, 'MMM d')} – {format(addDays(weekStart, 6), 'MMM d, yyyy')}
           </p>
-          <p className="text-sm text-[var(--foreground-muted)]">Week {format(weekStart, 'w')}</p>
+          <p className="text-xs text-[var(--foreground-muted)]">Week {format(weekStart, 'w')}</p>
         </div>
         <div className="flex gap-2">
-          <Button
-            variant={viewMode === 'week' ? 'primary' : 'ghost'}
-            size="sm"
-            leftIcon={<CalendarDays className="w-4 h-4" />}
-            onClick={() => setViewMode('week')}
-          >
-            Week
-          </Button>
+          <span className="text-xs bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 px-3 py-1.5 rounded-lg font-medium border border-indigo-100/50 dark:border-indigo-900/30 flex items-center gap-1.5">
+            <Clock className="w-3.5 h-3.5" />
+            Auto-Timesheet
+          </span>
         </div>
       </div>
 
-      {/* Calendar View */}
-      {isLoading ? (
-        <div className="card-premium p-6">
-          <div className="grid grid-cols-7 gap-2">
+      {/* Calendar Week Days View */}
+      <div className="card-premium bg-white dark:bg-slate-900 border border-[var(--border)] p-5 rounded-2xl shadow-sm">
+        {isLoading ? (
+          <div className="grid grid-cols-7 gap-3">
             {Array.from({ length: 7 }).map((_, i) => (
-              <div key={`skel-${i}`} className="h-28 rounded-xl bg-[var(--surface-hover)] animate-pulse" />
+              <div key={`skel-${i}`} className="h-28 rounded-xl bg-slate-100 dark:bg-slate-800 animate-pulse" />
             ))}
           </div>
-        </div>
-      ) : viewMode === 'week' ? (
-        <div className="card-premium p-5">
-          <WeekCalendar
-            weekStart={weekStart}
-            days={days}
-            selectedDate={selectedDate}
-            onSelectDate={setSelectedDate}
-          />
-        </div>
-      ) : (
-        <div className="card-premium p-5">
-          <MonthCalendar month={monthView} entries={entries} onSelectDate={setSelectedDate} />
-        </div>
-      )}
+        ) : (
+          <div className="grid grid-cols-7 gap-3">
+            {weekDays.map((day, i) => {
+              const isSelected = format(selectedDate, 'yyyy-MM-dd') === day.dateStr
+              const isWeekend = i >= 5
+              const hasData = day.hasData
 
-      {/* Selected Day Entries */}
-      {selectedDate && (
-        <div className="card-premium p-5">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-lg">
-              {format(selectedDate, 'EEEE, MMMM d, yyyy')}
-            </h3>
-            <Button variant="secondary" size="sm" leftIcon={<Plus className="w-4 h-4" />} onClick={() => openLogModal(selectedDate)}>
-              Add Entry
-            </Button>
+              return (
+                <button
+                  key={day.dateStr}
+                  onClick={() => setSelectedDate(day.date)}
+                  className={cn(
+                    'relative p-3.5 rounded-xl border transition-all text-left flex flex-col justify-between h-32',
+                    isSelected 
+                      ? 'bg-indigo-50/40 dark:bg-indigo-950/20 border-indigo-500 dark:border-indigo-400 ring-1 ring-indigo-500' 
+                      : 'bg-white dark:bg-slate-900 border-[var(--border)] hover:border-slate-300 dark:hover:border-slate-700',
+                    isWeekend && 'opacity-70',
+                    day.isToday && !isSelected && 'ring-1 ring-brand-500/30 border-brand-500/30'
+                  )}
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <span className="text-xs font-bold text-[var(--foreground-muted)] uppercase">{day.dayName}</span>
+                    {day.isToday && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-500" title="Today" />
+                    )}
+                  </div>
+                  <div className="mt-1">
+                    <span className="text-xl font-bold tracking-tight block text-[var(--foreground)]">{format(day.date, 'd')}</span>
+                  </div>
+                  <div className="w-full mt-2 space-y-1">
+                    {hasData ? (
+                      <>
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-[var(--foreground-muted)] font-medium">Active:</span>
+                          <span className="font-bold tabular-nums text-[var(--foreground)]">{day.activeHours.toFixed(1)}h</span>
+                        </div>
+                        <div className="flex items-center justify-between text-[10px] text-[var(--foreground-subtle)]">
+                          <span>Idle:</span>
+                          <span className="tabular-nums">{day.idleHours.toFixed(1)}h</span>
+                        </div>
+                        <div className="flex items-center justify-between pt-1 border-t border-slate-100 dark:border-slate-800">
+                          <span className="text-[9px] uppercase tracking-wider text-[var(--foreground-muted)]">Score:</span>
+                          <span className={cn("text-[10px] font-bold px-1 rounded", 
+                            day.productivityScore >= 80 ? "text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/30" : 
+                            day.productivityScore >= 50 ? "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-950/30" : 
+                            "text-rose-600 bg-rose-50 dark:text-rose-400 dark:bg-rose-950/30"
+                          )}>
+                            {day.productivityScore}%
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-[10px] text-[var(--foreground-subtle)] italic pt-4">
+                        No activity
+                      </div>
+                    )}
+                  </div>
+                </button>
+              )
+            })}
           </div>
+        )}
+      </div>
 
-          {selectedDateEntries.length === 0 ? (
-            <div className="text-center py-8 text-[var(--foreground-muted)]">
-              <Clock className="w-12 h-12 mx-auto mb-3 opacity-30" />
-              <p>No hours logged for this day</p>
-              <Button variant="gradient" size="sm" className="mt-3" onClick={() => openLogModal(selectedDate)}>
-                Log Work
-              </Button>
+      {/* Selected Day Activity Timeline */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Side: Summary Card for Selected Day */}
+        <div className="space-y-4">
+          <div className="bg-white dark:bg-slate-900 border border-[var(--border)] rounded-2xl p-5 shadow-sm">
+            <h3 className="font-bold text-lg text-[var(--foreground)] mb-4 flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-indigo-500" />
+              Day Audit Summary
+            </h3>
+            
+            {selectedDayData?.hasData ? (
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                  <div className="flex items-center gap-2.5">
+                    <Clock className="w-4 h-4 text-emerald-500" />
+                    <span className="text-sm font-medium text-[var(--foreground-muted)]">Active Hours</span>
+                  </div>
+                  <span className="font-bold text-[var(--foreground)] tabular-nums">{selectedDayData.activeHours.toFixed(2)} hrs</span>
+                </div>
+
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                  <div className="flex items-center gap-2.5">
+                    <Monitor className="w-4 h-4 text-amber-500" />
+                    <span className="text-sm font-medium text-[var(--foreground-muted)]">Idle Interval Hours</span>
+                  </div>
+                  <span className="font-bold text-[var(--foreground)] tabular-nums">{selectedDayData.idleHours.toFixed(2)} hrs</span>
+                </div>
+
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                  <div className="flex items-center gap-2.5">
+                    <TrendingUp className="w-4 h-4 text-indigo-500" />
+                    <span className="text-sm font-medium text-[var(--foreground-muted)]">Productivity Score</span>
+                  </div>
+                  <span className={cn("font-bold px-2 py-0.5 rounded-md text-sm border", productivityColor(selectedDayData.productivityScore))}>
+                    {selectedDayData.productivityScore}%
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                  <div className="flex items-center gap-2.5">
+                    <Activity className="w-4 h-4 text-blue-500" />
+                    <span className="text-sm font-medium text-[var(--foreground-muted)]">Total User Actions</span>
+                  </div>
+                  <span className="font-bold text-[var(--foreground)] tabular-nums">{selectedDayData.totalActions} events</span>
+                </div>
+
+                <div className="text-[11px] text-[var(--foreground-subtle)] leading-relaxed bg-slate-50 dark:bg-slate-850 p-3 rounded-xl border border-slate-100 dark:border-slate-800/50">
+                  Productivity score is computed dynamically based on the ratio of active intervals (clicks, page navigations, scroll and keyboard inputs) against idle intervals where the window remains inactive.
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-8 text-[var(--foreground-muted)] text-sm">
+                <AlertCircle className="w-8 h-8 mx-auto mb-2 opacity-35" />
+                No summaries found for {format(selectedDate, 'MMM d, yyyy')}.
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right Side: Timeline of Events */}
+        <div className="lg:col-span-2">
+          <div className="bg-white dark:bg-slate-900 border border-[var(--border)] rounded-2xl p-5 shadow-sm">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+              <div>
+                <h3 className="font-bold text-lg text-[var(--foreground)]">Activity Log Timeline</h3>
+                <p className="text-xs text-[var(--foreground-muted)] mt-0.5">
+                  Chronological event trail for {format(selectedDate, 'EEEE, MMMM d, yyyy')}
+                </p>
+              </div>
+              <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full text-[var(--foreground-muted)] font-medium">
+                {timelineLogs.length} events logged
+              </span>
             </div>
-          ) : (
-            <div className="space-y-3">
-              {selectedDateEntries.map((entry) => (
-                <div key={entry._id} className="flex items-center justify-between bg-[var(--surface-hover)] rounded-xl p-4">
-                  <div className="flex items-center gap-4">
-                    <div className="p-2 rounded-lg bg-white border border-[var(--border)]">
-                      <Briefcase className="w-5 h-5 text-[var(--primary)]" />
+
+            {isTimelineLoading ? (
+              <div className="space-y-4 py-8">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={`timeline-skel-${i}`} className="flex gap-4 items-start animate-pulse">
+                    <div className="w-8 h-8 rounded-full bg-slate-150 dark:bg-slate-800 shrink-0" />
+                    <div className="space-y-2 w-full">
+                      <div className="h-4 bg-slate-150 dark:bg-slate-800 rounded w-1/4" />
+                      <div className="h-3 bg-slate-150 dark:bg-slate-800 rounded w-3/4" />
                     </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <p className="font-semibold">{entry.workType}</p>
-                        <span className="chip chip-outline text-xs">{entry.hours}h</span>
-                        {entry.requiresApproval && (
-                          <span className="chip bg-amber-100 text-amber-700 text-xs">Pending</span>
+                  </div>
+                ))}
+              </div>
+            ) : timelineLogs.length === 0 ? (
+              <div className="text-center py-16 text-[var(--foreground-muted)]">
+                <Compass className="w-12 h-12 mx-auto mb-3 opacity-25" />
+                <p className="text-sm font-medium">No system interactions or page navigation logs recorded.</p>
+                <p className="text-xs mt-1">Work activities are automatically captured when user interacts with the app modules.</p>
+              </div>
+            ) : (
+              <div className="relative pl-6 border-l-2 border-indigo-100 dark:border-indigo-950/70 ml-3 py-2 space-y-6">
+                {timelineLogs.map((log) => {
+                  const logTime = typeof log.createdAt === 'string' ? parseISO(log.createdAt) : new Date(log.createdAt)
+                  const timeFormatted = format(logTime, 'hh:mm:ss a')
+                  
+                  return (
+                    <div key={log.id} className="relative group">
+                      {/* Timeline dot */}
+                      <span className="absolute -left-[35px] top-1 bg-white dark:bg-slate-900 border-2 border-indigo-400 dark:border-indigo-600 rounded-full p-1.5 flex items-center justify-center shrink-0 w-8 h-8 shadow-sm">
+                        {getActionIcon(log.action, log.entityType)}
+                      </span>
+
+                      <div className="space-y-1 bg-slate-50/50 dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-800/40 p-3 rounded-xl transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-800">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-semibold text-indigo-700 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-100/50 dark:border-indigo-900/30">
+                              {log.module}
+                            </span>
+                            <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider", getActionColor(log.action))}>
+                              {log.action}
+                            </span>
+                          </div>
+                          <span className="text-xs text-[var(--foreground-subtle)] font-medium tabular-nums">{timeFormatted}</span>
+                        </div>
+                        
+                        <p className="text-sm text-[var(--foreground)] font-medium pt-1">
+                          {log.entityType}: <span className="font-semibold text-slate-700 dark:text-slate-200">{log.entityId || 'Platform'}</span>
+                        </p>
+
+                        {log.metadata && Object.keys(log.metadata).length > 0 && (
+                          <div className="text-xs text-[var(--foreground-muted)] bg-white dark:bg-slate-850 p-2 rounded-lg border border-slate-100 dark:border-slate-800/50 mt-2 font-mono break-all max-h-24 overflow-y-auto">
+                            {typeof log.metadata === 'string' ? log.metadata : JSON.stringify(log.metadata, null, 2)}
+                          </div>
                         )}
                       </div>
-                      <p className="text-sm text-[var(--foreground-muted)] line-clamp-1">{entry.description}</p>
                     </div>
-                  </div>
-                  <div className="flex gap-1">
-                    <IconButton aria-label="Edit entry" variant="ghost" size="sm" onClick={() => openEditModal(entry)}>
-                      <Edit2 className="w-4 h-4" />
-                    </IconButton>
-                    <IconButton
-                      aria-label="Delete entry"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        setDeletingEntry(entry)
-                        setIsDeleteDialogOpen(true)
-                      }}
-                    >
-                      <Trash2 className="w-4 h-4 text-red-500" />
-                    </IconButton>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Log Work Modal */}
-      <Modal
-        isOpen={isLogModalOpen}
-        onClose={() => setIsLogModalOpen(false)}
-        title={isEditingEntry ? 'Edit Entry' : 'Log Work'}
-        description="Record your work hours and activities"
-        size="md"
-      >
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-[var(--foreground-muted)] mb-1.5">Date</label>
-              <input
-                type="date"
-                className="input-modern"
-                value={formDate}
-                onChange={(e) => setFormDate(e.target.value)}
-                disabled={!!isEditingEntry}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-[var(--foreground-muted)] mb-1.5">Hours</label>
-              <input
-                type="number"
-                className="input-modern"
-                min="0.5"
-                max="8"
-                step="0.5"
-                value={formHours}
-                onChange={(e) => setFormHours(Number(e.target.value))}
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold text-[var(--foreground-muted)] mb-1.5">Work Type</label>
-            <select
-              className="select-modern w-full"
-              value={formWorkType}
-              onChange={(e) => setFormWorkType(e.target.value as WorkType)}
-            >
-              {workTypes.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {!isEditingEntry && (
-            <div>
-              <label className="block text-sm font-semibold text-[var(--foreground-muted)] mb-1.5">Requirement (Optional)</label>
-              <select
-                className="select-modern w-full"
-                value={formRequirementId}
-                onChange={(e) => setFormRequirementId(e.target.value)}
-              >
-                <option value="">No specific requirement</option>
-                {requirements.map((r) => (
-                  <option key={r.id} value={r.id}>
-                    {r.mmdId ? `${r.mmdId} • ` : ''}{r.title} - {r.company}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
-          <div>
-            <label className="block text-sm font-semibold text-[var(--foreground-muted)] mb-1.5">Description (min 10 chars)</label>
-            <textarea
-              className="input-modern min-h-[100px]"
-              placeholder="Describe what you worked on..."
-              value={formDescription}
-              onChange={(e) => setFormDescription(e.target.value)}
-            />
-          </div>
-
-          <div className="flex justify-end gap-3 pt-4 border-t border-[var(--border)]">
-            <Button variant="secondary" onClick={() => setIsLogModalOpen(false)}>
-              Cancel
-            </Button>
-            <Button variant="gradient" onClick={handleSave} disabled={isSaving}>
-              {isSaving ? 'Saving...' : isEditingEntry ? 'Save Changes' : 'Log Work'}
-            </Button>
+                  )
+                })}
+              </div>
+            )}
           </div>
         </div>
-      </Modal>
-
-      <ConfirmDialog
-        isOpen={isDeleteDialogOpen}
-        onClose={() => setIsDeleteDialogOpen(false)}
-        onConfirm={handleDelete}
-        title="Delete Entry"
-        message={`Are you sure you want to delete this ${deletingEntry?.hours}h ${deletingEntry?.workType} entry?`}
-        confirmText="Delete"
-        variant="danger"
-      />
+      </div>
     </div>
   )
 }

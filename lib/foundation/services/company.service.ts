@@ -1,6 +1,7 @@
 import { NotFoundError, ConflictError } from '@/lib/core/app-error'
 import { companyRepository, type CreateCompanyInput, type UpdateCompanyInput } from '@/lib/foundation/repositories/company.repository'
 import { requireCrmPermission } from '@/lib/core/crm-permissions'
+import { trackActivity } from '@/lib/core/activity-tracker'
 import type { TenantContext } from '@/lib/foundation/repositories/tenant-aware.repository'
 
 /**
@@ -36,7 +37,21 @@ export class CompanyService {
       }
     }
 
-    return companyRepository.create(ctx, input)
+    const result = await companyRepository.create(ctx, input)
+
+    if (ctx.userId) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'CRM',
+        entityType: 'Company',
+        entityId: result.id,
+        action: 'CREATE_COMPANY',
+        metadata: { name: result.name }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async update(ctx: TenantContext, id: string, input: UpdateCompanyInput) {
@@ -52,7 +67,21 @@ export class CompanyService {
       if (dup && dup.length > 0) throw new ConflictError('Company name already exists for tenant')
     }
 
-    return companyRepository.updateById(ctx, id, input)
+    const result = await companyRepository.updateById(ctx, id, input)
+
+    if (ctx.userId && result) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'CRM',
+        entityType: 'Company',
+        entityId: id,
+        action: 'UPDATE_COMPANY',
+        metadata: { name: result.name }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async deactivate(ctx: TenantContext, id: string) {

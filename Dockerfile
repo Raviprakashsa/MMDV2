@@ -1,3 +1,9 @@
+# ============================================================
+# MMD Recruit CRM — Production Dockerfile (Cloud Run)
+# Multi-stage build with Next.js standalone output
+# ============================================================
+
+# Stage 1: Install dependencies
 FROM node:20-alpine AS deps
 WORKDIR /app
 
@@ -6,6 +12,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 COPY package.json package-lock.json ./
 RUN npm ci --legacy-peer-deps
 
+# Stage 2: Build the application
 FROM node:20-alpine AS builder
 WORKDIR /app
 
@@ -13,21 +20,44 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
-RUN npm prune --omit=dev --legacy-peer-deps
 
+# Generate Prisma Client (required before build)
+RUN npx prisma generate
+
+# Build Next.js with standalone output
+RUN npm run build
+
+# Stage 3: Production runner (minimal image)
 FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/package-lock.json ./package-lock.json
-COPY --from=builder /app/next.config.mjs ./next.config.mjs
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
+# Cloud Run injects PORT (default 8080)
+ENV PORT=8080
+ENV HOSTNAME=0.0.0.0
 
-EXPOSE 3000
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-CMD ["npm", "run", "start"]
+# Copy standalone build output (includes server + minimal node_modules)
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+# Copy Prisma schema (needed at runtime for Prisma Client)
+COPY --from=builder /app/prisma ./prisma
+
+# Copy public assets if they exist
+# COPY --from=builder /app/public ./public
+
+# Set ownership to non-root user
+RUN chown -R nextjs:nodejs /app
+
+USER nextjs
+
+EXPOSE 8080
+
+# Next.js standalone server reads PORT from env
+CMD ["node", "server.js"]

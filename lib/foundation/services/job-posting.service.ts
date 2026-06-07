@@ -1,6 +1,7 @@
 import { NotFoundError, ValidationError } from '@/lib/core/app-error'
 import { jobPostingRepository, type CreateJobPostingInput, type UpdateJobPostingInput } from '@/lib/foundation/repositories/job-posting.repository'
 import type { JobPostingStatus } from '@prisma/client'
+import { trackActivity } from '@/lib/core/activity-tracker'
 
 type TenantContext = { tenantId: string; userId?: string }
 
@@ -12,10 +13,24 @@ export class JobPostingService {
       throw new ValidationError('Title is required')
     }
 
-    return jobPostingRepository.create(ctx, {
+    const result = await jobPostingRepository.create(ctx, {
       ...input,
       title: input.title.trim(),
     })
+
+    if (ctx.userId) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'JobPosting',
+        entityId: result.id,
+        action: 'CREATE_JOB',
+        metadata: { title: result.title }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async update(ctx: TenantContext, id: string, input: UpdateJobPostingInput) {
@@ -28,10 +43,24 @@ export class JobPostingService {
       throw new ValidationError('Title is required')
     }
 
-    return jobPostingRepository.updateById(ctx, id, {
+    const result = await jobPostingRepository.updateById(ctx, id, {
       ...input,
       ...(input.title !== undefined ? { title: input.title.trim() } : {}),
     })
+
+    if (ctx.userId && result) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'JobPosting',
+        entityId: id,
+        action: 'UPDATE_JOB',
+        metadata: { title: result.title }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async get(ctx: TenantContext, id: string) {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useTransition } from 'react'
-import { Shield, Trash2, CheckCircle2, XCircle } from 'lucide-react'
+import { Shield, Trash2, CheckCircle2, XCircle, Users } from 'lucide-react'
 import { deleteUser, updateUserRole } from '@/lib/actions/module1-auth'
 import { Modal, ConfirmDialog } from '@/components/ui/Modal'
 import { useToast } from '@/components/ui/Toast'
@@ -69,18 +69,29 @@ export default function UserList({ initialUsers }: Readonly<UserListProps>) {
 
     return (
         <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-            <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left">
-                    <thead className="text-xs text-slate-700 uppercase bg-slate-50 border-b border-slate-200">
-                        <tr>
-                            <th className="px-6 py-3">User</th>
-                            <th className="px-6 py-3">Role</th>
-                            <th className="px-6 py-3">Status</th>
-                            <th className="px-6 py-3">Last Login</th>
-                            <th className="px-6 py-3">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
+            {users.length === 0 ? (
+                <div className="flex flex-col items-center gap-4 py-16 text-center max-w-lg mx-auto px-6">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100">
+                        <Users className="h-6 w-6 text-slate-400" />
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800">No Users Registered</h3>
+                    <p className="text-sm text-slate-500 max-w-sm mx-auto">
+                        No team member accounts are currently registered. Invite your first colleague.
+                    </p>
+                </div>
+            ) : (
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left">
+                        <thead className="text-xs text-slate-700 uppercase bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th className="px-6 py-3">User</th>
+                                <th className="px-6 py-3">Role</th>
+                                <th className="px-6 py-3">Status</th>
+                                <th className="px-6 py-3">Last Login</th>
+                                <th className="px-6 py-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
                         {users.map((user) => (
                             <tr key={user._id} className="hover:bg-slate-50/50 transition-colors">
                                 <td className="px-6 py-4 font-medium text-slate-900">
@@ -140,6 +151,7 @@ export default function UserList({ initialUsers }: Readonly<UserListProps>) {
                     </tbody>
                 </table>
             </div>
+            )}
 
             <ConfirmDialog
                 isOpen={showDeleteConfirm}

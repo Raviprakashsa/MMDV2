@@ -344,73 +344,100 @@ export default function SettingsAccessConsole({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {filteredUsers.map((user) => {
-                const meta = roleMeta(user.role)
-                return (
-                  <tr key={user._id} className="transition hover:bg-slate-50">
-                    <td className="px-5 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-sm font-bold text-slate-700">
-                          {initials(user.name)}
-                        </div>
-                        <div>
-                          <p className="font-semibold text-slate-950">{user.name}</p>
-                          <p className="text-xs text-slate-500">{user.email}</p>
-                        </div>
+              {filteredUsers.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-5 py-16 text-center">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 mx-auto">
+                        <Search className="h-6 w-6 text-slate-400" />
                       </div>
-                    </td>
-                    <td className="px-5 py-4">
-                      <span className={`inline-flex rounded-md border px-2.5 py-1 text-xs font-semibold ${meta.tone}`}>
-                        {meta.label}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4">
-                      {user.isActive ? (
-                        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700">
-                          <CheckCircle2 className="h-4 w-4" />
-                          Active
+                      <h3 className="text-sm font-bold text-slate-800">No Users Found</h3>
+                      <p className="text-xs text-slate-500 max-w-xs mx-auto">
+                        No team member accounts matched the search query or active filter settings.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setQuery("")
+                          setRoleFilter("ALL")
+                          setStatusFilter("ALL")
+                        }}
+                        className="mt-2 text-xs font-semibold text-indigo-600 hover:text-indigo-850 underline underline-offset-2"
+                      >
+                        Reset All Filters
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                filteredUsers.map((user) => {
+                  const meta = roleMeta(user.role)
+                  return (
+                    <tr key={user._id} className="transition hover:bg-slate-50">
+                      <td className="px-5 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-sm font-bold text-slate-700">
+                            {initials(user.name)}
+                          </div>
+                          <div>
+                            <p className="font-semibold text-slate-950">{user.name}</p>
+                            <p className="text-xs text-slate-500">{user.email}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-5 py-4">
+                        <span className={`inline-flex rounded-md border px-2.5 py-1 text-xs font-semibold ${meta.tone}`}>
+                          {meta.label}
                         </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500">
-                          <XCircle className="h-4 w-4" />
-                          Inactive
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-5 py-4 text-slate-600">{formatDate(user.createdAt)}</td>
-                    <td className="px-5 py-4 text-slate-600">{formatDate(user.lastLogin)}</td>
-                    <td className="px-5 py-4">
-                      <div className="flex items-center justify-end gap-2">
-                        <button
-                          type="button"
-                          onClick={() => openAccess(user)}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700"
-                          title="Edit access"
-                        >
-                          <ShieldCheck className="h-4 w-4" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => openPassword(user)}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-amber-200 hover:bg-amber-50 hover:text-amber-700"
-                          title="Reset password"
-                        >
-                          <KeyRound className="h-4 w-4" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => toggleActive(user)}
-                          disabled={busy === `status-${user._id}` || user._id === currentUserId}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-700 disabled:cursor-not-allowed disabled:opacity-40"
-                          title={user.isActive ? "Deactivate user" : "Activate user"}
-                        >
-                          {user.isActive ? <XCircle className="h-4 w-4" /> : <CheckCircle2 className="h-4 w-4" />}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                )
-              })}
+                      </td>
+                      <td className="px-5 py-4">
+                        {user.isActive ? (
+                          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700">
+                            <CheckCircle2 className="h-4 w-4" />
+                            Active
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500">
+                            <XCircle className="h-4 w-4" />
+                            Inactive
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-5 py-4 text-slate-600">{formatDate(user.createdAt)}</td>
+                      <td className="px-5 py-4 text-slate-600">{formatDate(user.lastLogin)}</td>
+                      <td className="px-5 py-4">
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            type="button"
+                            onClick={() => openAccess(user)}
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700"
+                            title="Edit access"
+                          >
+                            <ShieldCheck className="h-4 w-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => openPassword(user)}
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-amber-200 hover:bg-amber-50 hover:text-amber-700"
+                            title="Reset password"
+                          >
+                            <KeyRound className="h-4 w-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => toggleActive(user)}
+                            disabled={busy === `status-${user._id}` || user._id === currentUserId}
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-700 disabled:cursor-not-allowed disabled:opacity-40"
+                            title={user.isActive ? "Deactivate user" : "Activate user"}
+                          >
+                            {user.isActive ? <XCircle className="h-4 w-4" /> : <CheckCircle2 className="h-4 w-4" />}
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                })
+              )}
             </tbody>
           </table>
         </div>

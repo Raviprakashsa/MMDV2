@@ -1,18 +1,35 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 import NeuroBackground from "@/components/layout/NeuroBackground"
 import GlobalLoadingOverlay from "@/components/layout/GlobalLoadingOverlay"
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const showTestAccounts = process.env.NEXT_PUBLIC_SHOW_TEST_ACCOUNTS === "true"
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+
+  // Listen for NextAuth redirection errors in query params
+  useEffect(() => {
+    const errorParam = searchParams.get("error")
+    if (errorParam) {
+      if (errorParam === "SessionRequired") {
+        setError("Your session has expired. Please sign in again.")
+      } else if (errorParam === "CredentialsSignin") {
+        setError("Invalid email or password.")
+      } else if (errorParam === "AccessDenied") {
+        setError("You do not have permission to perform this action.")
+      } else {
+        setError("Something went wrong. Please try again later.")
+      }
+    }
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -30,7 +47,7 @@ export default function LoginPage() {
       })
 
       if (result?.error) {
-        setError("Invalid email or password")
+        setError("Invalid email or password.")
         return
       }
 
@@ -44,7 +61,7 @@ export default function LoginPage() {
       setError("Unable to sign in. Please try again.")
     } catch (error) {
       console.error('Login error:', error)
-      setError("An unexpected error occurred")
+      setError("Something went wrong. Please try again later.")
     } finally {
       if (!isSuccess) {
         setLoading(false)
@@ -53,10 +70,78 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#050710] px-4 relative overflow-y-auto scroll-smooth">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {/* Branded loading overlay */}
       <GlobalLoadingOverlay show={loading} message="Authenticating credentials..." />
 
+      <div className="space-y-2">
+        <label htmlFor="email" className="block text-sm font-semibold text-slate-700">
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition-all placeholder:text-slate-400 shadow-sm"
+          placeholder="you@company.com"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="password" className="block text-sm font-semibold text-slate-700">
+          Password
+        </label>
+        <input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition-all placeholder:text-slate-400 shadow-sm"
+          placeholder="Password"
+        />
+      </div>
+
+      {error && (
+        <div className="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm animate-in fade-in duration-200">
+          <svg className="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clipRule="evenodd" />
+          </svg>
+          <span>{error}</span>
+        </div>
+      )}
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full py-4 px-4 bg-gradient-to-r from-[#1700ae] via-[#2a10c0] to-[#001bff] text-white font-semibold rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.2),0_8px_24px_rgba(23,0,174,0.5),inset_0_1px_0_rgba(255,255,255,0.2),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.2),0_16px_40px_rgba(23,0,174,0.6),inset_0_1px_0_rgba(255,255,255,0.25)] hover:-translate-y-1 active:translate-y-0 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-lg tracking-wide"
+      >
+        {loading ? (
+          <span className="flex items-center justify-center gap-2">
+            <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+            <span>Authenticating...</span>
+          </span>
+        ) : (
+          "Sign In"
+        )}
+      </button>
+
+      {showTestAccounts && (
+        <div className="text-center pt-3 border-t border-slate-100">
+          <p className="text-xs text-slate-500 font-medium">
+            Test accounts: <span className="px-2 py-1 rounded-md bg-brand-50 text-brand-700 font-semibold">ADMIN</span> / <span className="px-2 py-1 rounded-md bg-brand-50 text-brand-700 font-semibold">COORDINATOR</span> / <span className="px-2 py-1 rounded-md bg-brand-50 text-brand-700 font-semibold">RECRUITER</span>
+          </p>
+        </div>
+      )}
+    </form>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#050710] px-4 relative overflow-y-auto scroll-smooth">
       {/* Three.js Neural Background - Full screen dramatic effect */}
       <div className="absolute inset-0 z-0">
         <NeuroBackground variant="aurora" intensity={1.2} />
@@ -79,70 +164,9 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-semibold text-slate-700">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition-all placeholder:text-slate-400 shadow-sm"
-                placeholder="you@company.com"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-semibold text-slate-700">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition-all placeholder:text-slate-400 shadow-sm"
-                placeholder="Password"
-              />
-            </div>
-
-            {error && (
-              <div className="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm animate-in fade-in duration-200">
-                <svg className="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clipRule="evenodd" />
-                </svg>
-                <span>{error}</span>
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-4 px-4 bg-gradient-to-r from-[#1700ae] via-[#2a10c0] to-[#001bff] text-white font-semibold rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.2),0_8px_24px_rgba(23,0,174,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.2),0_16px_40px_rgba(23,0,174,0.6),inset_0_1px_0_rgba(255,255,255,0.25)] hover:-translate-y-1 active:translate-y-0 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-lg tracking-wide"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                  <span>Authenticating...</span>
-                </span>
-              ) : (
-                "Sign In"
-              )}
-            </button>
-          </form>
-
-          {showTestAccounts && (
-            <div className="text-center pt-3 border-t border-slate-100">
-              <p className="text-xs text-slate-500 font-medium">
-                Test accounts: <span className="px-2 py-1 rounded-md bg-brand-50 text-brand-700 font-semibold">ADMIN</span> / <span className="px-2 py-1 rounded-md bg-brand-50 text-brand-700 font-semibold">COORDINATOR</span> / <span className="px-2 py-1 rounded-md bg-brand-50 text-brand-700 font-semibold">RECRUITER</span>
-              </p>
-            </div>
-          )}
+          <Suspense fallback={<div className="h-40 flex items-center justify-center text-slate-400">Loading form...</div>}>
+            <LoginForm />
+          </Suspense>
         </div>
       </div>
     </div>

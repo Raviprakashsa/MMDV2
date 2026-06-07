@@ -1782,9 +1782,20 @@ export default function RequirementsPage() {
                 ? 'Try adjusting your filters or search query'
                 : 'Get started by creating your first requirement'}
             </p>
-            {canCreate && !searchInput && filterStatus === 'all' && filterPriority === 'all' && (
+            {canCreate && !searchInput && filterStatus === 'all' && filterPriority === 'all' ? (
               <Button variant="gradient" leftIcon={<Plus className="w-4 h-4" />} onClick={openAddModal}>
                 Add Requirement
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setSearchInput('')
+                  setFilterStatus('all')
+                  setFilterPriority('all')
+                }}
+              >
+                Clear All Filters
               </Button>
             )}
           </div>

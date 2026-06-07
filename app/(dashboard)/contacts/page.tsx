@@ -32,9 +32,16 @@ export default async function ContactsListPage() {
         <div className="rounded-2xl border border-dashed border-slate-300 p-12 text-center bg-white/50">
           <User className="mx-auto h-12 w-12 text-slate-400 stroke-1" />
           <h3 className="mt-4 text-base font-semibold text-slate-900">No contacts found</h3>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 mb-4">
             Start by adding a contact to link with a tenant company.
           </p>
+          <Link
+            href="/contacts/new"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:opacity-95 transition-opacity"
+          >
+            <Plus className="h-4.5 w-4.5" />
+            Add First Contact
+          </Link>
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

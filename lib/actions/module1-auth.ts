@@ -24,6 +24,38 @@ export async function loginAction(credentials: z.infer<typeof LoginSchema>) {
     })
 
     // If we reach here, signIn succeeded
+    try {
+      const { prisma } = await import("@/lib/prisma")
+      const dbUser = await prisma.user.findFirst({
+        where: { email: validated.email.toLowerCase(), deletedAt: null },
+      })
+      if (dbUser) {
+        const { headers } = await import("next/headers")
+        const { trackActivity, parseUserAgent } = await import("@/lib/core/activity-tracker")
+        const reqHeaders = await headers()
+        const ua = reqHeaders.get("user-agent") || ""
+        const ip = reqHeaders.get("x-forwarded-for")?.split(",")[0] || reqHeaders.get("x-real-ip") || "127.0.0.1"
+        const { browser, device } = parseUserAgent(ua)
+
+        await trackActivity({
+          tenantId: dbUser.tenantId,
+          userId: dbUser.id,
+          module: "SYSTEM",
+          entityType: "Session",
+          entityId: dbUser.id,
+          action: "LOGIN",
+          metadata: {
+            browser,
+            device,
+            ip,
+            timestamp: new Date().toISOString()
+          }
+        })
+      }
+    } catch (err) {
+      console.error("Failed to log login event:", err)
+    }
+
     return { success: true, data: null }
   } catch (error) {
     console.error('Login action error:', error)
@@ -47,7 +79,90 @@ export async function loginAction(credentials: z.infer<typeof LoginSchema>) {
 }
 
 export async function logoutAction() {
-  await import("@/lib/auth").then(m => m.signOut({ redirect: false }))
+  try {
+    const { auth } = await import("@/lib/auth")
+    const { headers } = await import("next/headers")
+    const { trackActivity, parseUserAgent } = await import("@/lib/core/activity-tracker")
+    const { prisma } = await import("@/lib/prisma")
+
+    const session = await auth()
+    if (session?.user) {
+      const userId = session.user.id
+      const tenantId = session.user.tenantId || "system"
+
+      const reqHeaders = await headers()
+      const ua = reqHeaders.get("user-agent") || ""
+      const ip = reqHeaders.get("x-forwarded-for")?.split(",")[0] || reqHeaders.get("x-real-ip") || "127.0.0.1"
+      const { browser, device } = parseUserAgent(ua)
+
+      const lastLogin = await prisma.activityLog.findFirst({
+        where: {
+          userId,
+          tenantId,
+          action: "LOGIN",
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      })
+
+      let sessionDurationSeconds = 0
+      if (lastLogin) {
+        const loginTime = new Date(lastLogin.createdAt)
+        sessionDurationSeconds = Math.max(0, Math.floor((Date.now() - loginTime.getTime()) / 1000))
+      }
+
+      await trackActivity({
+        tenantId,
+        userId,
+        module: "SYSTEM",
+        entityType: "Session",
+        entityId: userId,
+        action: "LOGOUT",
+        metadata: {
+          browser,
+          device,
+          ip,
+          sessionDurationSeconds,
+          timestamp: new Date().toISOString()
+        }
+      })
+
+      // Also update loginHours in DailyWorkSummary
+      const todayStart = new Date()
+      todayStart.setUTCHours(0, 0, 0, 0)
+      const sessionDurationHours = sessionDurationSeconds / 3600
+
+      await prisma.dailyWorkSummary.upsert({
+        where: {
+          userId_date: {
+            userId,
+            date: todayStart,
+          },
+        },
+        update: {
+          loginHours: {
+            increment: sessionDurationHours,
+          },
+        },
+        create: {
+          tenantId,
+          userId,
+          date: todayStart,
+          loginHours: sessionDurationHours,
+          activeHours: 0,
+          idleHours: 0,
+          totalActions: 1,
+          productivityScore: 0,
+        },
+      })
+    }
+  } catch (err) {
+    console.error("Failed to log logout event:", err)
+  }
+
+  const { signOut } = await import("@/lib/auth")
+  await signOut({ redirect: false })
 }
 
 export const createUserAction = createProtectedAction(

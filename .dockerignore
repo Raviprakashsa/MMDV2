@@ -1,0 +1,47 @@
+# Dependencies (reinstalled in container)
+node_modules
+.pnp
+.pnp.js
+
+# Next.js build output (rebuilt in container)
+.next
+out
+
+# Version control
+.git
+.github
+
+# Documentation & tests (not needed in prod image)
+docs
+tests
+*.md
+!README.md
+
+# Environment files (injected via Cloud Run / secrets)
+.env
+.env.*
+
+# Local storage & logs
+.storage
+backups
+logs
+*.log
+
+# IDE & OS
+.vscode
+.idea
+.DS_Store
+
+# Prisma migrations (deployed separately)
+prisma/migrations
+
+# Build artifacts
+tsconfig.tsbuildinfo
+coverage
+playwright-report
+test-results
+
+# Docker files (prevent recursive copies)
+Dockerfile
+docker-compose.yml
+.dockerignore

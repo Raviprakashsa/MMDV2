@@ -22,6 +22,7 @@ import {
 
 import { cn } from '@/lib/utils'
 import { Modal } from '@/components/ui/Modal'
+import Button from '@/components/ui/Button'
 import type { Lead, LeadStatus, LeadFilters, LeadSector } from '@/types/leads'
 import { STATUS_CONFIG, SECTORS, SOURCE_PLATFORMS } from '@/types/leads'
 
@@ -44,6 +45,7 @@ interface LeadsTableProps {
   readonly loading?: boolean
   readonly forceShowAll?: boolean
   readonly onFiltersChange?: (filters: LeadFilters) => void
+  readonly onCreateLead?: () => void
 }
 
 type SortField = 'companyName' | 'confidenceScore' | 'status' | 'followUpDate' | 'assignedToName'
@@ -127,6 +129,7 @@ export function LeadsTable({
   loading = false,
   forceShowAll = false,
   onFiltersChange,
+  onCreateLead,
 }: LeadsTableProps) {
   const [sortField, setSortField] = useState<SortField | null>(null)
   const [sortDir, setSortDir] = useState<SortDir>(null)
@@ -235,13 +238,43 @@ export function LeadsTable({
 
   // ── Empty state ───────────────────────────────────────────────────────
   if (filteredLeads.length === 0) {
+    const isTotallyEmpty = leads.length === 0
     return (
-      <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-slate-200 bg-white py-16 text-center">
+      <div className="flex flex-col items-center gap-4 rounded-xl border border-dashed border-slate-200 bg-white py-16 text-center max-w-lg mx-auto my-6 px-6">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100">
           <AlertCircle className="h-6 w-6 text-slate-400" />
         </div>
-        <p className="text-sm font-semibold text-slate-600">No leads found</p>
-        <p className="text-xs text-slate-400">Try adjusting your filters</p>
+        <h3 className="text-lg font-bold text-slate-800">
+          {isTotallyEmpty ? "No Leads Found" : "No Matching Leads"}
+        </h3>
+        <p className="text-sm text-slate-500 max-w-sm mx-auto">
+          {isTotallyEmpty 
+            ? "Create your first lead to begin managing your sales pipeline." 
+            : "No matching lead records discovered. Adjust or clear your filters to display more leads."}
+        </p>
+        {isTotallyEmpty ? (
+          onCreateLead && (
+            <Button onClick={onCreateLead} className="btn-gradient shadow-md flex items-center gap-2 mt-2">
+              Create First Lead
+            </Button>
+          )
+        ) : (
+          onFiltersChange && (
+            <Button 
+              variant="secondary" 
+              onClick={() => onFiltersChange({
+                search: '',
+                status: 'all',
+                sector: 'all',
+                source: 'all',
+                showOverdueOnly: false,
+              })}
+              className="mt-2"
+            >
+              Clear All Filters
+            </Button>
+          )
+        )}
       </div>
     )
   }

@@ -1300,9 +1300,20 @@ export default function CompaniesPage() {
                 ? 'Try adjusting your filters or search query'
                 : 'Get started by adding your first company'}
             </p>
-            {canCreate && !searchQuery && filterStatus === 'all' && filterSector === 'all' && (
+            {canCreate && !searchQuery && filterStatus === 'all' && filterSector === 'all' ? (
               <Button variant="gradient" leftIcon={<Plus className="w-4 h-4" />} onClick={openAddModal}>
                 Add Company
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setSearchQuery('')
+                  setFilterStatus('all')
+                  setFilterSector('all')
+                }}
+              >
+                Clear All Filters
               </Button>
             )}
           </div>

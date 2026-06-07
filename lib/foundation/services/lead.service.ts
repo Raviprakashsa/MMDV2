@@ -6,6 +6,7 @@ import { userRepository } from '@/lib/foundation/repositories/user.repository'
 import { requireCrmPermission } from '@/lib/core/crm-permissions'
 import type { TenantContext } from '@/lib/foundation/repositories/tenant-aware.repository'
 import type { LeadStatus } from '@prisma/client'
+import { trackActivity } from '@/lib/core/activity-tracker'
 
 /**
  * Lead pipeline state machine — the single source of truth for valid transitions.
@@ -80,7 +81,21 @@ export class LeadService {
 
     if (!input.status) input.status = 'NEW' as LeadStatus
 
-    return leadRepository.create(ctx, input)
+    const result = await leadRepository.create(ctx, input)
+
+    if (ctx.userId) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'CRM',
+        entityType: 'Lead',
+        entityId: result.id,
+        action: 'CREATE_LEAD',
+        metadata: { title: result.title }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async update(ctx: TenantContext, id: string, input: UpdateLeadInput) {
@@ -109,7 +124,22 @@ export class LeadService {
       if (!owner) throw new NotFoundError('Owner not found')
     }
 
-    return leadRepository.updateById(ctx, id, input)
+    const result = await leadRepository.updateById(ctx, id, input)
+
+    if (ctx.userId && result) {
+      const isConvert = input.status === 'WON'
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'CRM',
+        entityType: 'Lead',
+        entityId: id,
+        action: isConvert ? 'CONVERT_LEAD' : 'UPDATE_LEAD',
+        metadata: { title: result.title, status: result.status }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   /**
@@ -134,10 +164,25 @@ export class LeadService {
     // Single FSM engine — same validateStatusTransition used everywhere
     this.validateStatusTransition(existing.status as LeadStatus, newStatus)
 
-    return leadRepository.updateById(ctx, id, {
+    const result = await leadRepository.updateById(ctx, id, {
       status: newStatus,
       ...(metaJson !== undefined ? { description: metaJson } : {}),
     })
+
+    if (ctx.userId && result) {
+      const isConvert = newStatus === 'WON'
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'CRM',
+        entityType: 'Lead',
+        entityId: id,
+        action: isConvert ? 'CONVERT_LEAD' : 'UPDATE_LEAD',
+        metadata: { title: result.title, status: result.status }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   /**

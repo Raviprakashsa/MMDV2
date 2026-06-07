@@ -111,6 +111,8 @@ model Tenant {
   candidates     Candidate[]
   applications   Application[]
   interviews     Interview[]
+  activityLogs      ActivityLog[]
+  dailyWorkSummaries DailyWorkSummary[]
 
   @@index([tenantId])
   @@index([deletedAt])
@@ -239,6 +241,8 @@ model User {
   sessions       Session[]
   leadsOwned     Lead[]
   interviews     Interview[]
+  activityLogs       ActivityLog[]
+  dailyWorkSummaries DailyWorkSummary[]
 
   @@unique([tenantId, email])
   @@index([tenantId])
@@ -502,4 +506,46 @@ model Interview {
   @@index([deletedAt])
   @@index([applicationId])
   @@index([interviewerId])
+}
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  tenantId   String
+  userId     String
+  module     String
+  entityType String
+  entityId   String?
+  action     String
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([userId])
+  @@index([module])
+  @@index([createdAt])
+}
+
+model DailyWorkSummary {
+  id                String   @id @default(cuid())
+  tenantId          String
+  userId            String
+  date              DateTime
+  loginHours        Float    @default(0)
+  activeHours       Float    @default(0)
+  idleHours         Float    @default(0)
+  totalActions      Int      @default(0)
+  productivityScore Float    @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([tenantId])
+  @@index([userId])
+  @@index([date])
 }

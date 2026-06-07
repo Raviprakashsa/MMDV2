@@ -34,15 +34,54 @@ export function getBrowserTenantContext(userId?: string): TenantContext {
 
 async function handleRes(res: Response) {
   if (!res.ok) {
-    const text = await res.text()
-    throw new Error(text || res.statusText)
+    let text = ''
+    try {
+      text = await res.text()
+    } catch {
+      text = res.statusText
+    }
+    
+    // Intercept default HTML error pages
+    if (text.trim().startsWith('<!DOCTYPE html>') || text.includes('<html')) {
+      throw new Error('Something went wrong. Please try again later.')
+    }
+
+    // Intercept Prisma / database details
+    const lower = text.toLowerCase()
+    if (
+      lower.includes('prisma') ||
+      lower.includes('stack') ||
+      lower.includes('mongodb') ||
+      lower.includes('connect') ||
+      lower.includes('exception')
+    ) {
+      throw new Error('Something went wrong. Please try again later.')
+    }
+
+    throw new Error(text || 'Something went wrong. Please try again later.')
   }
   return res.json()
 }
 
 async function requestJson(path: string, init: RequestInit = {}, context?: TenantContext) {
   const headers = buildHeaders(context, init.headers)
-  return fetch(path, { ...init, headers }).then(handleRes)
+  try {
+    const res = await fetch(path, { ...init, headers })
+    return await handleRes(res)
+  } catch (err: any) {
+    // Check if it is a fetch network failure
+    const msg = String(err?.message || '')
+    const name = String(err?.name || '')
+    if (
+      msg.includes('Failed to fetch') ||
+      msg.includes('network') ||
+      msg.includes('offline') ||
+      name.includes('TypeError')
+    ) {
+      throw new Error('Unable to connect to the server. Please try again.')
+    }
+    throw err
+  }
 }
 
 function toQueryString(params?: Record<string, string | undefined | null>) {

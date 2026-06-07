@@ -661,6 +661,7 @@ export default function LeadsPage() {
                       selectedLeads={selectedLeads}
                       onSelectLead={handleSelectLead}
                       onSelectAll={handleSelectAll}
+                      onCreateLead={() => setIsCreateModalOpen(true)}
                       onViewLead={(lead) => {
                         setSelectedLead(lead)
                         setIsViewDialogOpen(true)

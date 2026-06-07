@@ -1,5 +1,6 @@
 import { NotFoundError, ValidationError, ConflictError } from '@/lib/core/app-error'
 import { candidateRepository, type CreateCandidateInput, type UpdateCandidateInput } from '@/lib/foundation/repositories/candidate.repository'
+import { trackActivity } from '@/lib/core/activity-tracker'
 
 type TenantContext = { tenantId: string; userId?: string }
 
@@ -18,10 +19,24 @@ export class CandidateService {
       throw new ConflictError('Candidate email already exists in this tenant')
     }
 
-    return candidateRepository.create(ctx, {
+    const result = await candidateRepository.create(ctx, {
       ...input,
       email,
     })
+
+    if (ctx.userId) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'Candidate',
+        entityId: result.id,
+        action: 'CREATE_CANDIDATE',
+        metadata: { name: `${result.firstName} ${result.lastName}` }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async update(ctx: TenantContext, id: string, input: UpdateCandidateInput) {
@@ -44,10 +59,24 @@ export class CandidateService {
       }
     }
 
-    return candidateRepository.updateById(ctx, id, {
+    const result = await candidateRepository.updateById(ctx, id, {
       ...input,
       ...(email !== undefined ? { email } : {}),
     })
+
+    if (ctx.userId && result) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'Candidate',
+        entityId: id,
+        action: 'UPDATE_CANDIDATE',
+        metadata: { name: `${result.firstName} ${result.lastName}` }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async get(ctx: TenantContext, id: string) {

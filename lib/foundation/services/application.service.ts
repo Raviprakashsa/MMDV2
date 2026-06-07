@@ -3,6 +3,7 @@ import { applicationRepository, type CreateApplicationInput, type UpdateApplicat
 import { candidateRepository } from '@/lib/foundation/repositories/candidate.repository'
 import { jobPostingRepository } from '@/lib/foundation/repositories/job-posting.repository'
 import type { ApplicationStatus } from '@prisma/client'
+import { trackActivity } from '@/lib/core/activity-tracker'
 
 type TenantContext = { tenantId: string; userId?: string }
 
@@ -38,7 +39,21 @@ export class ApplicationService {
       throw new ConflictError('Candidate has already applied for this job posting')
     }
 
-    return applicationRepository.create(ctx, input)
+    const result = await applicationRepository.create(ctx, input)
+
+    if (ctx.userId) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'Application',
+        entityId: result.id,
+        action: 'CREATE_APPLICATION',
+        metadata: { jobPostingId: result.jobPostingId, candidateId: result.candidateId }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async update(ctx: TenantContext, id: string, input: UpdateApplicationInput) {
@@ -55,7 +70,21 @@ export class ApplicationService {
       }
     }
 
-    return applicationRepository.updateById(ctx, id, input)
+    const result = await applicationRepository.updateById(ctx, id, input)
+
+    if (ctx.userId && result) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'Application',
+        entityId: id,
+        action: 'UPDATE_APPLICATION',
+        metadata: { status: result.status }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async changeStatus(ctx: TenantContext, id: string, newStatus: ApplicationStatus) {
@@ -70,7 +99,21 @@ export class ApplicationService {
       throw new ConflictError(`Invalid status transition from ${current} to ${newStatus}`)
     }
 
-    return applicationRepository.updateById(ctx, id, { status: newStatus })
+    const result = await applicationRepository.updateById(ctx, id, { status: newStatus })
+
+    if (ctx.userId && result) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'Application',
+        entityId: id,
+        action: 'UPDATE_APPLICATION',
+        metadata: { status: result.status, statusTransition: true }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async get(ctx: TenantContext, id: string) {

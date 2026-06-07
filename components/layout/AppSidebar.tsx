@@ -122,6 +122,12 @@ const navItems: NavItem[] = [
     roles: ['SUPER_ADMIN', 'ADMIN', 'COORDINATOR', 'RECRUITER', 'SCRAPER'],
   },
   {
+    label: 'Productivity',
+    href: '/dashboard/productivity',
+    icon: <BarChart3 className="h-5 w-5" />,
+    roles: ['SUPER_ADMIN', 'ADMIN'],
+  },
+  {
     label: 'Activities',
     href: '/dashboard/activities',
     icon: <Activity className="h-5 w-5" />,

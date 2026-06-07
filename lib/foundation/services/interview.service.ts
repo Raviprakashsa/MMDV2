@@ -3,6 +3,7 @@ import { interviewRepository, type CreateInterviewInput, type UpdateInterviewInp
 import { applicationRepository } from '@/lib/foundation/repositories/application.repository'
 import { userRepository } from '@/lib/foundation/repositories/user.repository'
 import type { InterviewStatus } from '@prisma/client'
+import { trackActivity } from '@/lib/core/activity-tracker'
 
 type TenantContext = { tenantId: string; userId?: string }
 
@@ -28,7 +29,21 @@ export class InterviewService {
     if (!interviewer) throw new NotFoundError('Interviewer not found')
     if (interviewer.tenantId !== ctx.tenantId) throw new ForbiddenError('Interviewer tenant mismatch')
 
-    return interviewRepository.create(ctx, input)
+    const result = await interviewRepository.create(ctx, input)
+
+    if (ctx.userId) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'Interview',
+        entityId: result.id,
+        action: 'CREATE_INTERVIEW',
+        metadata: { scheduledAt: result.scheduledAt, interviewerId: result.interviewerId }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async update(ctx: TenantContext, id: string, input: UpdateInterviewInput) {
@@ -51,7 +66,21 @@ export class InterviewService {
       }
     }
 
-    return interviewRepository.updateById(ctx, id, input)
+    const result = await interviewRepository.updateById(ctx, id, input)
+
+    if (ctx.userId && result) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'Interview',
+        entityId: id,
+        action: 'UPDATE_INTERVIEW',
+        metadata: { scheduledAt: result.scheduledAt, status: result.status }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async changeStatus(ctx: TenantContext, id: string, newStatus: InterviewStatus) {
@@ -66,7 +95,21 @@ export class InterviewService {
       throw new ConflictError(`Invalid status transition from ${current} to ${newStatus}`)
     }
 
-    return interviewRepository.updateById(ctx, id, { status: newStatus })
+    const result = await interviewRepository.updateById(ctx, id, { status: newStatus })
+
+    if (ctx.userId && result) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'ATS',
+        entityType: 'Interview',
+        entityId: id,
+        action: 'UPDATE_INTERVIEW',
+        metadata: { status: result.status, statusTransition: true }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async get(ctx: TenantContext, id: string) {

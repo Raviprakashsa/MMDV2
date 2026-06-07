@@ -3,6 +3,7 @@ import { contactRepository, type CreateContactInput, type UpdateContactInput } f
 import { companyRepository } from '@/lib/foundation/repositories/company.repository'
 import { requireCrmPermission } from '@/lib/core/crm-permissions'
 import type { TenantContext } from '@/lib/foundation/repositories/tenant-aware.repository'
+import { trackActivity } from '@/lib/core/activity-tracker'
 
 /**
  * ContactService — Service Layer RBAC boundary.
@@ -41,7 +42,21 @@ export class ContactService {
       if (dup) throw new ConflictError('Contact email already exists for tenant')
     }
 
-    return contactRepository.create(ctx, input)
+    const result = await contactRepository.create(ctx, input)
+
+    if (ctx.userId) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'CRM',
+        entityType: 'Contact',
+        entityId: result.id,
+        action: 'CREATE_CONTACT',
+        metadata: { name: `${result.firstName || ''} ${result.lastName || ''}`.trim() }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async update(ctx: TenantContext, id: string, input: UpdateContactInput) {
@@ -63,7 +78,21 @@ export class ContactService {
       if (dup) throw new ConflictError('Contact email already exists for tenant')
     }
 
-    return contactRepository.updateById(ctx, id, input)
+    const result = await contactRepository.updateById(ctx, id, input)
+
+    if (ctx.userId && result) {
+      await trackActivity({
+        tenantId: ctx.tenantId,
+        userId: ctx.userId,
+        module: 'CRM',
+        entityType: 'Contact',
+        entityId: id,
+        action: 'UPDATE_CONTACT',
+        metadata: { name: `${result.firstName || ''} ${result.lastName || ''}`.trim() }
+      }).catch(console.error)
+    }
+
+    return result
   }
 
   async deactivate(ctx: TenantContext, id: string) {

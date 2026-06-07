@@ -1,0 +1,131 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+env:
+  SERVICE_NAME: mmd-recruit-crm
+  GAR_LOCATION: ${{ vars.GCP_REGION || 'us-central1' }}
+  GAR_REPOSITORY: mmd-docker
+
+jobs:
+  # ──────────────────────────────────────────────
+  # Job 1: Quality Gate (typecheck + lint)
+  # ──────────────────────────────────────────────
+  quality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+  # ──────────────────────────────────────────────
+  # Job 2: Build & Deploy to Cloud Run
+  # ──────────────────────────────────────────────
+  deploy:
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Authenticate to Google Cloud
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      # Setup gcloud CLI
+      - name: Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      # Create Artifact Registry repository (idempotent)
+      - name: Ensure Artifact Registry repository exists
+        run: |
+          gcloud artifacts repositories describe ${{ env.GAR_REPOSITORY }} \
+            --location=${{ env.GAR_LOCATION }} \
+            --project=${{ secrets.GCP_PROJECT_ID }} 2>/dev/null || \
+          gcloud artifacts repositories create ${{ env.GAR_REPOSITORY }} \
+            --repository-format=docker \
+            --location=${{ env.GAR_LOCATION }} \
+            --project=${{ secrets.GCP_PROJECT_ID }} \
+            --description="MMD Recruit CRM Docker images"
+
+      # Configure Docker to push to Artifact Registry
+      - name: Configure Docker for Artifact Registry
+        run: |
+          gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev --quiet
+
+      # Build and push Docker image
+      - name: Build and Push Docker Image
+        run: |
+          IMAGE="${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY }}/${{ env.SERVICE_NAME }}"
+          docker build \
+            --tag "${IMAGE}:${{ github.sha }}" \
+            --tag "${IMAGE}:latest" \
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            .
+          docker push "${IMAGE}:${{ github.sha }}"
+          docker push "${IMAGE}:latest"
+
+      # Deploy to Cloud Run
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE_NAME }}
+          region: ${{ env.GAR_LOCATION }}
+          image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
+          flags: |
+            --min-instances=0
+            --max-instances=3
+            --memory=512Mi
+            --cpu=1
+            --port=8080
+            --allow-unauthenticated
+            --cpu-throttling
+            --execution-environment=gen2
+          env_vars: |
+            NODE_ENV=production
+            NEXT_TELEMETRY_DISABLED=1
+          secrets: |
+            DATABASE_URL=DATABASE_URL:latest
+            POSTGRES_DATABASE_URL=POSTGRES_DATABASE_URL:latest
+            NEXTAUTH_SECRET=NEXTAUTH_SECRET:latest
+            AUTH_SECRET=AUTH_SECRET:latest
+            NEXTAUTH_URL=NEXTAUTH_URL:latest
+
+      # Print the Cloud Run URL
+      - name: Show Cloud Run URL
+        run: |
+          echo "╔════════════════════════════════════════════════════════╗"
+          echo "║  ✅ DEPLOYMENT SUCCESSFUL                             ║"
+          echo "╠════════════════════════════════════════════════════════╣"
+          echo "║  Service: ${{ env.SERVICE_NAME }}"
+          echo "║  Region:  ${{ env.GAR_LOCATION }}"
+          echo "║  URL:     ${{ steps.deploy.outputs.url }}"
+          echo "╚════════════════════════════════════════════════════════╝"

@@ -9,6 +9,7 @@ import {
 import { serializeDoc, serializeDocs } from "@/lib/utils/serialize"
 import { createProtectedAction } from "@/lib/core/action-client"
 import { RequirementService } from "@/lib/services/requirement.service"
+import { trackActivity } from "@/lib/core/activity-tracker"
 
 // Local Schemas
 const UpdateRequirementStatusSchema = z.object({
@@ -74,6 +75,17 @@ export const createRequirementAction = createProtectedAction(
       { id: session.user.id, role: session.user.role },
       payload as z.infer<typeof RequirementSchema>
     )
+
+    await trackActivity({
+      tenantId: session.user.tenantId || "system",
+      userId: session.user.id,
+      module: 'HR',
+      entityType: 'Requirement',
+      entityId: requirement._id.toString(),
+      action: 'CREATE_REQUIREMENT',
+      metadata: { jobTitle: requirement.jobTitle, mmdId: requirement.mmdId }
+    }).catch(console.error)
+
     revalidatePath('/dashboard/requirements')
     return serializeDoc(requirement)
   }
@@ -89,6 +101,18 @@ export const updateRequirementStatusAction = createProtectedAction(
       { id: session.user.id, role: session.user.role },
       payload
     )
+
+    const isClose = ['CLOSED_HIRED', 'CLOSED_NOT_HIRED'].includes(payload.status)
+    await trackActivity({
+      tenantId: session.user.tenantId || "system",
+      userId: session.user.id,
+      module: 'HR',
+      entityType: 'Requirement',
+      entityId: requirement._id.toString(),
+      action: isClose ? 'CLOSE_REQUIREMENT' : 'UPDATE_REQUIREMENT',
+      metadata: { jobTitle: requirement.jobTitle, status: requirement.status }
+    }).catch(console.error)
+
     revalidatePath('/dashboard/requirements')
     return serializeDoc(requirement)
   }
@@ -135,6 +159,17 @@ export const updateRequirementAction = createProtectedAction(
       id,
       data
     )
+
+    await trackActivity({
+      tenantId: session.user.tenantId || "system",
+      userId: session.user.id,
+      module: 'HR',
+      entityType: 'Requirement',
+      entityId: requirement._id.toString(),
+      action: 'UPDATE_REQUIREMENT',
+      metadata: { jobTitle: requirement.jobTitle }
+    }).catch(console.error)
+
     revalidatePath('/dashboard/requirements')
     return serializeDoc(requirement)
   }
@@ -151,6 +186,17 @@ export const freezeRequirementAction = createProtectedAction(
       payload.requirementId,
       payload.comment
     )
+
+    await trackActivity({
+      tenantId: session.user.tenantId || "system",
+      userId: session.user.id,
+      module: 'HR',
+      entityType: 'Requirement',
+      entityId: requirement._id.toString(),
+      action: 'UPDATE_REQUIREMENT',
+      metadata: { jobTitle: requirement.jobTitle, status: 'ON_HOLD' }
+    }).catch(console.error)
+
     revalidatePath('/dashboard/requirements')
     return serializeDoc(requirement)
   }
@@ -168,6 +214,17 @@ export const reassignRequirementAction = createProtectedAction(
       payload.newOwnerId,
       payload.comment
     )
+
+    await trackActivity({
+      tenantId: session.user.tenantId || "system",
+      userId: session.user.id,
+      module: 'HR',
+      entityType: 'Requirement',
+      entityId: requirement._id.toString(),
+      action: 'UPDATE_REQUIREMENT',
+      metadata: { jobTitle: requirement.jobTitle, reassignedTo: payload.newOwnerId }
+    }).catch(console.error)
+
     revalidatePath('/dashboard/requirements')
     return serializeDoc(requirement)
   }
