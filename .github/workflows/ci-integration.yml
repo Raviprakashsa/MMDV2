@@ -33,7 +33,6 @@ jobs:
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET || 'ci-test-secret-not-for-production-use' }}
       AUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET || 'ci-test-secret-not-for-production-use' }}
       NEXTAUTH_URL: http://localhost:3000
-      NODE_ENV: production
       # Prevent the throttle middleware from throwing because Redis is not configured in CI
       THROTTLE_BACKEND: memory
       # Stub secrets so the app starts — real values are only needed in production
@@ -96,12 +95,16 @@ jobs:
       # Auth now uses PostgreSQL, so only the Prisma seed above matters.
 
       - name: Build Next.js application
+        env:
+          NODE_ENV: production
         run: npm run build
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
       - name: Start Next.js (production mode)
+        env:
+          NODE_ENV: production
         run: |
           nohup npm run start > server.log 2>&1 &
           echo "Waiting for /api/health to respond..."
@@ -119,6 +122,7 @@ jobs:
 
       - name: Run Playwright tests
         env:
+          NODE_ENV: production
           E2E_USE_SEEDED_USERS: '1'
           E2E_ADMIN_EMAIL: admin@magnuscopo.com
           E2E_ADMIN_PASSWORD: Admin123!
