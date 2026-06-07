@@ -422,8 +422,8 @@ export function CreateLeadModal({ isOpen, onClose, onSuccess }: Readonly<CreateL
                         <AnimatedButton variant="secondary" onClick={handleClose} disabled={isSubmitting}>
                             Cancel
                         </AnimatedButton>
-                        <AnimatedButton variant="primary" onClick={handleCreateLead} disabled={isSubmitting}>
-                            {isSubmitting ? 'Adding...' : 'Add Lead'}
+                        <AnimatedButton variant="primary" onClick={handleCreateLead} loading={isSubmitting}>
+                            Add Lead
                         </AnimatedButton>
                     </div>
                 </div>
@@ -490,9 +490,10 @@ export function CreateLeadModal({ isOpen, onClose, onSuccess }: Readonly<CreateL
                         <AnimatedButton
                             variant="primary"
                             onClick={handleBulkSubmit}
-                            disabled={isSubmitting || parsedData.length === 0}
+                            loading={isSubmitting}
+                            disabled={parsedData.length === 0}
                         >
-                            {isSubmitting ? 'Importing...' : 'Start Import'}
+                            Start Import
                         </AnimatedButton>
                     </div>
                 </div>

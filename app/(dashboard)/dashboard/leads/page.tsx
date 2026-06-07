@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSession } from 'next-auth/react'
@@ -86,6 +86,7 @@ export default function LeadsPage() {
   const [leads, setLeads] = useState<Lead[]>([])
   const [metrics, setMetrics] = useState<LeadMetrics | null>(null)
   const [loading, setLoading] = useState(true)
+  const [isSaving, setIsSaving] = useState(false)
 
   // UI state
   const [activeTab, setActiveTab] = useState<'pipeline' | 'analytics'>('pipeline')
@@ -257,20 +258,25 @@ export default function LeadsPage() {
   const handleEditLead = async () => {
     if (!selectedLead) return
 
-    const result = await updateLead({
-      id: selectedLead._id,
-      ...formState,
-    })
+    setIsSaving(true)
+    try {
+      const result = await updateLead({
+        id: selectedLead._id,
+        ...formState,
+      })
 
-    if (!result.success) {
-      toast.error('Update failed', result.error)
-      return
+      if (!result.success) {
+        toast.error('Update failed', result.error)
+        return
+      }
+
+      await fetchData()
+      setIsEditModalOpen(false)
+      setSelectedLead(null)
+      toast.success('Lead Updated', formState.companyName)
+    } finally {
+      setIsSaving(false)
     }
-
-    await fetchData()
-    setIsEditModalOpen(false)
-    setSelectedLead(null)
-    toast.success('Lead Updated', formState.companyName)
   }
 
   const handleDeleteLead = async (leadId: string) => {
@@ -852,10 +858,10 @@ export default function LeadsPage() {
           </div>
 
           <div className="flex justify-end gap-3 pt-4 border-t border-slate-200">
-            <AnimatedButton variant="secondary" onClick={() => setIsEditModalOpen(false)}>
+            <AnimatedButton variant="secondary" onClick={() => setIsEditModalOpen(false)} disabled={isSaving}>
               Cancel
             </AnimatedButton>
-            <AnimatedButton variant="primary" onClick={handleEditLead}>
+            <AnimatedButton variant="primary" onClick={handleEditLead} loading={isSaving}>
               Save Changes
             </AnimatedButton>
           </div>

@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { signIn } from "next-auth/react"
 import NeuroBackground from "@/components/layout/NeuroBackground"
+import GlobalLoadingOverlay from "@/components/layout/GlobalLoadingOverlay"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -19,6 +20,7 @@ export default function LoginPage() {
 
     setError("")
     setLoading(true)
+    let isSuccess = false
 
     try {
       const result = await signIn("credentials", {
@@ -33,6 +35,7 @@ export default function LoginPage() {
       }
 
       if (result?.ok) {
+        isSuccess = true
         router.replace("/dashboard")
         router.refresh()
         return
@@ -43,12 +46,17 @@ export default function LoginPage() {
       console.error('Login error:', error)
       setError("An unexpected error occurred")
     } finally {
-      setLoading(false)
+      if (!isSuccess) {
+        setLoading(false)
+      }
     }
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050710] px-4 relative overflow-y-auto scroll-smooth">
+      {/* Branded loading overlay */}
+      <GlobalLoadingOverlay show={loading} message="Authenticating credentials..." />
+
       {/* Three.js Neural Background - Full screen dramatic effect */}
       <div className="absolute inset-0 z-0">
         <NeuroBackground variant="aurora" intensity={1.2} />
@@ -120,7 +128,7 @@ export default function LoginPage() {
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
                   <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                  <span>Signing in...</span>
+                  <span>Authenticating...</span>
                 </span>
               ) : (
                 "Sign In"

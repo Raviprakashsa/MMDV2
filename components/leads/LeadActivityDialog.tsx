@@ -162,9 +162,10 @@ export function LeadActivityDialog({
           <AnimatedButton
             type="submit"
             variant="primary"
-            disabled={isSubmitting || !formData.summary || !formData.outcome}
+            loading={isSubmitting}
+            disabled={!formData.summary || !formData.outcome}
           >
-            {isSubmitting ? 'Logging...' : 'Log Activity'}
+            Log Activity
           </AnimatedButton>
         </div>
       </form>

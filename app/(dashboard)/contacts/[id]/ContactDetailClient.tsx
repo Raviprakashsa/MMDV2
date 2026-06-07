@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { updateContactAction, deleteContact } from "@/lib/actions/module15-contacts"
 import Link from "next/link"
 import { ShieldAlert, ArrowLeft, Trash2, Edit2, Briefcase } from "lucide-react"
+import Button from "@/components/ui/Button"
 
 interface CompanyOption {
   _id: string
@@ -99,21 +100,23 @@ export default function ContactDetailClient({ contact, companies }: ContactDetai
         </div>
         {!isEditing && (
           <div className="flex gap-3">
-            <button
+            <Button
+              variant="secondary"
               onClick={() => setIsEditing(true)}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
+              leftIcon={<Edit2 className="h-4 w-4" />}
+              className="rounded-xl px-4 py-2 text-sm font-bold border-slate-200 text-slate-700 hover:bg-slate-50"
             >
-              <Edit2 className="h-4 w-4" />
               Edit
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="danger"
               onClick={handleDelete}
-              disabled={loading}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-red-50 text-red-700 border border-red-200 px-4 py-2 text-sm font-bold hover:bg-red-100/70 transition-colors"
+              isLoading={loading}
+              leftIcon={<Trash2 className="h-4 w-4" />}
+              className="rounded-xl px-4 py-2 text-sm font-bold"
             >
-              <Trash2 className="h-4 w-4" />
               Delete
-            </button>
+            </Button>
           </div>
         )}
       </div>
@@ -222,17 +225,19 @@ export default function ContactDetailClient({ contact, companies }: ContactDetai
             <button
               type="button"
               onClick={() => setIsEditing(false)}
+              disabled={loading}
               className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors"
             >
               Cancel
             </button>
-            <button
+            <Button
               type="submit"
-              disabled={loading}
-              className="rounded-xl bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:opacity-95 disabled:opacity-50 transition-opacity"
+              isLoading={loading}
+              loadingText="Saving..."
+              className="rounded-xl px-4 py-2.5 text-sm font-bold shadow-sm"
             >
-              {loading ? "Saving..." : "Save Changes"}
-            </button>
+              Save Changes
+            </Button>
           </div>
         </form>
       ) : (

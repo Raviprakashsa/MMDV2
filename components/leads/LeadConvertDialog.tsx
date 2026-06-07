@@ -131,10 +131,11 @@ export function LeadConvertDialog({
             variant="primary"
             icon={<CheckCircle2 className="w-4 h-4" />}
             iconPosition="left"
-            disabled={isSubmitting || !approvalNotes || (!lead.contactEmail && !lead.contactPhone)}
+            loading={isSubmitting}
+            disabled={!approvalNotes || (!lead.contactEmail && !lead.contactPhone)}
             className="bg-green-600 hover:bg-green-700"
           >
-            {isSubmitting ? 'Converting...' : 'Convert Lead'}
+            Convert Lead
           </AnimatedButton>
         </div>
       </form>
