@@ -1,0 +1,245 @@
+openapi: 3.0.3
+info:
+  title: MMD V2 - A1 Tenant APIs
+  version: 1.0.0
+paths:
+  /api/v1/tenants:
+    post:
+      summary: Create a tenant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenant'
+      responses:
+        '201':
+          description: Tenant created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+  /api/v1/tenants/{id}:
+    get:
+      summary: Get tenant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tenant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+    patch:
+      summary: Update tenant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenant'
+      responses:
+        '200':
+          description: Updated tenant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+  /api/v1/tenants/{id}/settings:
+    get:
+      summary: Get tenant settings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tenant settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantSettings'
+    patch:
+      summary: Update tenant settings
+      description: >-
+        Accepts a partial settings payload. Missing fields will be preserved from
+        existing tenant settings or defaulted by the system. The response returns
+        the full `TenantSettings` object with defaults applied.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertTenantSettings'
+      responses:
+        '200':
+          description: Updated tenant settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantSettings'
+  /api/v1/tenants/{id}/branding:
+    get:
+      summary: Get tenant branding
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tenant branding
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantBranding'
+    patch:
+      summary: Update tenant branding
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertTenantBranding'
+      responses:
+        '200':
+          description: Updated tenant branding
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantBranding'
+components:
+  schemas:
+    CreateTenant:
+      type: object
+      required: [tenantId, slug, name, planId]
+      properties:
+        tenantId:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        planId:
+          type: string
+    UpdateTenant:
+      type: object
+      properties:
+        slug:
+          type: string
+        name:
+          type: string
+        planId:
+          type: string
+        isActive:
+          type: boolean
+    Tenant:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        planId:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    TenantSettings:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        timezone:
+          type: string
+        locale:
+          type: string
+        dateFormat:
+          type: string
+        timeFormat:
+          type: string
+        weekStartDay:
+          type: integer
+    UpsertTenantSettings:
+      type: object
+      properties:
+        timezone:
+          type: string
+        locale:
+          type: string
+        dateFormat:
+          type: string
+        timeFormat:
+          type: string
+        weekStartDay:
+          type: integer
+    TenantBranding:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        displayName:
+          type: string
+        logoUrl:
+          type: string
+        faviconUrl:
+          type: string
+        primaryColor:
+          type: string
+        secondaryColor:
+          type: string
+        accentColor:
+          type: string
+        supportEmail:
+          type: string
+    UpsertTenantBranding:
+      type: object
+      properties:
+        displayName:
+          type: string
+        logoUrl:
+          type: string
+        faviconUrl:
+          type: string
+        primaryColor:
+          type: string
+        secondaryColor:
+          type: string
+        accentColor:
+          type: string
+        supportEmail:
+          type: string

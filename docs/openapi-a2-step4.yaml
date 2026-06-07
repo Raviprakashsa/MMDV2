@@ -1,0 +1,40 @@
+openapi: 3.0.1
+info:
+  title: MMD V2 A2 API (Step 4)
+  version: 2.0.0
+paths:
+  /api/v1/users:
+    get:
+      summary: List users (tenant)
+    post:
+      summary: Create user
+  /api/v1/users/{id}:
+    get:
+      summary: Get user
+    patch:
+      summary: Update user
+  /api/v1/roles:
+    get:
+      summary: List roles
+    post:
+      summary: Create role
+  /api/v1/roles/{id}:
+    get:
+      summary: Get role
+    patch:
+      summary: Update role
+  /api/v1/permissions:
+    get:
+      summary: List permissions
+  /api/v1/roles/{id}/permissions:
+    post:
+      summary: Assign permission to role
+  /api/v1/roles/{id}/permissions/{permissionId}:
+    delete:
+      summary: Remove permission from role
+  /api/v1/sessions:
+    get:
+      summary: List sessions (tenant)
+  /api/v1/sessions/{id}:
+    delete:
+      summary: Revoke session

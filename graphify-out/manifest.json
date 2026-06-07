@@ -1,0 +1,3442 @@
+{
+  "C:\\Ravi\\MY WORKS\\MMD V2\\.vscode\\settings.json": {
+    "mtime": 1777215111.6339061,
+    "ast_hash": "37c1fd01f5532fafbad81cbfba1308ee",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\.vscode\\tasks.json": {
+    "mtime": 1777215111.6489153,
+    "ast_hash": "bb2c580ce958e181c4e4a0706fa0006d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(auth)\\layout.tsx": {
+    "mtime": 1777215111.8318684,
+    "ast_hash": "c164d1b4eeebd19ec37fc277b4a73532",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(auth)\\login\\page.tsx": {
+    "mtime": 1777215111.855497,
+    "ast_hash": "d523d5d35e6dd96bdb6da25403b0055e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\applications\\[id]\\page.tsx": {
+    "mtime": 1780383379.0533075,
+    "ast_hash": "018dba51f59e2b78dc01b564c637adc4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\applications\\new\\page.tsx": {
+    "mtime": 1780383369.2705276,
+    "ast_hash": "e9e6af5fb80f79ca6231d950bf2c8da8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\applications\\page.tsx": {
+    "mtime": 1780383364.3825142,
+    "ast_hash": "8e573f60c2a698ca0243652b627d1541",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\candidates\\[id]\\page.tsx": {
+    "mtime": 1780323996.3423734,
+    "ast_hash": "2e91a591e2120903a37d7f4223f35501",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\candidates\\new\\page.tsx": {
+    "mtime": 1780323984.1829178,
+    "ast_hash": "c535a2cce26b64fc9c65d918823006f2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\candidates\\page.tsx": {
+    "mtime": 1780323934.139537,
+    "ast_hash": "9d6b4746f077228dac6670929988edf5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\interviews\\[id]\\page.tsx": {
+    "mtime": 1780384399.0524917,
+    "ast_hash": "d9155398ffdb3b4bdf160d5d5c66962c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\interviews\\new\\page.tsx": {
+    "mtime": 1780384444.0317652,
+    "ast_hash": "5ef7e1e76de415bebc4be26974600074",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\interviews\\page.tsx": {
+    "mtime": 1780384386.9802787,
+    "ast_hash": "ef02bc61dca8d1eb17c7b07d2ffed6b8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\job-postings\\[id]\\page.tsx": {
+    "mtime": 1780323062.8475764,
+    "ast_hash": "b3b1afc512e003aa2f009d83fe1dab75",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\job-postings\\new\\page.tsx": {
+    "mtime": 1780323044.5075288,
+    "ast_hash": "6216516a0af8d227ce58057fffd3f1cb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\ats\\job-postings\\page.tsx": {
+    "mtime": 1780323041.152802,
+    "ast_hash": "c77bc9914d250330816d88cd7f9e0ec9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\_components\\AdminPanel.tsx": {
+    "mtime": 1777215111.951567,
+    "ast_hash": "052b4aec8ba94090b72fa1c0aec47e3d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\_components\\CoordinatorDashboard.tsx": {
+    "mtime": 1777215111.9665582,
+    "ast_hash": "d9c3723949e8e51ff67716df40482613",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\_components\\RecruiterDashboard.tsx": {
+    "mtime": 1777215111.9845595,
+    "ast_hash": "87540b9f4cc14946b901784df20ee07f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\_components\\ScraperDashboard.tsx": {
+    "mtime": 1777215112.0000868,
+    "ast_hash": "b468b075e091fc4121a29e1e32e6fa1d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\_components\\index.ts": {
+    "mtime": 1777215112.0171027,
+    "ast_hash": "876234819e0bf76f7d8e349a27c675ff",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\activities\\page.tsx": {
+    "mtime": 1777215112.0420985,
+    "ast_hash": "06fe12544e92e205f087b013e601dcb4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\admin\\archive\\page.tsx": {
+    "mtime": 1777215112.1282012,
+    "ast_hash": "b43bb46389890337226d1d66fdafc666",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\admin\\page.tsx": {
+    "mtime": 1777215112.0901203,
+    "ast_hash": "0663525df210ce0aec69f560bb9a5ba3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\automation\\command-center\\page.tsx": {
+    "mtime": 1777215112.1672046,
+    "ast_hash": "7595f47e403cc76e455dfc12d8b0f226",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\automation\\queue-heatmap\\page.tsx": {
+    "mtime": 1777215112.1972477,
+    "ast_hash": "d314fbf1ad0b9df801754c3dc09bbdb5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\candidates\\[id]\\page.tsx": {
+    "mtime": 1777215112.2482939,
+    "ast_hash": "82d28e3c8f8fbb209632ac603291972e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\candidates\\page.tsx": {
+    "mtime": 1779950363.286271,
+    "ast_hash": "09e6bdaa84b1895ec6eef566aca4aa39",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\communications\\page.tsx": {
+    "mtime": 1777215112.2752895,
+    "ast_hash": "edb7986ee6e937979b2745e298f3f7d5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\companies\\[id]\\page.tsx": {
+    "mtime": 1777215112.3268394,
+    "ast_hash": "8f074dc7b04bf9635455729d5771904a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\companies\\page.tsx": {
+    "mtime": 1779950393.5961952,
+    "ast_hash": "f5e7738846ba4ac75d0aacf1f07105f7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\error.tsx": {
+    "mtime": 1777215111.90256,
+    "ast_hash": "b9cd57e2e3bd043cdf47b17d7d333806",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\insights\\page.tsx": {
+    "mtime": 1777215112.3538423,
+    "ast_hash": "76ee583d6630bb36474f798cc726ec98",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\insights\\reports\\page.tsx": {
+    "mtime": 1777215112.3829741,
+    "ast_hash": "e5fdc297ae6c8a4ebe5bd32570c8f237",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\integrations\\page.tsx": {
+    "mtime": 1777215112.4093292,
+    "ast_hash": "67d3e8cb082b6c1253cfdcc1248aa228",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\invoices\\new\\page.tsx": {
+    "mtime": 1777215112.460334,
+    "ast_hash": "60d0a3434460a0e5777a9b61523cd8da",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\invoices\\page.tsx": {
+    "mtime": 1777215112.4363327,
+    "ast_hash": "46f35a75e235b33339cbb880d9bfdc9a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\leads\\KanbanBoard.tsx": {
+    "mtime": 1777215112.491906,
+    "ast_hash": "e59e785e64e000073bf9436a602f8117",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\leads\\LeadCard.tsx": {
+    "mtime": 1777215112.510432,
+    "ast_hash": "2bd4e5c0234d6e8ac3c0f394a5619e3e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\leads\\page.tsx": {
+    "mtime": 1777215112.524441,
+    "ast_hash": "beee54704cd8507070d1a93ec85bd17c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\loading.tsx": {
+    "mtime": 1777215111.9165614,
+    "ast_hash": "af3137bf1e09a63a18b511b9f74c1873",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\mail\\page.tsx": {
+    "mtime": 1777215112.5566292,
+    "ast_hash": "4403746ad54905b5bae26af2b9600674",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\notifications\\page.tsx": {
+    "mtime": 1777215112.5806286,
+    "ast_hash": "f94b370f8f097f340e77a7007973232e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\page.tsx": {
+    "mtime": 1777215111.9295583,
+    "ast_hash": "5abaec507e4d409c4ca1e03100cacda1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\placements\\[id]\\edit\\page.tsx": {
+    "mtime": 1777215112.6531572,
+    "ast_hash": "c320b164e6aaf023dc6cd70f4de9b6fc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\placements\\[id]\\page.tsx": {
+    "mtime": 1777215112.6291506,
+    "ast_hash": "bd031bd3cb8609cd0c2ad3459b46388f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\placements\\new\\page.tsx": {
+    "mtime": 1777215112.677101,
+    "ast_hash": "6748a7c8e577461bf4940823c232e96a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\placements\\page.tsx": {
+    "mtime": 1777215112.6061513,
+    "ast_hash": "88b864ca7edf75bcf563b28eb0af5f04",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\reports\\page.tsx": {
+    "mtime": 1777215112.6991491,
+    "ast_hash": "d48fd36a3443d8f3a4ec08b16b2f3c40",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\requirements\\[id]\\page.tsx": {
+    "mtime": 1777215112.748495,
+    "ast_hash": "78224c63a7caeb3b82c0b5f2bf25463e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\requirements\\page.tsx": {
+    "mtime": 1779950418.9275122,
+    "ast_hash": "dff29bd1b6414b767272037c46407a03",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\settings\\_components\\SettingsAccessConsole.tsx": {
+    "mtime": 1777215112.7968268,
+    "ast_hash": "ccfe4d81b2b3d143e99cf579ed1dbf28",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\settings\\page.tsx": {
+    "mtime": 1777215112.7727418,
+    "ast_hash": "236c8f1c7f7449c24a295c4e89f50853",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\templates\\page.tsx": {
+    "mtime": 1777215112.822396,
+    "ast_hash": "e41a9c6e61c91cbc16f64a61609919ab",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\timesheet\\page.tsx": {
+    "mtime": 1777215112.8443952,
+    "ast_hash": "3e90db39ddcb22cc614c09013a9936cd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\users\\_components\\UserList.tsx": {
+    "mtime": 1777215112.8890035,
+    "ast_hash": "76a9c76d1d91e99142f882d71aaba5c6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\dashboard\\users\\page.tsx": {
+    "mtime": 1777215112.8704457,
+    "ast_hash": "91c61702d299eae3bf795aa15de584e7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\(dashboard)\\layout.tsx": {
+    "mtime": 1777215111.8795109,
+    "ast_hash": "9beda36bd598d9c60992990c0715b24d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\permissions\\page.tsx": {
+    "mtime": 1780256970.0117712,
+    "ast_hash": "c85c66627f7038f14fc2330cc52f8f70",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\roles\\[id]\\edit\\page.tsx": {
+    "mtime": 1780257031.4927893,
+    "ast_hash": "6d60bbe04950c8f8cf5e7d8705389640",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\roles\\[id]\\page.tsx": {
+    "mtime": 1780257028.4472427,
+    "ast_hash": "1d0b4035ac413560adae01b8eb164633",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\roles\\[id]\\permissions\\page.tsx": {
+    "mtime": 1780257035.0112586,
+    "ast_hash": "227541cbc943d10236ba2f7bc4321d85",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\roles\\create\\page.tsx": {
+    "mtime": 1780256956.561473,
+    "ast_hash": "00ada933d4b39770829b9829ee4435c6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\roles\\page.tsx": {
+    "mtime": 1780257024.5876815,
+    "ast_hash": "6e6c912b8072d37cc233ef3f15c6c883",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\sessions\\page.tsx": {
+    "mtime": 1780256975.0522761,
+    "ast_hash": "83e860642394f6e383e2f03660148794",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\users\\[id]\\edit\\page.tsx": {
+    "mtime": 1780257022.022905,
+    "ast_hash": "a953c8865e47b4609f9c73d8f4b0acfc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\users\\[id]\\page.tsx": {
+    "mtime": 1780257019.7813244,
+    "ast_hash": "f0d5bd2f6c3c8aa125c42cd2ad916678",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\users\\create\\page.tsx": {
+    "mtime": 1780256938.3210537,
+    "ast_hash": "f6cde43cce99b179d9431b84c6eb7461",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\a2\\users\\page.tsx": {
+    "mtime": 1780257018.0979047,
+    "ast_hash": "d94e529bd044d16d7854d134488e3fa9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\admin\\privacy\\PrivacyCenterClient.tsx": {
+    "mtime": 1780317343.7609663,
+    "ast_hash": "81f75a8e936925622f1d6b0dee1832de",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\admin\\privacy\\page.tsx": {
+    "mtime": 1780317349.6610878,
+    "ast_hash": "4f23d234b12cb71d37c3d328346e0c67",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\auth\\[...nextauth]\\route.ts": {
+    "mtime": 1777215112.9602256,
+    "ast_hash": "198d48412047ca86f3cc8c58f6628b11",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\automation\\realtime\\route.ts": {
+    "mtime": 1777215112.995068,
+    "ast_hash": "aef9d19455b7a617ec736c275477c55f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\candidates\\[id]\\resume\\route.ts": {
+    "mtime": 1777215113.0370839,
+    "ast_hash": "073f4d6ec52a247ab32c2ea59858dadb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\cron\\automation-pipeline\\route.ts": {
+    "mtime": 1779950569.9483438,
+    "ast_hash": "3022e696fedf786caa7cd3e994f9e977",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\cron\\daily-alerts\\route.ts": {
+    "mtime": 1779950569.9451342,
+    "ast_hash": "78c42cc12cbad15418936b2036995750",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\cron\\export-jobs\\route.ts": {
+    "mtime": 1779950569.9519157,
+    "ast_hash": "f6190c7949679b61acb190c997429443",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\cron\\report-schedules\\route.ts": {
+    "mtime": 1779950569.9494798,
+    "ast_hash": "42fc6a87860877ffac6bf21fca303fcf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\cron\\webhook-deliveries\\route.ts": {
+    "mtime": 1779950569.9471853,
+    "ast_hash": "2041a028d551c307cc650fa0dd5e1e9a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\documents\\[id]\\download\\route.ts": {
+    "mtime": 1777215113.1988113,
+    "ast_hash": "028dc2b413e1092d16979df85d77ced8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\documents\\upload\\route.ts": {
+    "mtime": 1777215113.2224581,
+    "ast_hash": "f622e8a92c3854c30e1415b047d0d884",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\exports\\jobs\\[id]\\download\\route.ts": {
+    "mtime": 1777215113.2742176,
+    "ast_hash": "50ddc014c1041e7721ff74a22761e23c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\health\\route.ts": {
+    "mtime": 1779864383.215676,
+    "ast_hash": "e1c38f7086aad1ebfe95f41d8305ec31",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\notifications\\route.ts": {
+    "mtime": 1777215113.2986605,
+    "ast_hash": "a8f12f9d31ca669fad87563c3cda7655",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\public\\applications\\upload-resume\\route.ts": {
+    "mtime": 1779950569.9529133,
+    "ast_hash": "9df3a8e0f3c68fe3b29a988a12ddb30b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\search\\route.ts": {
+    "mtime": 1777215113.3612678,
+    "ast_hash": "1421ff17912e4483f1d8262483556efd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\api-keys\\[id]\\rotate\\route.ts": {
+    "mtime": 1777215113.4368765,
+    "ast_hash": "f5501b75704630359427d6b012069e5e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\api-keys\\[id]\\route.ts": {
+    "mtime": 1777215113.413459,
+    "ast_hash": "41e1850ca2db284d42990355607b4bad",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\api-keys\\introspect\\route.ts": {
+    "mtime": 1777215113.4619756,
+    "ast_hash": "b98ab6d5428cb4ea595a1a106b161381",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\api-keys\\route.ts": {
+    "mtime": 1777215113.3899314,
+    "ast_hash": "d34e9d8c3488e466bc499bc5e02d35f1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\applications\\[id]\\route.ts": {
+    "mtime": 1780321796.069364,
+    "ast_hash": "c2d4b4e96253fe6c8d2f0fd93893b854",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\applications\\[id]\\status\\route.ts": {
+    "mtime": 1780321803.3302464,
+    "ast_hash": "c95807b8145429657c2cb895466e8568",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\applications\\route.ts": {
+    "mtime": 1780321791.506693,
+    "ast_hash": "d73089b70abd678d9ca682295a3abc5b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\candidates\\[id]\\route.ts": {
+    "mtime": 1780321787.238671,
+    "ast_hash": "b56ef50d33cddab61491962c5ab833b0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\candidates\\route.ts": {
+    "mtime": 1780321779.498425,
+    "ast_hash": "9059f1938b4ba06f2bb738f5fbfeb4d9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\companies\\[id]\\route.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "1b5a66ac453c733204e56a02d8e81939",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\companies\\route.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "342749e7a0cde0b5175b050ced4d34ee",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\contacts\\[id]\\route.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "bb59768c0d69de7a1837fe6cad63f2dc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\contacts\\route.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "b450b489b060124cb5aff46f67a700e1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\health\\route.ts": {
+    "mtime": 1777215113.483984,
+    "ast_hash": "e02c0d2688d7c69db3b68db95ea64529",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\interviews\\[id]\\route.ts": {
+    "mtime": 1780321814.312425,
+    "ast_hash": "9c41a76e178dfe3a41ad7ffddc3280f7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\interviews\\[id]\\status\\route.ts": {
+    "mtime": 1780321820.3739443,
+    "ast_hash": "955eb97be1e8026122fca1ec743de85b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\interviews\\route.ts": {
+    "mtime": 1780321808.937482,
+    "ast_hash": "4a449fa1c70a57130248c330290584d9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\job-postings\\[id]\\route.ts": {
+    "mtime": 1780321774.5399077,
+    "ast_hash": "4ffa6fc73656415b94f440adb5207b04",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\job-postings\\route.ts": {
+    "mtime": 1780321770.1465676,
+    "ast_hash": "ba678897d77e574d3991d8049459faa4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\leads\\[id]\\route.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "b4d270ffef5fccd500d91f70357a8e77",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\leads\\[id]\\status\\route.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "2c3f2927405b28a28ee50794c09f9a2c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\leads\\route.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "6ae0497023b5480f0363595bb6f93f34",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\permissions\\route.ts": {
+    "mtime": 1780256618.8151884,
+    "ast_hash": "05cc223f13502779c7018f0d71fcc02d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\privacy\\access-logs\\route.ts": {
+    "mtime": 1780316990.1119683,
+    "ast_hash": "83fb395883dd7c5f5d2824d722a38038",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\privacy\\export-jobs\\route.ts": {
+    "mtime": 1780316995.4340281,
+    "ast_hash": "3ca1b0cbeace8d3bb3e081fc4d171554",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\requirements\\[id]\\matches\\route.ts": {
+    "mtime": 1777215113.5206053,
+    "ast_hash": "a297b0e94208cf4228dfd4bbc0f9ff62",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\roles\\[id]\\permissions\\[permissionId]\\route.ts": {
+    "mtime": 1780256618.8353193,
+    "ast_hash": "86fcedb14c939db15e236e75c141a4e3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\roles\\[id]\\permissions\\route.ts": {
+    "mtime": 1780256618.8538501,
+    "ast_hash": "f8d210826a35563c59dd7a863ea6215d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\roles\\[id]\\route.ts": {
+    "mtime": 1780256618.8168004,
+    "ast_hash": "6bd78b152b706c747c17c87805971bf9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\roles\\route.ts": {
+    "mtime": 1780256618.8151884,
+    "ast_hash": "08bc72bba4648c1e7cd2d50a503ec7df",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\sessions\\[id]\\route.ts": {
+    "mtime": 1780256626.1561933,
+    "ast_hash": "6c16958e8467874735767a0ec8b04682",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\sessions\\route.ts": {
+    "mtime": 1780256633.250645,
+    "ast_hash": "ec5c29c98489f3eed7c0d93c3fc3a273",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\tenants\\[id]\\branding\\route.ts": {
+    "mtime": 1780241210.945729,
+    "ast_hash": "d539997408d11d85bb621bec114970e3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\tenants\\[id]\\route.ts": {
+    "mtime": 1780241187.4410558,
+    "ast_hash": "bfa72131d194b07e602d38f332496c52",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\tenants\\[id]\\settings\\route.ts": {
+    "mtime": 1780241167.7388968,
+    "ast_hash": "23ab459ccb2d80612e9ba5f8b5589b21",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\tenants\\route.ts": {
+    "mtime": 1780241177.777908,
+    "ast_hash": "cd690fbf510ac16444b766d536b64052",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\users\\[id]\\route.ts": {
+    "mtime": 1780256618.8151884,
+    "ast_hash": "e533a568b44d2ce2627e1acef71beeb1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\users\\route.ts": {
+    "mtime": 1780256618.8151884,
+    "ast_hash": "eb3e48edb4fe83d3ce39d7b2fece8dc2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\webhooks\\deliveries\\[id]\\retry\\route.ts": {
+    "mtime": 1777215113.5827074,
+    "ast_hash": "44e2c654187e1e4baffa5cd8f54ec606",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\webhooks\\deliveries\\process\\route.ts": {
+    "mtime": 1777215113.6431572,
+    "ast_hash": "2afc13f0578e12c471b0c4d4c7d5972e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\webhooks\\deliveries\\route.ts": {
+    "mtime": 1777215113.5517046,
+    "ast_hash": "6b5fa743bfc6eef0a234988c19642246",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\api\\v1\\webhooks\\inbound\\[name]\\route.ts": {
+    "mtime": 1777215113.6752484,
+    "ast_hash": "3ee15ddd6b3d1b0203272790622dfe57",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\apply\\[slug]\\page.tsx": {
+    "mtime": 1777215113.706791,
+    "ast_hash": "627d595b07a7b03646c7c18224e2b729",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\dashboard\\tenants\\[id]\\edit\\page.tsx": {
+    "mtime": 1780243973.590379,
+    "ast_hash": "8afae8f56bec43c19fcd3eac80e49216",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\dashboard\\tenants\\[id]\\page.tsx": {
+    "mtime": 1780243973.5793252,
+    "ast_hash": "a35dc822de64983f0cc5f2af58efc2c6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\dashboard\\tenants\\new\\page.tsx": {
+    "mtime": 1780243973.5793252,
+    "ast_hash": "58e8c79f2073af66190e0d861429a7c4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\dashboard\\tenants\\page.tsx": {
+    "mtime": 1780243973.5793252,
+    "ast_hash": "fc362b346f8abd2b4a43e2a70ff5e227",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\forbidden\\page.tsx": {
+    "mtime": 1777215113.7307951,
+    "ast_hash": "2e7c05ed5166398a537443fbe3543681",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\layout.tsx": {
+    "mtime": 1779865125.8936327,
+    "ast_hash": "37aaf76097efffe2f1c7cef794316e6c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\app\\page.tsx": {
+    "mtime": 1777215111.8128624,
+    "ast_hash": "c6568da095f78e9c922385271ffcbb2c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\backstop.json": {
+    "mtime": 1777215111.3581953,
+    "ast_hash": "b16c177280b71c2aef642e4beed1ace0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components.json": {
+    "mtime": 1777215111.3732061,
+    "ast_hash": "29fbc48d942e491471f46650516bb150",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\apply\\PublicApplicationForm.tsx": {
+    "mtime": 1777215114.3836615,
+    "ast_hash": "2003ba5aa1830c681666e53fdde39178",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\applications\\ApplicationFilters.tsx": {
+    "mtime": 1780383338.4726307,
+    "ast_hash": "193a236196c20d39466ecd1649867cb0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\applications\\ApplicationForm.tsx": {
+    "mtime": 1780383349.9755745,
+    "ast_hash": "28a2f40f5768b2e7c150edda82e9cbec",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\applications\\ApplicationKanban.tsx": {
+    "mtime": 1780383357.126302,
+    "ast_hash": "0637e2f00fd966855f6eb8b37883a50f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\applications\\ApplicationStatusBadge.tsx": {
+    "mtime": 1780383327.6721299,
+    "ast_hash": "7ee6bde60ed07e34c9836d709ba15f22",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\applications\\ApplicationStatusModal.tsx": {
+    "mtime": 1780383333.3728218,
+    "ast_hash": "b885a2ffa3dd170424fc57cdceefa1f8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\applications\\ApplicationTable.tsx": {
+    "mtime": 1780383344.8959987,
+    "ast_hash": "2cf47064a852ae882b0f18503c4b180d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\candidates\\CandidateFilters.tsx": {
+    "mtime": 1780323907.9361496,
+    "ast_hash": "77aba7af193e00f9b3c0c12ed569a2b6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\candidates\\CandidateForm.tsx": {
+    "mtime": 1780323975.7160735,
+    "ast_hash": "62837d27506334a031365dcac76d49b6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\candidates\\CandidateProfileCard.tsx": {
+    "mtime": 1780323928.2781227,
+    "ast_hash": "7b7829e53a0c951a5f43418df6e4645f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\candidates\\CandidateTable.tsx": {
+    "mtime": 1780323914.0716286,
+    "ast_hash": "801ea1760ad31fba9e452750f7261bdb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\interviews\\InterviewCalendar.tsx": {
+    "mtime": 1780384369.8649156,
+    "ast_hash": "44f8a39bb572cfa5961485a1ade5dbe3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\interviews\\InterviewCard.tsx": {
+    "mtime": 1780384429.5686955,
+    "ast_hash": "806aa8b2e1ab1ca2d7a0db71d276c5f9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\interviews\\InterviewFilters.tsx": {
+    "mtime": 1780384373.4771192,
+    "ast_hash": "475a47eede55a730b7ba349cfff23607",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\interviews\\InterviewForm.tsx": {
+    "mtime": 1780384438.571585,
+    "ast_hash": "dae72f1dab5daba4c8e4ace4a010577c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\interviews\\InterviewStatusBadge.tsx": {
+    "mtime": 1780384346.6685472,
+    "ast_hash": "55650db3ac9377c2cb78b18742c03fc7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\interviews\\InterviewStatusModal.tsx": {
+    "mtime": 1780384350.3413823,
+    "ast_hash": "9b82c1698fd93eb5e07d441326a4cb44",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\interviews\\InterviewTable.tsx": {
+    "mtime": 1780384363.4065213,
+    "ast_hash": "acf566943cd8f8b4312daa283f3a969b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\job-postings\\JobPostingFilters.tsx": {
+    "mtime": 1780322847.32946,
+    "ast_hash": "fc6d44dc4f5635fe2a3227279b28eeb0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\job-postings\\JobPostingForm.tsx": {
+    "mtime": 1780322880.2996044,
+    "ast_hash": "7d1fa26b7edadb933a34ddbe5f1c1915",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\job-postings\\JobPostingStatusBadge.tsx": {
+    "mtime": 1780322835.6203709,
+    "ast_hash": "fa0fb964216083946c76cf7d0088b35b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ats\\job-postings\\JobPostingTable.tsx": {
+    "mtime": 1780322871.4882972,
+    "ast_hash": "6149067ed532ee4110129222a927f6e7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\automation\\AutomationPanel.tsx": {
+    "mtime": 1777215114.408298,
+    "ast_hash": "f6b953479b43ff4c0bd7482916bee3ee",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\automation\\FormBuilderPreview.tsx": {
+    "mtime": 1777215114.4192965,
+    "ast_hash": "e977a1a97cf84b8a8059603997369fe5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboard\\ActivityTable.tsx": {
+    "mtime": 1777215114.4372957,
+    "ast_hash": "b488c09f1e7abd1e488aca19e387453e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboard\\AdminMiniReports.tsx": {
+    "mtime": 1777215114.4512944,
+    "ast_hash": "26e08dbacad38b8b9fa6a5e474104145",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboard\\FunnelChart.tsx": {
+    "mtime": 1777215114.464294,
+    "ast_hash": "be81d14db38dfaf74c11050f81259b8f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboard\\KPICard.tsx": {
+    "mtime": 1777215114.4762943,
+    "ast_hash": "a80658831b008f6d50bc7bc57d843347",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboard\\SimpleBarChart.tsx": {
+    "mtime": 1777215114.4872968,
+    "ast_hash": "1e8f577eb9c64339ee1601334b2291b2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboard\\SimpleLineChart.tsx": {
+    "mtime": 1777215114.4993057,
+    "ast_hash": "1eeffd8629df67e43fd6f0822ca73631",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboard\\index.ts": {
+    "mtime": 1777215114.5138261,
+    "ast_hash": "803d16334a087d1def5967c13f11bb27",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboards\\design\\Candidates.tsx": {
+    "mtime": 1777215114.5870435,
+    "ast_hash": "5852a325d81a1fd9fa48abe60c8150ee",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboards\\design\\Companies.tsx": {
+    "mtime": 1777215114.599057,
+    "ast_hash": "f04b4d87b61e910460a434d7e29803ac",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboards\\design\\Dashboard.tsx": {
+    "mtime": 1779804156.952317,
+    "ast_hash": "dd06bf33c5b6e7a6f9337c9812dbf4ae",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboards\\design\\Leads.tsx": {
+    "mtime": 1777215114.6275861,
+    "ast_hash": "58f329452b1f362dc5a84610a67b7df7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboards\\design\\Reports.tsx": {
+    "mtime": 1777215114.6415892,
+    "ast_hash": "b00873b8c0e181fbbce0d3681e7d6f0a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboards\\design\\Requirements.tsx": {
+    "mtime": 1777215114.654586,
+    "ast_hash": "95187a7f202dab626bb80e4ef412fe5a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboards\\design\\Timesheets.tsx": {
+    "mtime": 1777215114.6675854,
+    "ast_hash": "8b5b230a9c5d7b3d607f2a52f5ab9180",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\forms\\user-management.tsx": {
+    "mtime": 1777215114.703108,
+    "ast_hash": "3010cb69cc5069f1a131f2e918a58d4f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\AmbientBackground.tsx": {
+    "mtime": 1779802380.559069,
+    "ast_hash": "97c96c0bd0ba8f7ba170a9e47c6a02bb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\AppShell.tsx": {
+    "mtime": 1777215114.7361183,
+    "ast_hash": "5a342450f1227ce5839f3299c8d281e8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\AppSidebar.tsx": {
+    "mtime": 1780384333.1115944,
+    "ast_hash": "89b86b2457b983397e69b3de0b8f7f61",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\Breadcrumbs.tsx": {
+    "mtime": 1777215114.7611187,
+    "ast_hash": "48f9ea564cea7495b3083691d49d81fe",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\GlobalSearch.tsx": {
+    "mtime": 1777215114.7741232,
+    "ast_hash": "43fa9d4afcd1d73d50897cc66b5b5766",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\NeuroBackground.tsx": {
+    "mtime": 1779802380.559069,
+    "ast_hash": "e8fb42ecc62aff4286829b0a5844a856",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\PageTransition.tsx": {
+    "mtime": 1777215114.8026412,
+    "ast_hash": "c331382eac10b0852b393c305dcad016",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\TopNav.tsx": {
+    "mtime": 1777215114.8156497,
+    "ast_hash": "707e916f575c98254400ed52e35b8dca",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\layout\\index.ts": {
+    "mtime": 1777215114.8286514,
+    "ast_hash": "e33a45504078c59986c5157caf5ea498",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\leads\\CreateLeadModal.tsx": {
+    "mtime": 1779950340.4435825,
+    "ast_hash": "5eb30f58af882ceb6aab637863c17684",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\leads\\LeadActivityDialog.tsx": {
+    "mtime": 1777215114.8616505,
+    "ast_hash": "5678d02008e3708111c1025d4e2fbbce",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\leads\\LeadBoard.tsx": {
+    "mtime": 1777215114.875663,
+    "ast_hash": "83c369c68a82ee6412980d621d9f86dd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\leads\\LeadConvertDialog.tsx": {
+    "mtime": 1777215114.8856623,
+    "ast_hash": "6da42d8fe2c968472d95e8b2968e2dd2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\leads\\LeadDetailsDialog.tsx": {
+    "mtime": 1777215114.899189,
+    "ast_hash": "8568326ff235dd3eae875fe198af3caf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\leads\\LeadsAnalytics.tsx": {
+    "mtime": 1777215114.9107134,
+    "ast_hash": "1f2c93891792b0f335fea53dc7883b46",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\leads\\LeadsTable.tsx": {
+    "mtime": 1777215114.9217079,
+    "ast_hash": "7fa78579567b36c5d3e0b5fc2b7f09e3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\notifications\\NotificationBell.tsx": {
+    "mtime": 1777215114.9467335,
+    "ast_hash": "38456a76b1014ee88f626e7c44497677",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\providers.tsx": {
+    "mtime": 1777215114.3656461,
+    "ast_hash": "b92227d61e2193dc0a0ec24b948d02d4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\reports\\ReportBuilder.tsx": {
+    "mtime": 1779950433.334484,
+    "ast_hash": "6678928bc3611f4e0703457842ad1adf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\templates\\TemplateEditor.tsx": {
+    "mtime": 1777215114.985708,
+    "ast_hash": "f96126968698c51f3e3e2cfa33af28ff",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\templates\\TemplateSelector.tsx": {
+    "mtime": 1777215114.9997206,
+    "ast_hash": "4822656c7e5bb5c0c02896e533251e1a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\tenants\\TenantDetails.tsx": {
+    "mtime": 1780243973.5783274,
+    "ast_hash": "d724e6e02554aa18fcdcfccdadcc0558",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\tenants\\TenantForm.tsx": {
+    "mtime": 1780241638.9370115,
+    "ast_hash": "7697d83a2f7143e0136c0b9fa0700068",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\tenants\\TenantTable.tsx": {
+    "mtime": 1780241638.8970644,
+    "ast_hash": "0e8d6adc32527e4f49572006c348dda5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\timesheets\\TimesheetCalendar.tsx": {
+    "mtime": 1777215115.0232463,
+    "ast_hash": "f537621518691f1e337bc3d884360a9a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\timesheets\\WorkLogger.tsx": {
+    "mtime": 1777215115.0382402,
+    "ast_hash": "93960c40248d1bcc31f5f71f430f33bc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\AnimatedButton.tsx": {
+    "mtime": 1777215115.0582423,
+    "ast_hash": "9ec8eaf86aff2c90541e5b586061c686",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\AnimatedIcon.tsx": {
+    "mtime": 1777215115.0682402,
+    "ast_hash": "f7f2edb3eeb578024c48cbe2bd8cdf22",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\AssignPermissionForm.tsx": {
+    "mtime": 1780256929.0313828,
+    "ast_hash": "87791b681e531e738c965ca4a58123bf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\Button.tsx": {
+    "mtime": 1777215115.0832398,
+    "ast_hash": "608261a0dae447345d6a44fe0dd4d1e8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\Combobox.tsx": {
+    "mtime": 1777215115.0982473,
+    "ast_hash": "ea0c1466dffd04fbd1d5787d26de6737",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\CopyToast.tsx": {
+    "mtime": 1777215115.1108077,
+    "ast_hash": "0afc53e3afb71e9b3f25e61507ff1664",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\DocumentManager.tsx": {
+    "mtime": 1777215115.1237998,
+    "ast_hash": "aca6ed2f3dd0372899b640ae8a925a16",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\EmptyState.tsx": {
+    "mtime": 1777215115.1367993,
+    "ast_hash": "74540d1a39bf97ecfc7f48d4536e7c2c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\ErrorState.tsx": {
+    "mtime": 1780256909.6855414,
+    "ast_hash": "8e432871ccc01ea78a667feb6ee7d3c3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\GlassCard.tsx": {
+    "mtime": 1777215115.1517973,
+    "ast_hash": "9e13d44436efa771190a26a5965a9021",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\Input.tsx": {
+    "mtime": 1777215115.1727998,
+    "ast_hash": "54d18e2266cac42ff5dc7ddbda6b876d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\InteractiveButton.tsx": {
+    "mtime": 1777215115.184805,
+    "ast_hash": "00737082dde4e41934a72e5e9d9ef4e3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\InteractiveCard.tsx": {
+    "mtime": 1777215115.1968322,
+    "ast_hash": "33fee8f1f33c4c5487a50172a0e313e6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\InteractiveTableRow.tsx": {
+    "mtime": 1777215115.2083514,
+    "ast_hash": "c518e3be02a54f39925ed7f6117c357a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\LiveBadge.tsx": {
+    "mtime": 1777215115.219351,
+    "ast_hash": "4497d6bc4847ff98e550d2c4abacc56f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\Loading.tsx": {
+    "mtime": 1780256897.8800187,
+    "ast_hash": "def02dd8de19ca50164a0282d21104ce",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\MissionCard.tsx": {
+    "mtime": 1777215115.2313507,
+    "ast_hash": "b5343e64cb7b75896d79ac199fb87476",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\Modal.tsx": {
+    "mtime": 1777215115.2453568,
+    "ast_hash": "915984c9ba4726799a6f5167ef69fa14",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\PageContainer.tsx": {
+    "mtime": 1777215115.2593534,
+    "ast_hash": "bca5313629da55aa324e870f78ea2262",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\RoleForm.tsx": {
+    "mtime": 1780256922.9232504,
+    "ast_hash": "3fb68fc983eac1d48b40f8d07c0536dd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\SLAProgressRing.tsx": {
+    "mtime": 1777215115.2823532,
+    "ast_hash": "ecadfa13a34f62d4b15dabf50b72bc1d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\Skeleton.tsx": {
+    "mtime": 1777215115.2963614,
+    "ast_hash": "8516c0b6ec7dc6ce361f26bd4dde7d8d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\StatusBadge.tsx": {
+    "mtime": 1777215115.3099298,
+    "ast_hash": "f854c621662441ebd6877f251395f85f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\Toast.tsx": {
+    "mtime": 1777215115.3249314,
+    "ast_hash": "ca1913c3758f27c0c46043e0908878da",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\UndoToast.tsx": {
+    "mtime": 1777215115.3389318,
+    "ast_hash": "07a464ce27285ae26eb76b7ef6b0457d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\UserForm.tsx": {
+    "mtime": 1780256917.2204807,
+    "ast_hash": "ad55ac1deb05618edf9182d07ef86c50",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\index.ts": {
+    "mtime": 1777215115.3529367,
+    "ast_hash": "2c1e837a313ea218ce53bc1dc7bffc3b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\Design Leads Page_new\\package.json": {
+    "mtime": 1777215111.6982787,
+    "ast_hash": "e62c9f4eacf1f5e3c69c6ee5e0cd4215",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\Design Leads Page_new\\vite.config.ts": {
+    "mtime": 1777215111.7148051,
+    "ast_hash": "4fc1be7cfa57d742a5d682629f866b3a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\audit\\contrast-report.json": {
+    "mtime": 1777215113.753455,
+    "ast_hash": "6d13a910f2be9829f0e0836fdecbc233",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\audit_report.json": {
+    "mtime": 1777215111.3441954,
+    "ast_hash": "be30722f210255920e5d15d24f06e2a3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\dashboard-eslint.json": {
+    "mtime": 1779803041.0138252,
+    "ast_hash": "0e4ecf78b6b289f420381b146fd6ed50",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\eslint-report.json": {
+    "mtime": 1779805743.0374877,
+    "ast_hash": "800906a09e6ee01a517df642383260bf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\eslint-target.json": {
+    "mtime": 1779804301.762441,
+    "ast_hash": "e5087d9aa7466f3b4634a680f75785f4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\migrate-mongo-config.js": {
+    "mtime": 1779866032.0136244,
+    "ast_hash": "f0165fa77a52f150b177a8902a361f02",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\migrations\\1670000000000-create-users-email-index.js": {
+    "mtime": 1779866035.2112105,
+    "ast_hash": "c9f2192035d850ee4a541a99d6ccac07",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\eslint.config.mjs": {
+    "mtime": 1779805484.688958,
+    "ast_hash": "639f30055873818603a8f3f0fe764b1a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\archive.ts": {
+    "mtime": 1777215115.4611766,
+    "ast_hash": "41b34813b9275b9e403f8e5d3ea18901",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\dashboard.ts": {
+    "mtime": 1777215115.4741397,
+    "ast_hash": "c5db1bf927fcfc302f48f667c43bf159",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module1-auth.ts": {
+    "mtime": 1777215115.4911542,
+    "ast_hash": "baebed5c95807699faca7f6e615eecb9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module10-communication.ts": {
+    "mtime": 1777215115.5045214,
+    "ast_hash": "cfdb73be224211919bef64e384bd660a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module10-timesheet.ts": {
+    "mtime": 1777215115.5175214,
+    "ast_hash": "81fcb57bf8f527bdae183aef064094e0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module11-analytics-reporting.ts": {
+    "mtime": 1777215115.533522,
+    "ast_hash": "40fd51a8a746bf4b80a492d2b97df5d7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module11-template.ts": {
+    "mtime": 1777215115.5475218,
+    "ast_hash": "8dbb8547a92b495eb7811831fac61784",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module12-reporting.ts": {
+    "mtime": 1777215115.5645456,
+    "ast_hash": "537f7c13cad551eb12440ad3e03895b9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module13-api-keys.ts": {
+    "mtime": 1777215115.5785272,
+    "ast_hash": "62d5668b8e1b655c00fa2cb2d6b34692",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module13-integrations.ts": {
+    "mtime": 1777215115.5955532,
+    "ast_hash": "19a53ed04b8a8fdc73ccdfa4b9c9d6f6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module13-notification.ts": {
+    "mtime": 1779805654.22992,
+    "ast_hash": "40eb561de940fa2cc2a206a476e547c0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module13-webhook-delivery.ts": {
+    "mtime": 1777215115.62108,
+    "ast_hash": "0ca2a75e42cf7d17ef84ba31b5ddbe75",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module14-invoice.ts": {
+    "mtime": 1777215115.634077,
+    "ast_hash": "ad969c27c4ba1bf05704150b888b6bde",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module15-export.ts": {
+    "mtime": 1777215115.6510804,
+    "ast_hash": "ffa855aa6785a863dc4aa15c20427c36",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module15-hr-contact.ts": {
+    "mtime": 1777215115.66608,
+    "ast_hash": "2f1b5427bdfde06cf04a7ace870214c2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module15-mail.ts": {
+    "mtime": 1779805707.8234348,
+    "ast_hash": "984a33a633506491372acbbe4d8b3ac9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module16-audit.ts": {
+    "mtime": 1777215115.692086,
+    "ast_hash": "c55e6502804d34ae4dee504740260db0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module3-company.ts": {
+    "mtime": 1777215115.7223282,
+    "ast_hash": "491322697a16acf658945120397bb5d2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module4-requirement.ts": {
+    "mtime": 1777215115.7363288,
+    "ast_hash": "cd54eaf20dce729318f301940ce886b8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module5-automation.ts": {
+    "mtime": 1777215115.7493274,
+    "ast_hash": "634b021db1400acb37d236c4c6b32472",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module7-activity.ts": {
+    "mtime": 1777215115.76333,
+    "ast_hash": "d5da4d3eef0dda808e3f1c6845f7f578",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module8-candidate.ts": {
+    "mtime": 1777215115.775328,
+    "ast_hash": "1c7fe0f75d06b6d48f44f5ab26faec1f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module8-placement.ts": {
+    "mtime": 1777215115.7873352,
+    "ast_hash": "36faeb4aa7e01c50631e604bd01f3b97",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module9-document.ts": {
+    "mtime": 1777215115.8003423,
+    "ast_hash": "3b7ae5677b258bac716492a103f95a9f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\actions\\module9-leads.ts": {
+    "mtime": 1777215115.8144424,
+    "ast_hash": "c393c5693d8a921e50a06913cad3447d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\animations.ts": {
+    "mtime": 1777215115.3935995,
+    "ast_hash": "eb70b95e171ef724d06156573ed81acb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\auth.ts": {
+    "mtime": 1779947389.5790956,
+    "ast_hash": "99642707e2d2a29a3eee80f751c00dca",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\auth\\api-key.ts": {
+    "mtime": 1777215115.8719919,
+    "ast_hash": "52f4ce5971ad64a3985ba3c998ced542",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\auth\\rbac.ts": {
+    "mtime": 1777215115.8860104,
+    "ast_hash": "c9c44aad12122f5a874002daec79fc77",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\content-generator.ts": {
+    "mtime": 1777215115.905593,
+    "ast_hash": "93276539b37e7598c3dcf9bb1f25d916",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\cron\\auth.ts": {
+    "mtime": 1777215115.9858737,
+    "ast_hash": "0eac303e9362f3d9e3c29596c1890494",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\cron\\dailyAlerts.ts": {
+    "mtime": 1777215115.9988787,
+    "ast_hash": "8723761eae8c087d1e649cbd7d08b63b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\cron\\exportJobs.ts": {
+    "mtime": 1777215116.014405,
+    "ast_hash": "b83a65bcb904867de3da7342fd60feb8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\cron\\realtimePipeline.ts": {
+    "mtime": 1777215116.031417,
+    "ast_hash": "8fa81abb0e0e13d41d0439d2915b4a91",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\cron\\reportSchedules.ts": {
+    "mtime": 1777215116.0454166,
+    "ast_hash": "d0bb3ad6d5a7f68b00b43c544864cc31",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\cron\\webhookDeliveries.ts": {
+    "mtime": 1777215116.0614128,
+    "ast_hash": "6f3a12df495a2053cfb3a69c090b86a0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\embeddings.ts": {
+    "mtime": 1777215115.9186003,
+    "ast_hash": "854cf5c3014f0dc4ed619b331fa8a688",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\automation\\matching.ts": {
+    "mtime": 1777215115.9305964,
+    "ast_hash": "f6c810e1f8f3f565ea65378ceeea3b24",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\core\\action-client.ts": {
+    "mtime": 1777215116.0814059,
+    "ast_hash": "fde5eadb09481f1441d92aa3f02fcc2a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\core\\app-error.ts": {
+    "mtime": 1777215116.0964236,
+    "ast_hash": "0b953b59165f4b3866829e868701b63e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\core\\feature-flags.ts": {
+    "mtime": 1777215116.1470037,
+    "ast_hash": "3186fb8bde0a823deb92213c66316498",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\core\\route-utils.ts": {
+    "mtime": 1780241154.436077,
+    "ast_hash": "7de491b2f8e3fbe61e50f522caa35f8e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Account.ts": {
+    "mtime": 1777215116.2030094,
+    "ast_hash": "62897a786c070bd3bb305e0cab91e8d2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Activity.ts": {
+    "mtime": 1777215116.2155294,
+    "ast_hash": "4080c751f029b94dbe748e5d072feb5e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\AnalyticsEvent.ts": {
+    "mtime": 1777215116.2315285,
+    "ast_hash": "56d30aba689b2a67c20a93fae67bc447",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\ApiKey.ts": {
+    "mtime": 1777215116.2455308,
+    "ast_hash": "136dd49283f3509c078cf04872254418",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\ApplicationForm.ts": {
+    "mtime": 1777215116.2595327,
+    "ast_hash": "8e91a8e654d7482e98224ece3c4bd477",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\AuditLog.ts": {
+    "mtime": 1777215116.2725294,
+    "ast_hash": "ace20e011e711d8918195d91e8c33b00",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\AutomationPipelineRun.ts": {
+    "mtime": 1777215116.286538,
+    "ast_hash": "7dc92c8f7be3ff62ee0911b7e9cad1cf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Candidate.ts": {
+    "mtime": 1777215116.299546,
+    "ast_hash": "fa29aaeff3c7c3387face6faeac3d149",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\CandidateActivity.ts": {
+    "mtime": 1777215116.3130631,
+    "ast_hash": "c9e0607f6392b49e2cd8b5bae7f88e0f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\CommunicationMessage.ts": {
+    "mtime": 1777215116.3260648,
+    "ast_hash": "26deb7c1f832067bf9874c4b54ad3cc0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\CommunicationThread.ts": {
+    "mtime": 1777215116.3400612,
+    "ast_hash": "815cf3325d7680009fcfdeb3caaf105f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Company.ts": {
+    "mtime": 1777215116.3570578,
+    "ast_hash": "325bbc10d46345b2831354e9da7c7e2d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Counter.ts": {
+    "mtime": 1777215116.3720572,
+    "ast_hash": "5a6e2739fbcd65315f74b77cca7373d9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\DataAccessLog.ts": {
+    "mtime": 1777215116.3870718,
+    "ast_hash": "268025ea63c35851332bb5a0807b63ee",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Document.ts": {
+    "mtime": 1777215116.4001887,
+    "ast_hash": "c825d7b67a60c29af92e73739eb1aa0b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\ExportJob.ts": {
+    "mtime": 1777215116.415709,
+    "ast_hash": "030e0fd440566f0fc545f00d527c6b66",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\HRContact.ts": {
+    "mtime": 1777215116.4317083,
+    "ast_hash": "91f5b3ee3f0ca03d44c538d10166d757",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\IntegrationConfig.ts": {
+    "mtime": 1777215116.4447258,
+    "ast_hash": "bc0346b5deb4fca0e2d5f6c7d5b7952f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Invoice.ts": {
+    "mtime": 1777215116.4597123,
+    "ast_hash": "ee57a516d5c1d176807184ad9646d162",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Lead.ts": {
+    "mtime": 1777215116.4727168,
+    "ast_hash": "f8bf1a5ee1867621a947889881914d6a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Message.ts": {
+    "mtime": 1777215116.4877079,
+    "ast_hash": "8816cfdf0cab44be0e470e0aa53d9baf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Notification.ts": {
+    "mtime": 1777215116.501729,
+    "ast_hash": "3708fcb801c3e1e4aa9cc7eb06449b5d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Placement.ts": {
+    "mtime": 1777215116.5162587,
+    "ast_hash": "c56ea271039d7f5fa78248ba3ec397cc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\ReportSchedule.ts": {
+    "mtime": 1777215116.532267,
+    "ast_hash": "f49613c5eaca92e2fedda16cf2d554f6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Requirement.ts": {
+    "mtime": 1777215116.544258,
+    "ast_hash": "edcd922fd4e181f4718b9f6a1dd5801a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Session.ts": {
+    "mtime": 1777215116.5572667,
+    "ast_hash": "b6da69263c9c2165ace163aad781c21b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Template.ts": {
+    "mtime": 1777215116.5722616,
+    "ast_hash": "6e47af6bab5b61f88c6892f876fc8471",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Timesheet.ts": {
+    "mtime": 1777215116.5872593,
+    "ast_hash": "10ff11f612f92881c6ace1cc6d7fc62a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\User.ts": {
+    "mtime": 1777215116.6012726,
+    "ast_hash": "2c12f318166598de5126fbc16e405fd7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\Webhook.ts": {
+    "mtime": 1777215116.6153603,
+    "ast_hash": "c45fa872f63b3166854ec92d6fc9feb6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\models\\WebhookDelivery.ts": {
+    "mtime": 1777215116.6287386,
+    "ast_hash": "735612549ae159ea031c7dd555b3767c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\mongodb.ts": {
+    "mtime": 1777797363.9555688,
+    "ast_hash": "a16b3290322481573c46aedfaba9c686",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\postgres.ts": {
+    "mtime": 1780235265.1398668,
+    "ast_hash": "380897a8d1b7870b14df828964ad02b4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\db\\seed.ts": {
+    "mtime": 1777215116.1829815,
+    "ast_hash": "33502f3ed94d60e37d21cadc75541a7e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\audit\\audit-log.service.ts": {
+    "mtime": 1780233804.6430526,
+    "ast_hash": "b47b3e837f93b38dcab3ca5515e2305d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\auth\\authjs-config.ts": {
+    "mtime": 1780235265.1544466,
+    "ast_hash": "4200660dc2b67a0aef2eceafec1abbb2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\auth\\rbac-middleware.ts": {
+    "mtime": 1780233563.1201675,
+    "ast_hash": "e9299e9d6648f3b380196b3021a2199a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\feature-flags\\feature-flag.service.ts": {
+    "mtime": 1780233579.7950718,
+    "ast_hash": "40b0dbabfc0dca2f0e9018249ad779d5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\application.repository.ts": {
+    "mtime": 1780320121.0803099,
+    "ast_hash": "684bab33b86148e4dd3d444ed314ebb8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\base.repository.ts": {
+    "mtime": 1780233548.5577285,
+    "ast_hash": "415169fefd6dcdb9394a1bf0c082f60d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\candidate.repository.ts": {
+    "mtime": 1780320116.4068048,
+    "ast_hash": "3ee354cac1d8bd5234fe33e200f9b865",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\company.repository.ts": {
+    "mtime": 1780299852.3028939,
+    "ast_hash": "49a8f911ca3c7621c600a1c22fa183c6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\contact.repository.ts": {
+    "mtime": 1780299852.3028939,
+    "ast_hash": "21aa76d5c82d84c9f0b84a3169aa9776",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\data-access-log.repository.ts": {
+    "mtime": 1780316624.5678644,
+    "ast_hash": "5a343e7a547fb67a9d212fa2c6153f79",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\export-job.repository.ts": {
+    "mtime": 1780316631.42568,
+    "ast_hash": "e2371a1d55f1b9b08c4d6d6014ea2579",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\feature.repository.ts": {
+    "mtime": 1780240184.3435721,
+    "ast_hash": "2b225f6cd806db27e961480bd698c506",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\interview.repository.ts": {
+    "mtime": 1780320123.9865556,
+    "ast_hash": "554e19796bcfebc435a9fd8c9a8429ac",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\job-posting.repository.ts": {
+    "mtime": 1780320112.1511805,
+    "ast_hash": "2e79073fa341afda3e53db5e1cad4294",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\lead.repository.ts": {
+    "mtime": 1780299852.3028939,
+    "ast_hash": "f82ced04a149d9e5def4f8e7fc708d36",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\permission.repository.ts": {
+    "mtime": 1780254273.713559,
+    "ast_hash": "ab112285b80ed687c66a0d750ad3ebc2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\plan.repository.ts": {
+    "mtime": 1780240184.3435721,
+    "ast_hash": "119fac214d5b38aef718faa4ed863fdf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\role-permission.repository.ts": {
+    "mtime": 1780254273.7282052,
+    "ast_hash": "75a627e69b1e0caf5ed9b99fefeef6ab",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\role.repository.ts": {
+    "mtime": 1780254701.2525935,
+    "ast_hash": "4d6a693b6f8ffe7ea763c3b385622553",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\session.repository.ts": {
+    "mtime": 1780255632.1521,
+    "ast_hash": "f8239e33aa45bdd6b7a351e9f82753de",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\tenant-aware.repository.ts": {
+    "mtime": 1780233548.5577285,
+    "ast_hash": "8d6ef72efc75f985af8d0182cf4397bd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\tenant-branding.repository.ts": {
+    "mtime": 1780239651.8578944,
+    "ast_hash": "dbafd77b47258383f2e470ae6a39bbc5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\tenant-feature.repository.ts": {
+    "mtime": 1780240184.3446703,
+    "ast_hash": "5601db198e5b15c55f1d21451d7d1e9a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\tenant-settings.repository.ts": {
+    "mtime": 1780240184.3446703,
+    "ast_hash": "6cb1b6667f3e23fc7ed1f88b58273287",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\tenant.repository.ts": {
+    "mtime": 1780240184.3446703,
+    "ast_hash": "3220712463dab9c6c3ec571b6f884b36",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\repositories\\user.repository.ts": {
+    "mtime": 1780254701.2525935,
+    "ast_hash": "3ed34e0d7f408b60c9b93fc8156acd69",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\seed\\seed-strategy.ts": {
+    "mtime": 1780253589.3146036,
+    "ast_hash": "730e71e5d0f68bf903e01080116b2be1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\application.service.ts": {
+    "mtime": 1780320627.0113165,
+    "ast_hash": "4dc670ae4b3c88214a50e21ae1077357",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\candidate.service.ts": {
+    "mtime": 1780321424.0379255,
+    "ast_hash": "46d956a86725916ce0ee42522a23c3cc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\company.service.ts": {
+    "mtime": 1780314012.569858,
+    "ast_hash": "908e6665ec36f97de0274c916196ce95",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\contact.service.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "40dcfd068fe10c1f0c96547c03452e39",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\data-access-log.service.ts": {
+    "mtime": 1780316643.9419222,
+    "ast_hash": "e2eccd576f6f87500fa3bbbc5d74e80c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\export-job.service.ts": {
+    "mtime": 1780316649.5232615,
+    "ast_hash": "8082df44692df246cf1c6604985ecc13",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\feature.service.ts": {
+    "mtime": 1780240184.3446703,
+    "ast_hash": "32f324346458fa992860cdbc836254ab",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\index.ts": {
+    "mtime": 1780320636.4627106,
+    "ast_hash": "78a1880228f7d823e76746606daee4c0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\interview.service.ts": {
+    "mtime": 1780320631.5065608,
+    "ast_hash": "0e24d576ab5782a5f2b34c9c475f656f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\job-posting.service.ts": {
+    "mtime": 1780321427.9505594,
+    "ast_hash": "5ae236045f93ed2af45197b02f3fdcc1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\lead.service.ts": {
+    "mtime": 1780313280.869354,
+    "ast_hash": "29db04244454f004eca77197ffae21e0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\permission.service.ts": {
+    "mtime": 1780255409.1980314,
+    "ast_hash": "7b5f9d12f6629c13e0243fa06c13ecf1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\plan.service.ts": {
+    "mtime": 1780240184.3599672,
+    "ast_hash": "25dc0fb8d87a7c1fef59ddf8344a7c57",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\role-permission.service.ts": {
+    "mtime": 1780255416.9387643,
+    "ast_hash": "02f0524b98dd14eb8759669d1e73d508",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\role.service.ts": {
+    "mtime": 1780255637.337605,
+    "ast_hash": "9b9df9b98e4bf2973759a592c33cb15a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\session.service.ts": {
+    "mtime": 1780255639.3404088,
+    "ast_hash": "7c58957fc309e6ba09a763b3fdef954a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\tenant-branding.service.ts": {
+    "mtime": 1780240184.3610938,
+    "ast_hash": "1fed18b2511eaa2dc5868b7c3c531486",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\tenant-feature.service.ts": {
+    "mtime": 1780240184.3446703,
+    "ast_hash": "34e038729cda427b61410bbe6550aa13",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\tenant-settings.service.ts": {
+    "mtime": 1780241148.4618936,
+    "ast_hash": "8dffecfa957941ddebb6ca2fd4dd91dc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\tenant.service.ts": {
+    "mtime": 1780240184.3446703,
+    "ast_hash": "882b4d7cb9abd009bc756b2c66fc6754",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\user-resolution.service.ts": {
+    "mtime": 1780316637.7783785,
+    "ast_hash": "6a053242fa22bd31b953e98e18866119",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\services\\user.service.ts": {
+    "mtime": 1780256564.121649,
+    "ast_hash": "7ca4d8a14571d3485729f7b73d47a4fa",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\storage\\index.ts": {
+    "mtime": 1780235265.1398668,
+    "ast_hash": "a03d9b4eb7c22865ec8e8287c25d5927",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\storage\\providers\\local-storage.provider.ts": {
+    "mtime": 1780233577.167525,
+    "ast_hash": "ece2fc3580be0ea994e4805378a396b6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\storage\\providers\\s3-storage.provider.ts": {
+    "mtime": 1780235265.1398668,
+    "ast_hash": "170a71a35cf842acb9abd0bea32ca3a9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\foundation\\storage\\storage-provider.ts": {
+    "mtime": 1780233577.1639721,
+    "ast_hash": "7455c47df913d4a9b2644c9b1d658bb7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\middleware\\requestThrottle.ts": {
+    "mtime": 1779950559.0326438,
+    "ast_hash": "623daf80addf11226ac986b9c96d34be",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\middleware\\webhookSignature.ts": {
+    "mtime": 1777215116.6627388,
+    "ast_hash": "22ff7c95613dad965f469fb436f8c7d5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\modules\\index.ts": {
+    "mtime": 1777215116.6827388,
+    "ast_hash": "8f582bdec9bf3b9974fc7e6383565845",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\modules\\modules\\core.ts": {
+    "mtime": 1777215116.7165847,
+    "ast_hash": "72a55ab0cecc9621b97ec3df926f0116",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\modules\\types.ts": {
+    "mtime": 1777215116.6957493,
+    "ast_hash": "380b2b28acd87eb8fdcd0f1393de7c59",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\prisma.ts": {
+    "mtime": 1780233585.6909175,
+    "ast_hash": "090305e0deb7a5a8c158644722aecd22",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\reports\\generators.ts": {
+    "mtime": 1777215116.7410834,
+    "ast_hash": "cb8f2d111b08b383c20465f306d72d1e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\sentry-init.ts": {
+    "mtime": 1779865648.755805,
+    "ast_hash": "6181b3852f4359c193e51655cc78a799",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\sentry.ts": {
+    "mtime": 1779866039.8699615,
+    "ast_hash": "89efbb63bf637d9746a15a9c2098349f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\activity.service.ts": {
+    "mtime": 1779805707.8178737,
+    "ast_hash": "2522cc8b344210c0abcd563781f67bfa",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\analytics.service.ts": {
+    "mtime": 1777215116.7725096,
+    "ast_hash": "165e99b21357db99d920f1c1928f483f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\api-key.service.ts": {
+    "mtime": 1777215116.785234,
+    "ast_hash": "5c0c08c23dfd68dcff6af51991264168",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\audit.service.ts": {
+    "mtime": 1777215116.7982438,
+    "ast_hash": "826cf36a84c25bc240e83e7ef54e27fa",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\automation-pipeline.service.ts": {
+    "mtime": 1777215116.8127813,
+    "ast_hash": "a6fd2a85d447660befeacc59427f7a50",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\automation.service.ts": {
+    "mtime": 1777215116.8277807,
+    "ast_hash": "2067542cbe87441d19f8cf809b401cfb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\candidate.service.ts": {
+    "mtime": 1779950325.3383782,
+    "ast_hash": "6a0448f1967f4738a6e5e29ff3f870d8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\communication.service.ts": {
+    "mtime": 1777215116.8537602,
+    "ast_hash": "960abb8b3c40ec262ba6fbe9dd228aaf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\company.service.ts": {
+    "mtime": 1779805710.241112,
+    "ast_hash": "6ec9665b75f7001b6d4c2deaf7aa9595",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\document.service.ts": {
+    "mtime": 1777215116.8806546,
+    "ast_hash": "81ce023191e080bef3cf4aec83ccc117",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\export.service.ts": {
+    "mtime": 1777215116.8952036,
+    "ast_hash": "de72e3affc8333fd3a5adef4b6733475",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\external-intake.service.ts": {
+    "mtime": 1777215116.9094386,
+    "ast_hash": "97130707baf63c0c95bc26d27eccbc72",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\hr-contact.service.ts": {
+    "mtime": 1777215116.9224308,
+    "ast_hash": "649bb0eef48a7485fe7cac1dc40be26c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\integration.service.ts": {
+    "mtime": 1777215116.9354312,
+    "ast_hash": "51af2381b2bd8590983faa804328c83d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\invoice.service.ts": {
+    "mtime": 1777215116.9481633,
+    "ast_hash": "1b46992ad04aa5289904fd18b4403278",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\leads.service.ts": {
+    "mtime": 1777215116.9632783,
+    "ast_hash": "2f5e681d5e2d24b424dc65fbb6453ff2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\notification.service.ts": {
+    "mtime": 1777215116.9762743,
+    "ast_hash": "60bf4fb12f1b1a3e6723b26aa974f1a7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\placement.service.ts": {
+    "mtime": 1777215116.990114,
+    "ast_hash": "d6fc6a5965edaff5b243fe7ec8277799",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\reporting.service.ts": {
+    "mtime": 1779950426.2671645,
+    "ast_hash": "979a4a8acb6d6209e7d6142ccc930af1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\requirement.service.ts": {
+    "mtime": 1777215117.0186477,
+    "ast_hash": "757d21920a0ca34c7d96d7fbf134c048",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\sequence.service.ts": {
+    "mtime": 1777215117.032649,
+    "ast_hash": "825223bc151ac418930f69a7fb4ff192",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\template.service.ts": {
+    "mtime": 1777215117.0466478,
+    "ast_hash": "260addd36468a390409e139b0b3dd4c7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\timesheet.service.ts": {
+    "mtime": 1777215117.0616508,
+    "ast_hash": "d130af2483482989e6c43994f16f5097",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\user.service.ts": {
+    "mtime": 1777215117.0755188,
+    "ast_hash": "f60f21b31b0268fca417a859f2ae5d7a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\services\\webhook.service.ts": {
+    "mtime": 1777215117.0875187,
+    "ast_hash": "90804af467aaad843027512510fed588",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\storage\\document-storage.ts": {
+    "mtime": 1777215117.1064348,
+    "ast_hash": "ba07e67a4e205ae7108d272f6322a222",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\templates\\hiring-messages.ts": {
+    "mtime": 1777215117.1342406,
+    "ast_hash": "26a49eff99be29cada6b349356ce23c7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\ui\\api.ts": {
+    "mtime": 1780384336.7990384,
+    "ast_hash": "bcd181bcfab969df6121af417737c784",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\ui\\schemas.ts": {
+    "mtime": 1780256895.7491083,
+    "ast_hash": "04945f8607d8d1e03127b76b2ea9d124",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\utils.ts": {
+    "mtime": 1777215115.4401424,
+    "ast_hash": "3ca1db8a178a18b34de615a8a2f75cb9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\utils\\serialize.ts": {
+    "mtime": 1777215117.1582403,
+    "ast_hash": "b6d0a0732dad8e39b88c7ad6d9b6ddb3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\validators\\common.ts": {
+    "mtime": 1779950308.7899635,
+    "ast_hash": "5ef730dfd2c6b4ee3d134b9d1c2dc80f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\workflow\\governance.ts": {
+    "mtime": 1777215117.2022295,
+    "ast_hash": "ad0f30c12ef8597312e15dcd72be3214",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\lib\\workflow\\state-machine.ts": {
+    "mtime": 1777215117.2167542,
+    "ast_hash": "dffee5f9dd256e11b072a70aa7a67c92",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\next.config.mjs": {
+    "mtime": 1777215111.4357438,
+    "ast_hash": "cfe65af3e57eb770ce5dc13af1e8645f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\package.json": {
+    "mtime": 1780233594.7646813,
+    "ast_hash": "07a98562282f5ad6fb8683507e1753cb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\postcss.config.js": {
+    "mtime": 1777215111.481745,
+    "ast_hash": "854b38759e7a8b4b82306ae2d9a3a833",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\prisma\\seed.ts": {
+    "mtime": 1780239282.0982065,
+    "ast_hash": "3043d4b7793cded9fbb828aaa63a159e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\proxy.ts": {
+    "mtime": 1779951805.8698914,
+    "ast_hash": "9dfaca218a2ff276738bacd2ed598fda",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\audit-contrast.ts": {
+    "mtime": 1777215117.2377548,
+    "ast_hash": "b7107f4c031c7766f4bc575f992a8f99",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\backfill-embeddings.ts": {
+    "mtime": 1777215117.249763,
+    "ast_hash": "f7778322d832e659f507224e394633ad",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\build-pdfs.ps1": {
+    "mtime": 1780212781.8509412,
+    "ast_hash": "dbf997d52809f092eaf9c823d597e318",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\check-db.ts": {
+    "mtime": 1777215117.2647574,
+    "ast_hash": "8b0a67d9a30e04ed61d6a88f5609a67b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\cleanup-synthetic-seed-data.ts": {
+    "mtime": 1777215117.2807555,
+    "ast_hash": "db83b9ef3a0511a6c6c37411908126d6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\debug-playwright-login.mjs": {
+    "mtime": 1779950822.7024345,
+    "ast_hash": "7bcda04d6450ccd9e7f30f9f1d780ab1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\dev\\check-session.mjs": {
+    "mtime": 1779804760.976139,
+    "ast_hash": "00b90e1948134313737cf86d84415dd1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\dev\\inspect-users.ts": {
+    "mtime": 1779804714.2548933,
+    "ast_hash": "1bb334f131fe52d856767465804d9ab9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\find-unused-imports.js": {
+    "mtime": 1779803145.169225,
+    "ast_hash": "b7a7f6b573fc41b01d528bc60ecc54ec",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\migrate-placeholder.ts": {
+    "mtime": 1779864748.9598424,
+    "ast_hash": "75c85bdfc3a90d34452f3ea28d363779",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\monitor-workflow.ps1": {
+    "mtime": 1779866123.9724228,
+    "ast_hash": "5c8ee1af8c8b40b0c7fb94911acdc06b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\monitor-workflow.sh": {
+    "mtime": 1779865648.755805,
+    "ast_hash": "bf40a499e30f0ba85cdfcef2017ae90f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\phase6-backfill.ts": {
+    "mtime": 1777215117.2937658,
+    "ast_hash": "0457c805b82081579e9d190d0d056bce",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\role-matrix-runtime-test-v2.mjs": {
+    "mtime": 1779798974.8697264,
+    "ast_hash": "834ad42444e9a2694c638cc6ca15850c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\role-matrix-runtime-test-v3.mjs": {
+    "mtime": 1779951817.5833688,
+    "ast_hash": "87f3c017475f8648408f68c80ae7da89",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\role-matrix-runtime-test.mjs": {
+    "mtime": 1779798974.8467462,
+    "ast_hash": "46d24bba53579ca470382db14ce324d5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\run-rotate-with-gh.ps1": {
+    "mtime": 1779867569.4344988,
+    "ast_hash": "15ee54ee4b4a41448f4efb543c1eb295",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\test-conversion.ts": {
+    "mtime": 1780235265.1398668,
+    "ast_hash": "99d956dc5ab1af34cf3aac2f67292363",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\verify-lead-rbac.ts": {
+    "mtime": 1777215117.3072839,
+    "ast_hash": "83ab3203f81aee2fed3ac908b9412cff",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\verify-phase6-services.ts": {
+    "mtime": 1777215117.3212848,
+    "ast_hash": "6d2e3ae3f24c144aebe7d5b38550d83a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\scripts\\verify-rollout-phase6.ts": {
+    "mtime": 1777215117.3333888,
+    "ast_hash": "042019e8b4b3e9c909fb7a14331c4449",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\tailwind.config.ts": {
+    "mtime": 1777215111.5351856,
+    "ast_hash": "bd8d5b4f314f25c23ad1f750a4b39174",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\tests\\integration\\auth.ts": {
+    "mtime": 1779951549.9625874,
+    "ast_hash": "effe28362a420a3a39db83ea24869467",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\tests\\integration\\leads.spec.ts": {
+    "mtime": 1779951549.9655862,
+    "ast_hash": "795a048ff97f1c226afbf9e922def41f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\tests\\integration\\leads_search.spec.ts": {
+    "mtime": 1779950276.1474066,
+    "ast_hash": "d25535c3bb1d54375a7e2dfceb25eb42",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\tests\\integration\\smoke.spec.ts": {
+    "mtime": 1779952003.405815,
+    "ast_hash": "392435f7debf819bbcb7d2df076bfd6c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\tests\\integration\\test_leads_lifecycle.py": {
+    "mtime": 1777215117.898316,
+    "ast_hash": "b807b99e45cc56b22b92c141b0807553",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\tsconfig.json": {
+    "mtime": 1780235265.1398668,
+    "ast_hash": "3fb0ea57553ddefd99a847f194218a10",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\types\\exceljs-browser.d.ts": {
+    "mtime": 1777215117.9198346,
+    "ast_hash": "6c7a731ff6f2f8b531d3851cbd405352",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\types\\index.ts": {
+    "mtime": 1777215117.9338322,
+    "ast_hash": "a28ff00fb7d5c306751e1d8f393332a2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\types\\leads.ts": {
+    "mtime": 1777215117.9468336,
+    "ast_hash": "65539a9438b6301fa4300516a1422144",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\vercel.json": {
+    "mtime": 1777215111.6169062,
+    "ast_hash": "ce1b028c8ad326d778fa861081b9ee3a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\.github\\workflows\\ci-integration.yml": {
+    "mtime": 1779950514.4109707,
+    "ast_hash": "dea2fb6d922f73ab63f65a05f9a3460e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\.github\\workflows\\pr-checks.yml": {
+    "mtime": 1779865165.6919353,
+    "ast_hash": "72c5f324f7c3f0f7a44dff91550ded1f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\README.md": {
+    "mtime": 1777215111.3281586,
+    "ast_hash": "b8c57be7009bc61f1b3675385272f459",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\dashboards\\README.md": {
+    "mtime": 1777215114.5690553,
+    "ast_hash": "2d126eca46bc46ab48a9109b69c2bd42",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\forms\\README.md": {
+    "mtime": 1777215114.6885986,
+    "ast_hash": "0e8f1624a211db5758b4c4a5b0728cbe",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\components\\ui\\README.md": {
+    "mtime": 1777215115.2713556,
+    "ast_hash": "d1169f0f5557efda58ddab04e788b213",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docker-compose.yml": {
+    "mtime": 1780233604.509096,
+    "ast_hash": "af10b756f851e35a77fa4b9322d4fa9d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\01-current-system-analysis.md": {
+    "mtime": 1780212572.4224422,
+    "ast_hash": "bb2aef53062e0c3ddc0c18ff5cdc963f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\02-feature-inventory.md": {
+    "mtime": 1780212626.3474133,
+    "ast_hash": "ee4e1c17fee5dd211f71340c94086d5c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\03-future-roadmap.md": {
+    "mtime": 1780212668.3945403,
+    "ast_hash": "c5045bc67ee6de72b3e511b4d2472b76",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\04-ui-ux-analysis.md": {
+    "mtime": 1780212668.3945403,
+    "ast_hash": "4ab264c57796b2d16a181e951be79c29",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\05-user-flow-diagrams.md": {
+    "mtime": 1780212668.4358306,
+    "ast_hash": "5008d6c6bb2f625fa12c09dc429df1c0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\06-screen-inventory.md": {
+    "mtime": 1780212668.4378295,
+    "ast_hash": "13b34eeeef91ed2a42d702a62222533f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\07-current-database-analysis.md": {
+    "mtime": 1780212668.3945403,
+    "ast_hash": "acbd2f1f6a60bb056685696e98c49131",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\08-database-redesign.md": {
+    "mtime": 1780212668.3945403,
+    "ast_hash": "e81c3348070db2a04f5f00f7c4159e12",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\09-authentication-authorization.md": {
+    "mtime": 1780212668.3945403,
+    "ast_hash": "b5e0913350af9333ec6eeee5d2f7dcd2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\10-system-architecture.md": {
+    "mtime": 1780212673.5596907,
+    "ast_hash": "fe04ecb39c41e8294313cbc1ec77f7aa",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\11-tech-stack-recommendations.md": {
+    "mtime": 1780212702.4340556,
+    "ast_hash": "bb11b6fe32b713ad25deface78fd8d13",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\12-orm-strategy.md": {
+    "mtime": 1780212702.436539,
+    "ast_hash": "1420073100af19d42fef3d9fc9b09d38",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\13-api-design.md": {
+    "mtime": 1780212702.436539,
+    "ast_hash": "23d59733f62c8735914c4625427dea78",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\14-postman-guide.md": {
+    "mtime": 1780212702.436539,
+    "ast_hash": "06ab6eea385c81d56dd32704e8ae0d07",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\15-graphql-strategy.md": {
+    "mtime": 1780212702.4792519,
+    "ast_hash": "374126d58b7b84e9dcbfb51f67984f4f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\16-project-structure.md": {
+    "mtime": 1780212702.48027,
+    "ast_hash": "7761c38e26c70d4b1390c69f3a5efef1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\17-git-strategy.md": {
+    "mtime": 1780212702.48027,
+    "ast_hash": "acf626c6b9c50cc81e98baba86729c49",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\18-devops-pipeline.md": {
+    "mtime": 1780212702.4992707,
+    "ast_hash": "917c8e6e425eff4cf225e74c507c5fc8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\19-security-audit.md": {
+    "mtime": 1780212710.885996,
+    "ast_hash": "f833a17bb2192716422053c737e7de71",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\20-performance-optimization.md": {
+    "mtime": 1780212714.8297098,
+    "ast_hash": "7bd96e8d1f3f4cec1d87743b1daa0870",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\21-v2-master-plan.md": {
+    "mtime": 1780212781.8509412,
+    "ast_hash": "842a9c901457eb253dbc45c7cffa2445",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A0-A5_EXECUTION_BLUEPRINT.md": {
+    "mtime": 1780233507.9000087,
+    "ast_hash": "17fd6ea15d45bf51dee6744ab67b4ad1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A0_COMPLETION_REPORT.md": {
+    "mtime": 1780235403.753988,
+    "ast_hash": "ce2816c25a384e7fc355bf3b253ad432",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_API_AUDIT.md": {
+    "mtime": 1780241004.200867,
+    "ast_hash": "8cc0cfdf1f09a8ede6d0465dfd87eeca",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_API_AUDIT_POST_REMEDIATION.md": {
+    "mtime": 1780241536.7093894,
+    "ast_hash": "f215e073aae0fb0128c0b71b5ea32fdb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_COMPLETION_REPORT.md": {
+    "mtime": 1780244220.5533655,
+    "ast_hash": "b3f8287975b63e32dcf37447dc166c13",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_IMPLEMENTATION_PLAN.md": {
+    "mtime": 1780239125.4988337,
+    "ast_hash": "7abff96c42e0fb011b05246e07f637fb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_PLAN_FEATURE_OWNERSHIP_DECISION.md": {
+    "mtime": 1780239618.0867524,
+    "ast_hash": "4f56bc0a1c637454ce0de9762b44019d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_READINESS_REPORT.md": {
+    "mtime": 1780238642.8288252,
+    "ast_hash": "273b4d13b404ef5fea268dcc406b7383",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_REPOSITORY_AUDIT.md": {
+    "mtime": 1780239954.9666512,
+    "ast_hash": "4aa11c083d5933bbd2be7a950a95615b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_SERVICE_AUDIT.md": {
+    "mtime": 1780240519.6849134,
+    "ast_hash": "76425cb11aa299dcac2a74a42f074c43",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_STEP_1_DATABASE_VERIFICATION.md": {
+    "mtime": 1780239514.297658,
+    "ast_hash": "bba767cfeaa55ba7d492dc545399d51b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_STEP_2_REPORT.md": {
+    "mtime": 1780239693.9904542,
+    "ast_hash": "3c82caa697fba3883dcc32c7b68474dc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_STEP_3_REPORT.md": {
+    "mtime": 1780240373.94718,
+    "ast_hash": "6b6fbae5845c338d400bbf943e324220",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_STEP_4_REMEDIATION_REPORT.md": {
+    "mtime": 1780241389.7896676,
+    "ast_hash": "263ce4ccbca3942a9110f249ef77bb62",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_STEP_4_REPORT.md": {
+    "mtime": 1780240843.5226061,
+    "ast_hash": "d96f32bf19813358b2c5dd44f0918f1f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_STEP_5_REPORT.md": {
+    "mtime": 1780243973.590379,
+    "ast_hash": "524eb2e303e388d61c80384e6c4571f5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_STEP__REPORT.md": {
+    "mtime": 1780239404.1084285,
+    "ast_hash": "bca945ce5ef0812f3d64f2b58de817ff",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A1_UI_AUDIT.md": {
+    "mtime": 1780244085.4918048,
+    "ast_hash": "c9b7f7c345ce5531074436c0d1da7bcc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_API_AUDIT.md": {
+    "mtime": 1780256311.232141,
+    "ast_hash": "014d0d6421a5540606430f941b1129e3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_COMPLETION_REPORT.md": {
+    "mtime": 1780282903.9910133,
+    "ast_hash": "b5581757a23e8922820f8422ea761a71",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_DATABASE_AUDIT.md": {
+    "mtime": 1780253822.8249876,
+    "ast_hash": "147da43edb2041387a74c8a70765f5cd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_IMPLEMENTATION_PLAN.md": {
+    "mtime": 1780253349.3068771,
+    "ast_hash": "622bf6e2a568b3e2ee1a59a519f65033",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_PRE_IMPLEMENTATION_CORRECTION_PLAN.md": {
+    "mtime": 1780252531.9322424,
+    "ast_hash": "eef3129e85b8b6e85e5bd7c7863a772b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_RBAC_CORRECTION_PLAN.md": {
+    "mtime": 1780253182.777904,
+    "ast_hash": "f93028f6fae111061baf010a5674ed09",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_RBAC_SCHEMA_REVIEW.md": {
+    "mtime": 1780253027.620077,
+    "ast_hash": "a76e8b7c203b38faf3c31b7e4942452f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_READINESS_REPORT.md": {
+    "mtime": 1780252256.7406108,
+    "ast_hash": "e661bfec89f1b04440b40a6d43f3a741",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_REPOSITORY_AUDIT.md": {
+    "mtime": 1780254460.124185,
+    "ast_hash": "511fda1de5305485e338026566e08e52",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_SERVICE_AUDIT.md": {
+    "mtime": 1780255364.410493,
+    "ast_hash": "183b496912380a40557f47a1c470f220",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_1_REMEDIATION_REPORT.md": {
+    "mtime": 1780254040.398871,
+    "ast_hash": "db58a9cca30cdeb4745beeca82cd3d4e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_1_REPORT.md": {
+    "mtime": 1780253665.6627314,
+    "ast_hash": "7ccc2f9243399a1c5c08f2128474fde5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_2_REMEDIATION_REPORT.md": {
+    "mtime": 1780254728.298301,
+    "ast_hash": "24dbecb73f07c2ad28c4d02b882daacc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_2_REPORT.md": {
+    "mtime": 1780254297.263959,
+    "ast_hash": "6f47697c46de3729298f273ca32fa9d8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_3_REMEDIATION_REPORT.md": {
+    "mtime": 1780255501.301893,
+    "ast_hash": "ee9dded510a04c8c85ff0b7384165fea",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_3_REPORT.md": {
+    "mtime": 1780254993.8429728,
+    "ast_hash": "50826ee4bc7e8d8e9b7b5f1555579095",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_4_REMEDIATION_REPORT.md": {
+    "mtime": 1780256759.2227798,
+    "ast_hash": "795d066170a182f9208f0089a8b37379",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_4_REPORT.md": {
+    "mtime": 1780256034.4928856,
+    "ast_hash": "6f2d5dd74d10ca964d54783592e14e07",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_STEP_5_REPORT.md": {
+    "mtime": 1780256994.2798135,
+    "ast_hash": "4dd9b52c674729cf5677cba6b614f957",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_TENANT_FK_CORRECTION_REPORT.md": {
+    "mtime": 1780252858.2395043,
+    "ast_hash": "8657cd35f1163ec44381f08d723937e3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A2_UI_AUDIT.md": {
+    "mtime": 1780257351.5428047,
+    "ast_hash": "350c2ebf9a6ba29572cf6c300ae43f83",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_API_AUDIT.md": {
+    "mtime": 1780317006.6619787,
+    "ast_hash": "bece7bee135ef47bc3997b974fd32155",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_EMAIL_BRIDGE_VALIDATION.md": {
+    "mtime": 1780316544.5935304,
+    "ast_hash": "39d848dac1585aa1aa1506ef53269936",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_FINAL_ARCHITECTURE_AUDIT.md": {
+    "mtime": 1780317603.5161178,
+    "ast_hash": "1cd907924c02732bafea59ae1c67e863",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_PRIVACY_ANALYSIS.md": {
+    "mtime": 1780316287.0375333,
+    "ast_hash": "ccb16f9ae50f40d1eeabf588ca2f3ad5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_REPOSITORY_DESIGN_DECISION.md": {
+    "mtime": 1780316550.8249536,
+    "ast_hash": "1b006a6ad1cd8c137ce7480ea5e1a794",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_SERVICE_REPOSITORY_AUDIT.md": {
+    "mtime": 1780316921.06208,
+    "ast_hash": "9a4ee26878ec5c7b7190a9bfd82346af",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_STEP_2_REPORT.md": {
+    "mtime": 1780316662.217913,
+    "ast_hash": "a64addf0600a94b211e76afd1a8a4be3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_STEP_3_REPORT.md": {
+    "mtime": 1780316666.914466,
+    "ast_hash": "9588389d050247d1cf0c1dd7f08a29ca",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_STEP_4_REPORT.md": {
+    "mtime": 1780317000.8091676,
+    "ast_hash": "5ef14b035ebaa98c8d47a57197a5e03a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_TENANT_BRIDGE_VERIFICATION.md": {
+    "mtime": 1780316462.6125321,
+    "ast_hash": "4c0b945ba32732df7dc945762a536934",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_5_UI_REMEDIATION_REPORT.md": {
+    "mtime": 1780317596.9995904,
+    "ast_hash": "032b4e33225b5852468c62820ed08276",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_API_AUDIT.md": {
+    "mtime": 1780313280.8857555,
+    "ast_hash": "1d6bb02d4be34a3fcf884c3460e23c82",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_API_REMEDIATION_AUDIT.md": {
+    "mtime": 1780314071.9539964,
+    "ast_hash": "ea4a2831fe2d39f6887a18388e873b4f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_ARCHITECTURE_APPROVAL.md": {
+    "mtime": 1780283033.4209628,
+    "ast_hash": "7ada140eaa2eb8864403ccc7be53c7e6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_DATABASE_AUDIT.md": {
+    "mtime": 1780283522.0650916,
+    "ast_hash": "658895a4253e63607369e267825cbc6d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_READINESS_REPORT.md": {
+    "mtime": 1780282903.9898841,
+    "ast_hash": "e344f614e509545d4e4c1612b9ba4bcf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_REPOSITORY_AUDIT.md": {
+    "mtime": 1780284628.2807424,
+    "ast_hash": "246071f7d6f8a720254f2008d6a1a809",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_REPOSITORY_CONTRACT_AUDIT.md": {
+    "mtime": 1780300048.8310697,
+    "ast_hash": "8a3c58a5f7fafacc1de8ebb06e26d494",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_SERVICE_AUDIT.md": {
+    "mtime": 1780307326.502884,
+    "ast_hash": "293aec3b33cbec4263730bcf4a3995f5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_SERVICE_LAYER_DECISION.md": {
+    "mtime": 1780299205.378292,
+    "ast_hash": "99757949a6aa838ae5158edfd57786a1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_SERVICE_READINESS_AUDIT.md": {
+    "mtime": 1780299226.3978124,
+    "ast_hash": "e9dc54cce1cdee56283347bab24307e9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_STEP_1_REPORT.md": {
+    "mtime": 1780283363.6519506,
+    "ast_hash": "22f2dc05898d9289f625a63fa35511f0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_STEP_2_REMEDIATION_REPORT.md": {
+    "mtime": 1780300048.8390646,
+    "ast_hash": "d4bd6a6a6bcd882b5a93e9a44460e914",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_STEP_2_REMEDIATION_VALIDATION.md": {
+    "mtime": 1780302444.9814756,
+    "ast_hash": "ad0403061f3df67ddc1cdc32777ae978",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_STEP_2_REPORT.md": {
+    "mtime": 1780284628.2787352,
+    "ast_hash": "d10c2c47df2d034794d326c75733b842",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_STEP_3_REPORT.md": {
+    "mtime": 1780307326.4898946,
+    "ast_hash": "9d289d6bf2269c3f691be9f83ad6bf38",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_STEP_4_REMEDIATION_REPORT.md": {
+    "mtime": 1780314071.9539964,
+    "ast_hash": "43ede17a7503f7d470662cfdccb45fad",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_STEP_4_REPORT.md": {
+    "mtime": 1780313280.8847535,
+    "ast_hash": "51f9d79b8ad19b22c6fad9d323466229",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A3_UI_READINESS_REPORT.md": {
+    "mtime": 1780314271.0780346,
+    "ast_hash": "d3cbdcd81ea75424064ea9fbc9d45229",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_6_E2E_TEST_REPORT.md": {
+    "mtime": 1780385347.9557192,
+    "ast_hash": "c6cc76a7f5c64d0ea990547bf59ee42d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_6_FINAL_READINESS_AUDIT.md": {
+    "mtime": 1780385472.8351328,
+    "ast_hash": "629bf127b57f742472c4abfed71770f8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_6_GRAPHIFY_REFRESH_REPORT.md": {
+    "mtime": 1780385333.9340744,
+    "ast_hash": "8fd9b2b3bbe15b6fd51b8a271086d1d9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_6_OPENAPI_AUDIT.md": {
+    "mtime": 1780385388.0767748,
+    "ast_hash": "4158224ab17a0002e9d5b96f093a20e3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_6_PERFORMANCE_REVIEW.md": {
+    "mtime": 1780385368.3627415,
+    "ast_hash": "5f5fb9b628c0bd787ed14295a54f2850",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_6_SECURITY_REVIEW.md": {
+    "mtime": 1780385362.310658,
+    "ast_hash": "1bc5a15c51caae939fd84f9eb6d83892",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_6_TENANT_AUDIT.md": {
+    "mtime": 1780385357.425137,
+    "ast_hash": "7a584a16c1853f8a191261a8efb2cffc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_6_VALIDATION_REPORT.md": {
+    "mtime": 1780385468.4687212,
+    "ast_hash": "db4fb14666d31d4ff2ae095508a4b5b1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_7_BUILD_AUDIT.md": {
+    "mtime": 1780385902.6611145,
+    "ast_hash": "cefc0e38f4398d1aaff5f8e902d330d1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_7_DATABASE_AUDIT.md": {
+    "mtime": 1780385958.1741548,
+    "ast_hash": "300b2ab821cb6c5ea2fbcf3d927d5753",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_7_SECURITY_AUDIT.md": {
+    "mtime": 1780385932.8242896,
+    "ast_hash": "438c42ae666d8627523484bb484dd914",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_7_TENANT_ISOLATION_AUDIT.md": {
+    "mtime": 1780385940.8201632,
+    "ast_hash": "8058b966758b886d3dbb88b2cf6af9c9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_7_UI_AUDIT.md": {
+    "mtime": 1780385967.9645405,
+    "ast_hash": "e9fbf6bc8ac656c986d24619ec435d63",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_7_WORKFLOW_AUDIT.md": {
+    "mtime": 1780385963.3096201,
+    "ast_hash": "a56316880e5dd3fde31ea546b4c2dd60",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_API_AUDIT.md": {
+    "mtime": 1780321858.0745122,
+    "ast_hash": "449fb61f79f0dab3c68d65de9c26a76f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_API_BLOCKER_REPORT.md": {
+    "mtime": 1780321311.3872428,
+    "ast_hash": "820e052a9510118c6dcd9da3b8baf3e5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_API_PRECHECK_AUDIT.md": {
+    "mtime": 1780321306.1623416,
+    "ast_hash": "f08b6f8beac624a23becbbffeca2d5d7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_FIELD_EXISTENCE_VERIFICATION.md": {
+    "mtime": 1780322396.0328097,
+    "ast_hash": "b9791986fb6062f55472a120e68724d0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_REPOSITORY_AUDIT.md": {
+    "mtime": 1780320240.9087124,
+    "ast_hash": "26d21fc349a3f7db3f01d2ea21742cf5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_SCHEMA_ANALYSIS.md": {
+    "mtime": 1780318676.1202004,
+    "ast_hash": "c193daf8ea368f1700350ac09a3706b5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_SERVICE_AUDIT.md": {
+    "mtime": 1780320675.1301134,
+    "ast_hash": "8e69a3cc6b99f90c045e4a7e56e7069e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_1_REPORT.md": {
+    "mtime": 1780318993.0732546,
+    "ast_hash": "8c4b400e03b4e9d25c63a999aa4c45ba",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_2_REPORT.md": {
+    "mtime": 1780320248.7029455,
+    "ast_hash": "67b4b853c63baee9d5f344e7ce10b841",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_3_CODE_AUDIT.md": {
+    "mtime": 1780320941.9966183,
+    "ast_hash": "08b7cacba67720ccf6f51059c8fb8b86",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_3_REMEDIATION_AUDIT.md": {
+    "mtime": 1780321541.923214,
+    "ast_hash": "133087b8b97f7efee6376e9fcc9bdf45",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_3_REMEDIATION_REPORT.md": {
+    "mtime": 1780321536.894099,
+    "ast_hash": "ad3cbb19b8721c0f0371895ce79789aa",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_3_REPORT.md": {
+    "mtime": 1780320680.287128,
+    "ast_hash": "5e2145e6f08054c61998fbbb1631fd14",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_4_REPORT.md": {
+    "mtime": 1780321863.9376986,
+    "ast_hash": "18dd235afc4275b2254a4a5509492b79",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5A_REPORT.md": {
+    "mtime": 1780323554.189231,
+    "ast_hash": "2283c48f59b82fd625d0a59f836701dc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5A_UI_AUDIT.md": {
+    "mtime": 1780323105.502442,
+    "ast_hash": "27da7ac72a3a63b0005f6af6cece0d77",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5B_FINAL_AUDIT.md": {
+    "mtime": 1780324631.3275845,
+    "ast_hash": "48d34086628e9a3fd19e61ebff1468f6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5B_REPORT.md": {
+    "mtime": 1780324121.1195655,
+    "ast_hash": "9be0544829ccec370751c98fefda63c8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5B_UI_AUDIT.md": {
+    "mtime": 1780324127.185151,
+    "ast_hash": "43c051ea09dcdb687392331d6e159ffc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5B_VALIDATION_REPORT.md": {
+    "mtime": 1780324626.2954514,
+    "ast_hash": "25c85800fdb3768dbbec1f0fd08949d2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5C_DATA_STRATEGY.md": {
+    "mtime": 1780383304.4828436,
+    "ast_hash": "06a931694348f2d8e4277cd6de7dcf6e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5C_FINAL_AUDIT.md": {
+    "mtime": 1780383872.4097793,
+    "ast_hash": "796c215c7c80a19968968c1ec5b8759b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5C_REPORT.md": {
+    "mtime": 1780383479.4640737,
+    "ast_hash": "d0eb53ab9212c5ce94b705381458b83d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5C_UI_AUDIT.md": {
+    "mtime": 1780383484.0871637,
+    "ast_hash": "53a4f5ea030bc6a7e0e25860267cb33a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5C_VALIDATION_REPORT.md": {
+    "mtime": 1780383867.0971558,
+    "ast_hash": "d080d075397b8a862d3830dd30bdd5d7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5D_DATA_STRATEGY.md": {
+    "mtime": 1780384328.6809652,
+    "ast_hash": "48810801fec2d0a2cefc97c7a456bc7e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5D_FINAL_AUDIT.md": {
+    "mtime": 1780385021.4681733,
+    "ast_hash": "da4eefaf9c99cebd036f1b6ed1ac7797",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5D_REPORT.md": {
+    "mtime": 1780384482.9215446,
+    "ast_hash": "0266a44357487fed5d618f4e5d57fc2a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5D_UI_AUDIT.md": {
+    "mtime": 1780384537.3884416,
+    "ast_hash": "3217c17dd022fd4797ec835c77b06b61",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_STEP_5D_VALIDATION_REPORT.md": {
+    "mtime": 1780385016.4510527,
+    "ast_hash": "de9a4495a07e56fd30cf53991931b31f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_UI_DATA_CONTRACT_AUDIT.md": {
+    "mtime": 1780322181.2699697,
+    "ast_hash": "c736cf8bef0ba78c001a4ee0d2a92475",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\A4_UI_READINESS_REPORT.md": {
+    "mtime": 1780322012.0953455,
+    "ast_hash": "cf1945d9e12ce256b464ec36f06745e9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\ADR-001-EMAIL-BRIDGE.md": {
+    "mtime": 1780316657.3530016,
+    "ast_hash": "ed272ca3e497ff07f15e35fe868d0432",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\ARCHITECTURE_APPROVAL_PACKAGE.md": {
+    "mtime": 1780234291.0342484,
+    "ast_hash": "e0c339306e342b8d450ebfec9540fd92",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\ARCHITECTURE_DEPENDENCY_AUDIT.md": {
+    "mtime": 1780316134.9767857,
+    "ast_hash": "76f44144da406f25a32952056eccdf82",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\CLEANUP_ANALYSIS.md": {
+    "mtime": 1780234166.727839,
+    "ast_hash": "b9aaf691445c5a208e4a84997a7d1aaa",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\FINAL_APPROVAL_REVIEW_PACKAGE.md": {
+    "mtime": 1780234439.3429868,
+    "ast_hash": "5abecb8b8f4a23dace09739d8db58820",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\FINAL_CHANGES_SUMMARY.md": {
+    "mtime": 1779948976.4179554,
+    "ast_hash": "d2aea6b3d28ae2cc0ba934b37a022ed1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\FINAL_FOLDER_STRUCTURE.md": {
+    "mtime": 1780234200.6900215,
+    "ast_hash": "8861ee82eded6979324a5b049343e618",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\FINAL_MVP_SCOPE.md": {
+    "mtime": 1780234674.3897407,
+    "ast_hash": "0bfb764a9555c8d54e5c83820d883b56",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\FINAL_PRISMA_ENTITY_MAP.md": {
+    "mtime": 1780234665.947164,
+    "ast_hash": "3ddd384e8522091158fc0a7190c20105",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\FINAL_PRODUCTION_READINESS_REPORT.md": {
+    "mtime": 1779952284.234513,
+    "ast_hash": "883374dc8dc6dffc5cf3d2df2ba7d328",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\FINAL_ROOT_STRUCTURE.md": {
+    "mtime": 1780234420.2941153,
+    "ast_hash": "a82ebfb4d2ead863d98b7aa99bb73c6b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\GRAPHIFY_INSTALL_REPORT.md": {
+    "mtime": 1780315863.986233,
+    "ast_hash": "85c1be17dbd5742e10775f8725291c3d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\GRAPHIFY_USAGE_GUIDE.md": {
+    "mtime": 1780315870.6736078,
+    "ast_hash": "d14e4c13128941d7575e30ba1fa7dfbf",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\IMPLEMENTATION_PHASE_A0_REPORT.md": {
+    "mtime": 1780235265.1398668,
+    "ast_hash": "1e6a0393a3f830208ea05dfcc9e945d5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\MIGRATIONS.md": {
+    "mtime": 1779864735.8958452,
+    "ast_hash": "3da971803649dbef49be6cd692c9ca44",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\MONGODB_TO_POSTGRES_MIGRATION_PLAN.md": {
+    "mtime": 1780234257.0593493,
+    "ast_hash": "fcc0477623d98e2f4ed44ebd3989cd9f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\MVP_LOCKDOWN.md": {
+    "mtime": 1780238416.1907704,
+    "ast_hash": "f1573e8cf86030ae717720f21c18e0a3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\PRISMA_DESIGN_REVIEW.md": {
+    "mtime": 1780234217.122928,
+    "ast_hash": "7c36f8541499db9b81610e0a8e8ed860",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\PROD-README.md": {
+    "mtime": 1779950609.5649612,
+    "ast_hash": "dc578921e0cc089e901bb75af78a229d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\PRODUCTION_HARDENING_REPORT.md": {
+    "mtime": 1779879077.6535792,
+    "ast_hash": "1832e2739fb08a5b0fb587aa8f4e4570",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\PRODUCTION_READY_TODO.md": {
+    "mtime": 1779952199.0689373,
+    "ast_hash": "ea55b0495a50d961745a83823207f5fc",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\RBAC_REVIEW.md": {
+    "mtime": 1780234257.0397406,
+    "ast_hash": "613d89078aa14c6a66d6d51cc310e815",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\README.md": {
+    "mtime": 1780212781.8519409,
+    "ast_hash": "903895952e344a3883065055a7bbcc97",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\ROOT_STRUCTURE_REVIEW.md": {
+    "mtime": 1780234200.6943555,
+    "ast_hash": "26425a1976c25af3c6d6ec4bd2331860",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\SAFE_CLEANUP_EXECUTION_PLAN.md": {
+    "mtime": 1780234420.2962203,
+    "ast_hash": "0fad114ae9b810a1a8153cc0906b0e92",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\SCHEMA_ALIGNMENT_REPORT.md": {
+    "mtime": 1780238311.364554,
+    "ast_hash": "1127771edbf7215cf418810ff240c771",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\SENTRY.md": {
+    "mtime": 1779864728.691943,
+    "ast_hash": "5b40fcb67eca0844b1cc87c794e7ba07",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\STAGING_TESTS.md": {
+    "mtime": 1779948083.1829238,
+    "ast_hash": "3bcbe7963d07ff91ee6e5c2e5e2dc271",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\STORAGE_ARCHITECTURE_REVIEW.md": {
+    "mtime": 1780234257.0397406,
+    "ast_hash": "1d7e9c105c47d56fe5483f4ea33eb2f5",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\TENANT_ARCHITECTURE_REVIEW.md": {
+    "mtime": 1780234257.0397406,
+    "ast_hash": "1b1beef2a74649b976de470189ac428b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\TENANT_FK_CORRECTION_PLAN.md": {
+    "mtime": 1780252408.0511284,
+    "ast_hash": "048297293e0e514f8ea1757417dab538",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\TESTING_COMPARISON_REPORT.md": {
+    "mtime": 1779955678.9216745,
+    "ast_hash": "078965ad72e36bc79edcff24ffd9c2a0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\V2_REBUILD_ANALYSIS_AND_PLAN.md": {
+    "mtime": 1780233515.6605072,
+    "ast_hash": "45756e6e169b16560903765c5e2e9236",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\CI.md": {
+    "mtime": 1779864201.6765869,
+    "ast_hash": "c418ef93eae285dfe0c994bc5fe53eba",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\COMPREHENSIVE_CODEBASE_GUIDELINE_REPORT.md": {
+    "mtime": 1777215111.2586193,
+    "ast_hash": "d5c8eec832295b30959805cb9d5b15b7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\Design Leads Page_new\\README.md": {
+    "mtime": 1777215111.668254,
+    "ast_hash": "a7f3175c67c31f184bf312db8d7ff424",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\Design Leads Page_new\\index.html": {
+    "mtime": 1777215111.6832602,
+    "ast_hash": "bb9c0e5af0cc5aede5490b48a5fc4e2f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\MMD-Main-Final-End-to-End-Validation-Report-vFinal.md": {
+    "mtime": 1777801492.1778975,
+    "ast_hash": "5f16bed8d9f9aa28a9ff1b6b74841ab3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\MMD-Main-PreProd-Detailed-Certification-Report-v2.md": {
+    "mtime": 1777799299.6763494,
+    "ast_hash": "cb48d195b376979a87d8e37ec8f17ea9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\MMD-Main-PreProd-Detailed-Certification-Report-v3.md": {
+    "mtime": 1777800422.8742473,
+    "ast_hash": "cce767c8f65a3452ed87a180cc8b567b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\PLATFORM_SOP.md": {
+    "mtime": 1777215111.2986343,
+    "ast_hash": "a066ed96566aa6df891b347b9799ef1f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\PRODUCTION_READINESS.md": {
+    "mtime": 1777215111.3131578,
+    "ast_hash": "d345658b819e13ab5ea2060abbcdd5cb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\Pre-Production-Certification-Report-MMD-Main-1.2.md": {
+    "mtime": 1777797116.8351264,
+    "ast_hash": "a5f17feed083a3ff17385fbb63b89deb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\RELEASE.md": {
+    "mtime": 1779864383.196094,
+    "ast_hash": "095d1b8ebc38536e479dfb5cbe20f86a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\audit\\contrast-report.md": {
+    "mtime": 1777215113.7674558,
+    "ast_hash": "00a6a70cf4884f4434930c79f91a4e75",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\eslint-report.txt": {
+    "mtime": 1779802910.6660023,
+    "ast_hash": "b468da4e5c9c15003864305be297ad25",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\k8s\\deployment.yaml": {
+    "mtime": 1779950708.0320475,
+    "ast_hash": "47f07e630aa0028b003580074fec50ae",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\k8s\\service.yaml": {
+    "mtime": 1779864719.4040263,
+    "ast_hash": "379ee7e6b2fc22f85eb2430fb8f83178",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\playwright_errors_excerpt.txt": {
+    "mtime": 1779875393.6560514,
+    "ast_hash": "24f3fd2bbb5be412bd383d19bc324987",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\production-readiness-report.md": {
+    "mtime": 1779865125.8574686,
+    "ast_hash": "49f5e1185912e4e112f71f4d8c382cdd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\graphify\\phases-graph.md": {
+    "mtime": 1780233194.0219383,
+    "ast_hash": "e051b758ef00dfeef2bcabb5c51e9ccb",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\openapi-a2-step4.yaml": {
+    "mtime": 1780255897.9723341,
+    "ast_hash": "79cbbdd2bb88013e27abd59d07fc0e7e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\openapi\\a1-tenants.yaml": {
+    "mtime": 1780241210.9446585,
+    "ast_hash": "06a99acd4de8ad6400b1e3dc706ac66f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\openapi\\a3-crm.yaml": {
+    "mtime": 1780313280.8703513,
+    "ast_hash": "83ce5c30109a6ffa9e22831548bf6cf6",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\README.md": {
+    "mtime": 1780233188.2603068,
+    "ast_hash": "149c9233fed8b1bb5a696680d7ffcae8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-10\\09-folder-structure.md": {
+    "mtime": 1780233005.2848575,
+    "ast_hash": "55c1f7c871f9fedf012fa509d1a9f3e2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-11\\10-development-roadmap.md": {
+    "mtime": 1780233005.5745368,
+    "ast_hash": "ba8350802256b5b2bcfbda9c97d71a06",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-12\\11-white-label-saas-design.md": {
+    "mtime": 1780233005.7286074,
+    "ast_hash": "4a798201fbf022e7014f9d4610cddbb9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-13\\12-devops-deployment-architecture.md": {
+    "mtime": 1780233005.8020585,
+    "ast_hash": "6e154328f4834eaf3ada922c224c780e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-14\\13-security-architecture.md": {
+    "mtime": 1780233005.9043138,
+    "ast_hash": "e4dad7264f88da7ba3c399c6578d1c00",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-15\\14-testing-strategy.md": {
+    "mtime": 1780233005.965412,
+    "ast_hash": "636dfbae9c1904abbf6df6f57d9603fd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-16\\15-openapi-postman-strategy.md": {
+    "mtime": 1780233006.1044943,
+    "ast_hash": "10779266e06e67283fa1d76cd6ca6bb2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-17\\16-prisma-schema-blueprint.md": {
+    "mtime": 1780233006.2043076,
+    "ast_hash": "8f3a14cd9b82c2464348fc7790963c1f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-18\\17-ui-component-design-system.md": {
+    "mtime": 1780233006.3742394,
+    "ast_hash": "a92a5d24ba8856607352448016382ff7",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-1\\00-product-requirements-document.md": {
+    "mtime": 1780233005.023384,
+    "ast_hash": "05115682fd61f2ce166709fb85eba2c8",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-2\\01-master-feature.md": {
+    "mtime": 1780233006.76948,
+    "ast_hash": "4f4a7b13207096d7122f0cae81c3c6c4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-3\\02-module-breakdown.md": {
+    "mtime": 1780233007.1508133,
+    "ast_hash": "381846ba59c73ef482826188bda7a472",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-4\\03-role-permission-matrix.md": {
+    "mtime": 1780233007.433629,
+    "ast_hash": "1b0e0219e38e71605825f11fd591d1a3",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-5\\04-ui-ux-architecture.md": {
+    "mtime": 1780233007.750768,
+    "ast_hash": "eac6193315cb2c0a87f30a83a84efb5d",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-6\\05-screen-inventory.md": {
+    "mtime": 1780233008.1491454,
+    "ast_hash": "5c109ada0bd58fe3ca330e33dad9c4b9",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-7\\06-database-design.md": {
+    "mtime": 1780233008.2615259,
+    "ast_hash": "5854ceb32abb86fde0a9572a9511c882",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-8\\07-api-contracts.md": {
+    "mtime": 1780233008.486241,
+    "ast_hash": "e6fdcce68357aa1c1c158b80f8429199",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\markdown\\P-9\\08-system-architecture.md": {
+    "mtime": 1780233008.879708,
+    "ast_hash": "3410bf3e5d56b82037f19dfe6f787ae4",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\hooks\\README.md": {
+    "mtime": 1777215115.371968,
+    "ast_hash": "0f4e08b40ea113f5735e7136ffeecaa2",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\postman\\README.md": {
+    "mtime": 1780233212.9735389,
+    "ast_hash": "a8d89c948097d0b324436bab89044e8b",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\MMD-Main-Final-End-to-End-Validation-Report-vFinal.pdf": {
+    "mtime": 1777801544.8394997,
+    "ast_hash": "fbd2c048fce5a6985c0e7c7c35c88951",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\MMD-Main-PreProd-Detailed-Certification-Report-v2.pdf": {
+    "mtime": 1777799355.0829868,
+    "ast_hash": "4a0f12a721b0c13318852a497047c67f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\MMD-Main-PreProd-Detailed-Certification-Report-v3.pdf": {
+    "mtime": 1777800476.5871518,
+    "ast_hash": "756b7649b78e269c6374c94e30a63a17",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\archive\\Pre-Production-Certification-Report-MMD-Main-1.2.pdf": {
+    "mtime": 1777797172.099862,
+    "ast_hash": "5a8824ab3b9d9ed362741a067d66d5fd",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-10\\09-folder-structure.pdf": {
+    "mtime": 1780231933.8916547,
+    "ast_hash": "995bc78fd79e66bfc682f350349a1625",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-11\\10-development-roadmap.pdf": {
+    "mtime": 1780232122.9684536,
+    "ast_hash": "6ebfe1a32e6cae185d0152da3ca3e699",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-12\\11-white-label-saas-design.pdf": {
+    "mtime": 1780232166.018317,
+    "ast_hash": "65d48b8d188e4857814a4d0b71c7232e",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-13\\12-devops-deployment-architecture.pdf": {
+    "mtime": 1780232206.2139518,
+    "ast_hash": "110da5a75e06b96a5c8f406d096f8d8c",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-14\\13-security-architecture.pdf": {
+    "mtime": 1780232242.5650434,
+    "ast_hash": "a803b0999fb06627d993ba80dd1b80ea",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-15\\14-testing-strategy.pdf": {
+    "mtime": 1780232278.5245073,
+    "ast_hash": "5ee2f5774792b074f5bc446168fcdd4f",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-16\\15-openapi-postman-strategy.pdf": {
+    "mtime": 1780232317.6864357,
+    "ast_hash": "f59e1d35ae339e5b0cc6c2492fbe8770",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-17\\16-prisma-schema-blueprint.pdf": {
+    "mtime": 1780232464.0467217,
+    "ast_hash": "0d4d87d7485ffd138e6f57ddafdbbd68",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-18\\17-ui-component-design-system.pdf": {
+    "mtime": 1780232525.1843514,
+    "ast_hash": "2a523b734a64d4d6db1ea63fdb889c33",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-1\\00-product-requirements-document.pdf": {
+    "mtime": 1780231262.556955,
+    "ast_hash": "5e9165d06dcee6c85001d434fe7d9954",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-2\\01-master-feature.pdf": {
+    "mtime": 1780231311.814094,
+    "ast_hash": "60d886889d5243378cc8b8b941c582df",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-3\\02-module-breakdown.pdf": {
+    "mtime": 1780231446.272749,
+    "ast_hash": "6d4f1f3c2d00ac941cdf1880c0472d07",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-4\\03-role-permission-matrix.pdf": {
+    "mtime": 1780231619.395615,
+    "ast_hash": "735ed7eae030b84c8ad70e583e092f72",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-5\\04-ui-ux-architecture.pdf": {
+    "mtime": 1780231669.586515,
+    "ast_hash": "4bf9251854777784730c0250f26554e1",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-6\\05-screen-inventory.pdf": {
+    "mtime": 1780231721.9277954,
+    "ast_hash": "2020b3acd202073c26815ad89fcecd1a",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-7\\06-database-design.pdf": {
+    "mtime": 1780231790.218652,
+    "ast_hash": "78ea6dd3b2cd40a2ceb46748ddcb45ad",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-8\\07-api-contracts.pdf": {
+    "mtime": 1780231841.002195,
+    "ast_hash": "8e5dd736df141c31fa8d5bf0e1e6e1e0",
+    "semantic_hash": ""
+  },
+  "C:\\Ravi\\MY WORKS\\MMD V2\\docs\\phases\\pdf\\P-9\\08-system-architecture.pdf": {
+    "mtime": 1780231883.2315297,
+    "ast_hash": "63e06f4170e68d79501fbc2115c07d2d",
+    "semantic_hash": ""
+  }
+}

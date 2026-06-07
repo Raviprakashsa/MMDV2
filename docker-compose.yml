@@ -1,0 +1,61 @@
+version: '3.8'
+
+volumes:
+  # Named volumes ensure data persists across container restarts and recreations.
+  # Without these, all PostgreSQL and MongoDB data is lost when containers stop.
+  postgres_data:
+    driver: local
+  mongo_data:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:16
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mmd_v2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d mmd_v2"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:6.0
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=mongodb://mongo:27017/mmdss
+      - POSTGRES_DATABASE_URL=postgresql://postgres:postgres@postgres:5432/mmd_v2?schema=public
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - AUTH_SECRET=${AUTH_SECRET:-}
+      - SENTRY_DSN=${SENTRY_DSN:-}
+      - SENTRY_RELEASE=${SENTRY_RELEASE:-}
+      - THROTTLE_BACKEND=${THROTTLE_BACKEND:-memory}
+      - UPSTASH_REDIS_REST_URL=${UPSTASH_REDIS_REST_URL:-}
+      - UPSTASH_REDIS_REST_TOKEN=${UPSTASH_REDIS_REST_TOKEN:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+    restart: unless-stopped

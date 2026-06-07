@@ -1,0 +1,505 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_DATABASE_URL")
+}
+
+enum UserStatus {
+  ACTIVE
+  INVITED
+  DISABLED
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  ACCESS
+  LOGIN
+  LOGOUT
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PROPOSAL
+  WON
+  LOST
+}
+
+model Plan {
+  id          String   @id @default(cuid())
+  tenantId    String   @default("system")
+  code        String   @unique
+  name        String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  planFeatures PlanFeature[]
+  tenants      Tenant[]
+
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model Feature {
+  id          String   @id @default(cuid())
+  tenantId    String   @default("system")
+  code        String   @unique
+  name        String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  planFeatures   PlanFeature[]
+  tenantFeatures TenantFeature[]
+
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model PlanFeature {
+  id        String   @id @default(cuid())
+  tenantId  String   @default("system")
+  planId    String
+  featureId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  plan    Plan    @relation(fields: [planId], references: [id])
+  feature Feature @relation(fields: [featureId], references: [id])
+
+  @@unique([planId, featureId])
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model Tenant {
+  id          String   @id @default(cuid())
+  tenantId    String   @unique
+  planId      String
+  slug        String   @unique
+  name        String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  plan           Plan            @relation(fields: [planId], references: [id])
+  users          User[]
+  roles          Role[]
+  sessions       Session[]
+  auditLogs      AuditLog[]
+  featureFlags   FeatureFlag[]
+  companies      Company[]
+  contacts       Contact[]
+  leads          Lead[]
+  tenantFeatures TenantFeature[]
+  tenantSettings TenantSettings?
+  tenantBranding TenantBranding?
+  jobPostings    JobPosting[]
+  candidates     Candidate[]
+  applications   Application[]
+  interviews     Interview[]
+
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model TenantFeature {
+  id            String   @id @default(cuid())
+  tenantId      String
+  featureId     String
+  isEnabled     Boolean  @default(true)
+  source        String   @default("plan")
+  overrideValue String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  feature Feature @relation(fields: [featureId], references: [id])
+
+  @@unique([tenantId, featureId])
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model TenantSettings {
+  id           String   @id @default(cuid())
+  tenantId     String   @unique
+  timezone     String   @default("UTC")
+  locale       String   @default("en-IN")
+  dateFormat   String   @default("DD/MM/YYYY")
+  timeFormat   String   @default("24h")
+  weekStartDay Int      @default(1)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  deletedAt    DateTime?
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model TenantBranding {
+  id            String   @id @default(cuid())
+  tenantId      String   @unique
+  displayName   String?
+  logoUrl       String?
+  faviconUrl    String?
+  primaryColor  String?
+  secondaryColor String?
+  accentColor   String?
+  supportEmail  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  tenantId    String
+  code        String
+  name        String
+  description String?
+  isSystem    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  tenant          Tenant           @relation(fields: [tenantId], references: [id])
+  users           User[]
+  rolePermissions RolePermission[]
+
+  @@unique([tenantId, code])
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  module      String
+  action      String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  rolePermissions RolePermission[]
+  @@index([deletedAt])
+}
+
+model RolePermission {
+  id           String   @id @default(cuid())
+  roleId       String
+  permissionId String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  deletedAt    DateTime?
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@index([deletedAt])
+}
+
+model User {
+  id             String     @id @default(cuid())
+  tenantId       String
+  email          String
+  passwordHash   String
+  name           String
+  roleId         String
+  status         UserStatus @default(ACTIVE)
+  lastLoginAt    DateTime?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  deletedAt      DateTime?
+
+  tenant         Tenant     @relation(fields: [tenantId], references: [id])
+  role           Role       @relation(fields: [roleId], references: [id])
+  sessions       Session[]
+  leadsOwned     Lead[]
+  interviews     Interview[]
+
+  @@unique([tenantId, email])
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  tenantId    String
+  name        String
+  website     String
+  industry    String
+  phone       String
+  email       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  tenant     Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  contacts   Contact[]
+  leads      Lead[]
+
+  @@index([tenantId])
+  @@index([tenantId, name])
+  @@index([tenantId, email])
+  @@index([deletedAt])
+  @@unique([tenantId, name])
+}
+
+model Contact {
+  id          String   @id @default(cuid())
+  tenantId    String
+  companyId   String
+  firstName   String
+  lastName    String
+  email       String
+  phone       String
+  title       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company    Company  @relation(fields: [companyId], references: [id])
+  leads      Lead[]
+
+  @@index([tenantId])
+  @@index([companyId])
+  @@index([tenantId, email])
+  @@index([deletedAt])
+  @@unique([tenantId, email])
+}
+
+model Lead {
+  id          String     @id @default(cuid())
+  tenantId    String
+  companyId   String?
+  contactId   String?
+  ownerId     String?
+  title       String
+  description String
+  status      LeadStatus @default(NEW)
+  value       Decimal
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  deletedAt   DateTime?
+
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company    Company? @relation(fields: [companyId], references: [id])
+  contact    Contact? @relation(fields: [contactId], references: [id])
+  owner      User?    @relation(fields: [ownerId], references: [id])
+
+  @@index([tenantId])
+  @@index([tenantId, companyId])
+  @@index([tenantId, contactId])
+  @@index([tenantId, ownerId])
+  @@index([tenantId, status])
+  @@index([deletedAt])
+}
+
+model AuditLog {
+  id          String      @id @default(cuid())
+  tenantId    String
+  actorUserId String?
+  action      AuditAction
+  module      String
+  entity      String
+  entityId    String?
+  changesJson Json?
+  metadataJson Json?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  deletedAt   DateTime?
+
+  tenant      Tenant      @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId])
+  @@index([entity, entityId])
+  @@index([createdAt])
+  @@index([deletedAt])
+}
+
+model Session {
+  id               String   @id @default(cuid())
+  userId           String
+  tenantId         String
+  refreshTokenHash String?
+  createdAt        DateTime @default(now())
+  expiresAt        DateTime
+  lastActiveAt     DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@index([userId])
+  @@index([tenantId])
+  @@index([expiresAt])
+}
+
+model FeatureFlag {
+  id          String   @id @default(cuid())
+  tenantId    String
+  key         String
+  value       String
+  isEnabled   Boolean  @default(true)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  tenant      Tenant   @relation(fields: [tenantId], references: [tenantId])
+
+  @@unique([tenantId, key])
+  @@index([tenantId])
+  @@index([deletedAt])
+}
+
+enum JobPostingStatus {
+  DRAFT
+  OPEN
+  CLOSED
+  ON_HOLD
+}
+
+enum ApplicationStatus {
+  APPLIED
+  SCREENING
+  SHORTLISTED
+  INTERVIEW
+  OFFERED
+  HIRED
+  REJECTED
+  WITHDRAWN
+}
+
+enum InterviewStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+model JobPosting {
+  id             String           @id @default(cuid())
+  tenantId       String
+  title          String
+  department     String
+  location       String
+  employmentType String
+  description    String
+  requirements   String
+  salaryMin      Decimal?
+  salaryMax      Decimal?
+  status         JobPostingStatus @default(DRAFT)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  deletedAt      DateTime?
+
+  tenant       Tenant        @relation(fields: [tenantId], references: [id])
+  applications Application[]
+
+  @@index([tenantId])
+  @@index([tenantId, status])
+  @@index([tenantId, createdAt])
+  @@index([deletedAt])
+}
+
+model Candidate {
+  id                 String    @id @default(cuid())
+  tenantId           String
+  firstName          String
+  lastName           String
+  email              String
+  phone              String
+  currentLocation    String?
+  totalExperience    Decimal?
+  currentCompany     String?
+  currentDesignation String?
+  resumeUrl          String
+  linkedinUrl        String?
+  portfolioUrl       String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  deletedAt          DateTime?
+
+  tenant       Tenant        @relation(fields: [tenantId], references: [id])
+  applications Application[]
+
+  @@unique([tenantId, email])
+  @@index([tenantId])
+  @@index([tenantId, createdAt])
+  @@index([deletedAt])
+}
+
+model Application {
+  id           String            @id @default(cuid())
+  tenantId     String
+  jobPostingId String
+  candidateId  String
+  status       ApplicationStatus @default(APPLIED)
+  appliedAt    DateTime          @default(now())
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  deletedAt    DateTime?
+
+  tenant     Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  jobPosting JobPosting  @relation(fields: [jobPostingId], references: [id])
+  candidate  Candidate   @relation(fields: [candidateId], references: [id])
+  interviews Interview[]
+
+  @@unique([tenantId, jobPostingId, candidateId])
+  @@index([tenantId])
+  @@index([tenantId, status])
+  @@index([tenantId, createdAt])
+  @@index([deletedAt])
+  @@index([candidateId])
+  @@index([jobPostingId])
+}
+
+model Interview {
+  id            String          @id @default(cuid())
+  tenantId      String
+  applicationId String
+  interviewerId String
+  round         Int             @default(1)
+  feedback      String?
+  rating        Int?
+  status        InterviewStatus @default(SCHEDULED)
+  scheduledAt   DateTime
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  deletedAt     DateTime?
+
+  tenant      Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  application Application @relation(fields: [applicationId], references: [id])
+  interviewer User        @relation(fields: [interviewerId], references: [id])
+
+  @@index([tenantId])
+  @@index([tenantId, status])
+  @@index([tenantId, createdAt])
+  @@index([deletedAt])
+  @@index([applicationId])
+  @@index([interviewerId])
+}

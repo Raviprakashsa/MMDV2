@@ -1,0 +1,158 @@
+name: CI - Integration Tests
+
+on:
+  push:
+    branches: [ main, master, '**/chore/**' ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:6.0
+        ports: ['27017:27017']
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: mmd_v2
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: mongodb://localhost:27017/mmdss
+      POSTGRES_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mmd_v2?schema=public
+      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      SENTRY_RELEASE: ${{ github.sha }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies (use install to refresh lockfile when necessary)
+        run: npm ci --legacy-peer-deps
+
+      - name: Wait for MongoDB
+        run: npx wait-on tcp:localhost:27017 --timeout 60000
+
+      - name: Wait for PostgreSQL
+        run: npx wait-on tcp:localhost:5432 --timeout 60000
+
+      - name: Run MongoDB migrations and seed data
+        env:
+          DATABASE_URL: ${{ env.DATABASE_URL }}
+        run: |
+          npm run migrate:status || true
+          npm run migrate
+          npm run db:seed
+
+      - name: Run Prisma generate and migrations
+        env:
+          POSTGRES_DATABASE_URL: ${{ env.POSTGRES_DATABASE_URL }}
+        run: |
+          npx prisma generate
+          npx prisma migrate deploy
+
+      - name: Seed Prisma database
+        env:
+          POSTGRES_DATABASE_URL: ${{ env.POSTGRES_DATABASE_URL }}
+        run: npm run db:seed:prisma
+
+      - name: Build Next.js application
+        env:
+          POSTGRES_DATABASE_URL: ${{ env.POSTGRES_DATABASE_URL }}
+          DATABASE_URL: ${{ env.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ env.NEXTAUTH_SECRET }}
+        run: npm run build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Start Next.js (production)
+        env:
+          POSTGRES_DATABASE_URL: ${{ env.POSTGRES_DATABASE_URL }}
+          DATABASE_URL: ${{ env.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ env.NEXTAUTH_SECRET }}
+        run: |
+          nohup npm run start > server.log 2>&1 &
+          echo "Waiting for application health endpoint..."
+          for i in {1..30}; do
+            if curl -fsS http://localhost:3000/api/health >/dev/null 2>&1; then
+              echo "Application is healthy"
+              exit 0
+            fi
+            echo "Health check attempt $i/30 failed, retrying in 4s..."
+            sleep 4
+          done
+          echo "Application failed to become healthy after 120s. Dumping server.log (last 500 lines):"
+          tail -n 500 server.log || true
+          exit 1
+
+      - name: Run Playwright tests
+        env:
+          E2E_USE_SEEDED_USERS: '1'
+        run: npx playwright test --reporter=list
+
+      - name: Dump logs to console on failure
+        if: failure()
+        run: |
+          echo "========= CI: Dumping server.log (tail 500) ========="
+          if [ -f server.log ]; then
+            tail -n 500 server.log || true
+          else
+            echo "(no server.log found)"
+          fi
+          echo "========= CI: Dumping test-results files (first 200 lines each) ========="
+          if [ -d test-results ]; then
+            find test-results -type f -maxdepth 3 -print -exec sh -c 'echo "--- File: {} ---"; sed -n "1,200p" "{}"; echo ""' \;
+          else
+            echo "(no test-results directory)"
+          fi
+          echo "========= CI: Playwright report files ========="
+          if [ -d playwright-report ]; then
+            ls -R playwright-report | head -n 200 || true
+          else
+            echo "(no playwright-report directory)"
+          fi
+
+      - name: Upload server.log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-log
+          path: server.log
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+
+      - name: Upload test results on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results/
+
+      - name: Upload .next on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: next-build
+          path: .next/**
