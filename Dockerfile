@@ -19,6 +19,8 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXTAUTH_SECRET=placeholder-secret-for-build-time-only
 ENV AUTH_SECRET=placeholder-secret-for-build-time-only
+ENV POSTGRES_DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy?schema=public
+ENV DATABASE_URL=mongodb://localhost:27017/dummy
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
