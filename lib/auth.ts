@@ -1,13 +1,14 @@
 import NextAuth, { type DefaultSession } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { compare } from "bcryptjs"
+import type { UserRole } from "@/lib/db/models/User"
 
 // Extend NextAuth types
 declare module "next-auth" {
   interface Session {
     user: {
       id: string
-      role: string
+      role: UserRole
       isActive: boolean
       tenantId?: string
       userId?: string
@@ -18,7 +19,7 @@ declare module "next-auth" {
     id: string
     email: string
     name: string
-    role: string
+    role: UserRole
     isActive: boolean
     tenantId?: string
     userId?: string
@@ -101,7 +102,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: dbUser.email,
           name: dbUser.name,
           // role.code is e.g. "super_admin" — normalise to uppercase for app
-          role: dbUser.role.code.toUpperCase(),
+          role: dbUser.role.code.toUpperCase() as UserRole,
           isActive: dbUser.status === 'ACTIVE',
           tenantId: dbUser.tenantId,
           userId: dbUser.id,
@@ -127,7 +128,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string
-        session.user.role = token.role as string
+        session.user.role = token.role as UserRole
         session.user.name = (token.name as string) ?? session.user.name
         session.user.isActive = token.isActive as boolean
         session.user.tenantId = token.tenantId as string
@@ -142,7 +143,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
  * Role-based authorization check.
  * SUPER_ADMIN is always included when ADMIN is allowed.
  */
-export async function requireRole(allowedRoles: string[]) {
+export async function requireRole(allowedRoles: UserRole[]) {
   const session = await auth()
 
   if (!session?.user) {
@@ -154,8 +155,8 @@ export async function requireRole(allowedRoles: string[]) {
   }
 
   const roles = [...allowedRoles]
-  if (roles.includes("ADMIN") && !roles.includes("SUPER_ADMIN")) {
-    roles.push("SUPER_ADMIN")
+  if (roles.includes("ADMIN" as UserRole) && !roles.includes("SUPER_ADMIN" as UserRole)) {
+    roles.push("SUPER_ADMIN" as UserRole)
   }
 
   if (!roles.includes(session.user.role)) {
