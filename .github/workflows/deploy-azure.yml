@@ -92,18 +92,18 @@ jobs:
 
       # ── Run Prisma Migrations against production PostgreSQL ──
       - name: Setup Node for migrations
-        if: secrets.POSTGRES_DATABASE_URL != ''
+        if: secrets.POSTGRES_DATABASE_URL
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies for migration
-        if: secrets.POSTGRES_DATABASE_URL != ''
+        if: secrets.POSTGRES_DATABASE_URL
         run: npm ci --legacy-peer-deps
 
       - name: Run Prisma migrations against production PostgreSQL
-        if: secrets.POSTGRES_DATABASE_URL != ''
+        if: secrets.POSTGRES_DATABASE_URL
         env:
           POSTGRES_DATABASE_URL: ${{ secrets.POSTGRES_DATABASE_URL }}
         run: |
@@ -113,7 +113,7 @@ jobs:
           echo "✅ Migrations complete"
 
       - name: Seed PostgreSQL admin user (idempotent)
-        if: secrets.POSTGRES_DATABASE_URL != ''
+        if: secrets.POSTGRES_DATABASE_URL
         env:
           POSTGRES_DATABASE_URL: ${{ secrets.POSTGRES_DATABASE_URL }}
         run: |
