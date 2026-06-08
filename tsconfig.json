@@ -39,6 +39,7 @@
   "exclude": [
     "node_modules",
     "Design Leads Page_new",
-    "docs/archive"
+    "docs/archive",
+    "scripts"
   ]
 }

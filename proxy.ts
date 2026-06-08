@@ -42,7 +42,14 @@ export async function proxy(req: NextRequest) {
     // If a stale session cookie exists with a different secret, treat it as unauthenticated.
     let token: Awaited<ReturnType<typeof getToken>> = null
     try {
-        token = await getToken({ req, secret: AUTH_SECRET })
+        const secureCookie = req.nextUrl.protocol === "https:" || req.headers.get("x-forwarded-proto") === "https"
+        const cookieName = secureCookie ? "__Secure-authjs.session-token" : "authjs.session-token"
+        token = await getToken({
+            req,
+            secret: AUTH_SECRET,
+            secureCookie,
+            cookieName
+        })
     } catch {
         token = null
     }
