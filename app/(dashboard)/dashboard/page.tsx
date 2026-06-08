@@ -5,6 +5,8 @@ import { getDashboardMetrics, getRecruiterDashboard } from "@/lib/actions/dashbo
 import { getEnhancedLeadMetrics } from "@/lib/actions/module9-leads"
 import { AlertCircle } from "lucide-react"
 import { PageTransition } from "@/components/layout/PageTransition"
+import connectDB from "@/lib/db/mongodb"
+import User from "@/lib/db/models/User"
 
 type DashboardRole = 'SUPER_ADMIN' | 'ADMIN' | 'COORDINATOR' | 'RECRUITER' | 'SCRAPER'
 type DashboardRange = '7d' | '30d' | '90d'
@@ -75,9 +77,14 @@ export default async function DashboardPage({
       )
     }
 
+    // Resolve MongoDB user ID by email since NextAuth uses PostgreSQL CUIDs
+    await connectDB()
+    const mongoUser = await User.findOne({ email: session.user.email?.toLowerCase() })
+    const mongoUserId = mongoUser?._id || new Types.ObjectId()
+
     // Get dashboard data based on role
     const user = {
-      _id: new Types.ObjectId(userId),
+      _id: mongoUserId,
       role,
       assignedGroup: null,
     }
@@ -91,7 +98,7 @@ export default async function DashboardPage({
           priorities: selectedPriorities,
           teamMember: selectedTeamMember,
         }),
-        getRecruiterDashboard(userId),
+        getRecruiterDashboard(mongoUserId.toString()),
       ])
 
       return (

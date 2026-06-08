@@ -111,12 +111,12 @@ test.describe('MMD V2 ATS End-to-End & Tenant Isolation Integration Tests', () =
     // 5. Create Interviewer Users in PostgreSQL
     const userA = await prisma.user.upsert({
       where: { tenantId_email: { tenantId: tenantAId, email: 'interviewer-a@example.com' } },
-      update: { deletedAt: null },
+      update: { passwordHash: hashedPwd, deletedAt: null },
       create: {
         tenantId: tenantAId,
         email: 'interviewer-a@example.com',
         name: 'Interviewer A',
-        passwordHash: 'dummy',
+        passwordHash: hashedPwd,
         roleId: roleA.id,
       },
     });
@@ -124,12 +124,12 @@ test.describe('MMD V2 ATS End-to-End & Tenant Isolation Integration Tests', () =
 
     await prisma.user.upsert({
       where: { tenantId_email: { tenantId: tenantBId, email: 'interviewer-b@example.com' } },
-      update: { deletedAt: null },
+      update: { passwordHash: hashedPwd, deletedAt: null },
       create: {
         tenantId: tenantBId,
         email: 'interviewer-b@example.com',
         name: 'Interviewer B',
-        passwordHash: 'dummy',
+        passwordHash: hashedPwd,
         roleId: roleB.id,
       },
     });

@@ -5,6 +5,7 @@ import { auth } from '@/lib/auth'
 import { applyRequirementRBAC } from '@/lib/auth/rbac'
 import { AppError } from '@/lib/core/app-error'
 import connectDB from '@/lib/db/mongodb'
+import User from '@/lib/db/models/User'
 import Requirement from '@/lib/db/models/Requirement'
 import { rankCandidatesForRequirement } from '@/lib/automation/matching'
 import { logDataAccess, logDataAccessMany } from '@/lib/workflow/governance'
@@ -56,11 +57,12 @@ export async function GET(request: Request, context: RouteContext): Promise<Next
 
     await connectDB()
 
-    if (!mongoose.Types.ObjectId.isValid(session.user.id)) {
+    const mongoUser = await User.findOne({ email: session.user.email?.toLowerCase() })
+    if (!mongoUser) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const userObjectId = new mongoose.Types.ObjectId(session.user.id)
+    const userObjectId = mongoUser._id
 
     const requirementScope = applyRequirementRBAC(
       {

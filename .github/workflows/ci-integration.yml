@@ -85,6 +85,9 @@ jobs:
       - name: Seed PostgreSQL (creates admin@magnuscopo.com — required for login tests)
         run: npm run db:seed:prisma
 
+      - name: Seed Integration Test Users
+        run: npm run db:seed:test-users
+
       - name: Run MongoDB migrations (best-effort — not needed for auth)
         run: |
           npm run migrate:status || true

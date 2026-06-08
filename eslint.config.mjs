@@ -11,7 +11,7 @@ export default tseslint.config(
       "**/out/**",
       "**/backstop_data/**",
       "**/test-results/**",
-      "scripts/find-unused-imports.js",
+      "scripts/**",
       "Design Leads Page_new/**",
       "**/*.d.ts",
       "**/*.config.js",

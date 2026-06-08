@@ -117,6 +117,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // Persist all fields into the JWT so we don't need another DB query
         // on every request.
         token.id = user.id
+        token.email = user.email
         token.role = user.role
         token.name = user.name
         token.isActive = user.isActive
@@ -128,6 +129,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string
+        session.user.email = token.email as string
         session.user.role = token.role as UserRole
         session.user.name = (token.name as string) ?? session.user.name
         session.user.isActive = token.isActive as boolean

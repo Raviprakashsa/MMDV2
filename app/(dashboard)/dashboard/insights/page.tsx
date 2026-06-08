@@ -4,6 +4,8 @@ import { auth } from "@/lib/auth";
 import { getDashboardMetrics } from "@/lib/actions/dashboard";
 import { PageTransition } from "@/components/layout/PageTransition";
 import Dashboard from "@/components/dashboards/design/Dashboard";
+import connectDB from "@/lib/db/mongodb";
+import User from "@/lib/db/models/User";
 
 type InsightsRole = 'SUPER_ADMIN' | 'ADMIN' | 'COORDINATOR' | 'RECRUITER' | 'SCRAPER'
 
@@ -23,8 +25,13 @@ export default async function InsightsPage() {
   }
 
   const role = normalizeInsightsRole(session.user.role)
+  // Resolve MongoDB user ID by email since NextAuth uses PostgreSQL CUIDs
+  await connectDB()
+  const mongoUser = await User.findOne({ email: session.user.email?.toLowerCase() })
+  const mongoUserId = mongoUser?._id || new Types.ObjectId()
+
   const user = {
-    _id: new Types.ObjectId(session.user.id),
+    _id: mongoUserId,
     role,
     assignedGroup: null,
   }
