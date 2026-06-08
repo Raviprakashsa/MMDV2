@@ -17,7 +17,7 @@ export const addCandidateAction = createProtectedAction(
   CandidateSchema,
   async (payload, session) => {
     const candidate = await CandidateService.create(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload as any // Zod default handling workaround
     )
     revalidatePath('/dashboard/candidates')
@@ -30,7 +30,7 @@ export const updateCandidateStatusAction = createProtectedAction(
   UpdateCandidateStatusSchema,
   async (payload, session) => {
     const result = await CandidateService.updateStatus(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload
     )
     revalidatePath('/dashboard/candidates')
@@ -51,7 +51,7 @@ export const getCandidates = createProtectedAction(
   GetCandidatesSchema,
   async (filters, session) => {
     const candidates = await CandidateService.getAll(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       filters
     )
     return serializeDocs(candidates)
@@ -65,7 +65,7 @@ export const getCandidateById = createProtectedAction(
   GetByIdSchema,
   async (payload, session) => {
     const candidate = await CandidateService.getById(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     return serializeDoc(candidate)
@@ -77,7 +77,7 @@ export const updateCandidate = createProtectedAction(
   UpdateCandidateProfileSchema,
   async (payload, session) => {
     const candidate = await CandidateService.update(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload
     )
     revalidatePath('/dashboard/candidates')
@@ -92,7 +92,7 @@ export const deleteCandidate = createProtectedAction(
   DeleteCandidateSchema,
   async (payload, session) => {
     await CandidateService.delete(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     revalidatePath('/dashboard/candidates')
@@ -107,7 +107,7 @@ export const getCandidatePipelineAction = createProtectedAction(
   PipelineSchema,
   async (payload, session) => {
     const pipeline = await CandidateService.getPipeline(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.requirementId
     )
     return pipeline
@@ -119,7 +119,7 @@ export const getCandidateActivitiesAction = createProtectedAction(
   GetCandidateActivitiesSchema,
   async (payload, session) => {
     const timeline = await CandidateService.getActivities(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       {
         ...payload,
         limit: payload.limit ?? 30,

@@ -175,15 +175,39 @@ interface SidebarProps {
   userRole: UserRole
   userName?: string
   onSignOut?: () => void
+  collapsed?: boolean
+  setCollapsed?: (val: boolean) => void
+  mobileOpen?: boolean
+  setMobileOpen?: (val: boolean) => void
 }
 
-export function Sidebar({ userRole, userName, onSignOut }: Readonly<SidebarProps>) {
-  const [collapsed, setCollapsed] = useState(false)
+export function Sidebar({
+  userRole,
+  userName,
+  onSignOut,
+  collapsed: controlledCollapsed,
+  setCollapsed: controlledSetCollapsed,
+  mobileOpen,
+  setMobileOpen,
+}: Readonly<SidebarProps>) {
+  const [localCollapsed, localSetCollapsed] = useState(false)
+  const collapsed = controlledCollapsed !== undefined ? controlledCollapsed : localCollapsed
+  const setCollapsed = controlledSetCollapsed !== undefined ? controlledSetCollapsed : localSetCollapsed
+
+  const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const prefersReducedMotion = useReducedMotion()
 
   const filteredItems = navItems.filter((item) => item.roles.includes(userRole))
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 1023px)')
+    setIsMobile(mql.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mql.addEventListener('change', handler)
+    return () => mql.removeEventListener('change', handler)
+  }, [])
 
   useEffect(() => {
     for (const item of filteredItems) {
@@ -194,13 +218,18 @@ export function Sidebar({ userRole, userName, onSignOut }: Readonly<SidebarProps
   return (
     <motion.aside
       initial={false}
-      animate={{ width: collapsed ? 64 : 256 }}
+      animate={{
+        width: isMobile ? 256 : (collapsed ? 64 : 256),
+        x: isMobile ? (mobileOpen ? 0 : -256) : 0,
+      }}
       transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: [0.22, 0.9, 0.33, 1] }}
       className={cn(
-        'flex flex-col h-full sticky top-0 shrink-0 border-r bg-gradient-to-b from-white via-white to-[#fafaff] dark:from-slate-900 dark:via-slate-900 dark:to-slate-950',
+        'flex flex-col h-full shrink-0 border-r bg-gradient-to-b from-white via-white to-[#fafaff] dark:from-slate-900 dark:via-slate-900 dark:to-slate-950',
         'border-r-[rgba(23,0,174,0.06)]',
         'shadow-[6px_0_32px_rgba(23,0,174,0.06),2px_0_8px_rgba(15,23,42,0.04)]',
-        'backdrop-blur-xl'
+        'backdrop-blur-xl',
+        // Responsive Drawer behavior
+        'fixed inset-y-0 left-0 z-50 lg:sticky lg:top-0 lg:z-auto'
       )}
     >
       {/* Logo */}
@@ -215,18 +244,30 @@ export function Sidebar({ userRole, userName, onSignOut }: Readonly<SidebarProps
             <span className="text-brand-700">Copo</span>
           </span>
         </motion.div>
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className={cn(
-            'p-2 rounded-xl transition-all duration-base',
-            'text-muted-foreground hover:text-foreground',
-            'hover:bg-brand-50 dark:hover:bg-brand-900/20',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2'
-          )}
-          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-        >
-          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-        </button>
+        
+        {/* Close/Toggle button */}
+        {isMobile ? (
+          <button
+            onClick={() => setMobileOpen?.(false)}
+            className="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-brand-50 lg:hidden"
+            aria-label="Close sidebar"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+        ) : (
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className={cn(
+              'p-2 rounded-xl transition-all duration-base',
+              'text-muted-foreground hover:text-foreground',
+              'hover:bg-brand-50 dark:hover:bg-brand-900/20',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2'
+            )}
+            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          >
+            {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+          </button>
+        )}
       </div>
 
       {/* Navigation */}
@@ -246,6 +287,11 @@ export function Sidebar({ userRole, userName, onSignOut }: Readonly<SidebarProps
               )}
               title={collapsed ? item.label : undefined}
               onMouseEnter={() => router.prefetch(item.href)}
+              onClick={() => {
+                if (isMobile && setMobileOpen) {
+                  setMobileOpen(false)
+                }
+              }}
             >
               {/* Active indicator bar - MagnusCopo brand gradient */}
               <motion.span

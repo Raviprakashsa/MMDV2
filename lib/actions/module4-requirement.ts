@@ -72,7 +72,7 @@ export const createRequirementAction = createProtectedAction(
   RequirementSchema,
   async (payload, session) => {
     const requirement = await RequirementService.create(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload as z.infer<typeof RequirementSchema>
     )
 
@@ -98,7 +98,7 @@ export const updateRequirementStatusAction = createProtectedAction(
   UpdateRequirementStatusSchema,
   async (payload, session) => {
     const requirement = await RequirementService.updateStatus(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload
     )
 
@@ -125,7 +125,7 @@ export const getRequirements = createProtectedAction(
   GetRequirementsFilterSchema,
   async (payload, session) => {
     const requirements = await RequirementService.getAll(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload
     )
     return serializeDocs(requirements)
@@ -140,7 +140,7 @@ export const getRequirementById = createProtectedAction(
   async (payload, session) => {
     const id = typeof payload === 'string' ? payload : payload.id
     const requirement = await RequirementService.getById(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       id
     )
     return serializeDoc(requirement)
@@ -155,7 +155,7 @@ export const updateRequirementAction = createProtectedAction(
   async (payload, session) => {
     const { id, ...data } = payload
     const requirement = await RequirementService.update(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       id,
       data
     )
@@ -182,7 +182,7 @@ export const freezeRequirementAction = createProtectedAction(
   FreezeRequirementSchema,
   async (payload, session) => {
     const requirement = await RequirementService.freeze(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.requirementId,
       payload.comment
     )
@@ -209,7 +209,7 @@ export const reassignRequirementAction = createProtectedAction(
   ReassignRequirementSchema,
   async (payload, session) => {
     const requirement = await RequirementService.reassign(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.requirementId,
       payload.newOwnerId,
       payload.comment
@@ -237,7 +237,7 @@ export const deleteRequirementAction = createProtectedAction(
   DeleteRequirementSchema,
   async (payload, session) => {
     await RequirementService.delete(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     revalidatePath('/dashboard/requirements')

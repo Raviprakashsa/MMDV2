@@ -12,6 +12,7 @@ declare module "next-auth" {
       isActive: boolean
       tenantId?: string
       userId?: string
+      mongoUserId?: string
     } & DefaultSession["user"]
   }
 
@@ -23,6 +24,7 @@ declare module "next-auth" {
     isActive: boolean
     tenantId?: string
     userId?: string
+    mongoUserId?: string
   }
 }
 
@@ -97,6 +99,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null
         }
 
+        // Connect to MongoDB and resolve the mongoUserId (User._id string)
+        let mongoUserId = ""
+        try {
+          const connectDB = (await import('@/lib/db/mongodb')).default
+          const MongoUser = (await import('@/lib/db/models/User')).default
+          await connectDB()
+          const mongoUser = await MongoUser.findOne({ email: normalizedEmail, deletedAt: null })
+          if (mongoUser) {
+            mongoUserId = mongoUser._id.toString()
+          }
+        } catch (err) {
+          console.error("Failed to resolve MongoDB user ID in authorize:", err)
+        }
+
         return {
           id: dbUser.id,
           email: dbUser.email,
@@ -106,6 +122,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           isActive: dbUser.status === 'ACTIVE',
           tenantId: dbUser.tenantId,
           userId: dbUser.id,
+          mongoUserId,
         }
       },
     }),
@@ -123,6 +140,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.isActive = user.isActive
         token.tenantId = user.tenantId
         token.userId = user.userId
+        token.mongoUserId = user.mongoUserId
       }
       return token
     },
@@ -135,6 +153,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.isActive = token.isActive as boolean
         session.user.tenantId = token.tenantId as string
         session.user.userId = token.userId as string
+        session.user.mongoUserId = token.mongoUserId as string
       }
       return session
     },

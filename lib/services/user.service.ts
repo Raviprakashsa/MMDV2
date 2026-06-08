@@ -31,6 +31,7 @@ export interface ResetPasswordInput {
 interface UserContext {
     id: string
     role: string
+    tenantId?: string
 }
 
 function ensureSuperAdmin(user: UserContext) {
@@ -68,6 +69,39 @@ export class UserService {
             role: data.role,
             isActive: true,
         })
+
+        // Sync to PostgreSQL
+        try {
+            const { prisma } = await import("@/lib/prisma")
+            const tenantId = adminUser.tenantId || 'system'
+            const roleCode = data.role.toLowerCase()
+
+            let role = await prisma.role.findFirst({
+                where: { tenantId, code: roleCode, deletedAt: null }
+            })
+            if (!role) {
+                role = await prisma.role.create({
+                    data: {
+                        tenantId,
+                        code: roleCode,
+                        name: data.role.charAt(0) + data.role.slice(1).toLowerCase(),
+                    }
+                })
+            }
+
+            await prisma.user.create({
+                data: {
+                    tenantId,
+                    email: normalizedEmail,
+                    passwordHash: hashedPassword,
+                    name: data.name,
+                    roleId: role.id,
+                    status: 'ACTIVE',
+                }
+            })
+        } catch (err) {
+            console.error("Failed to sync user creation to PostgreSQL:", err)
+        }
 
         await AuditLog.create({
             userId: adminUser.id,
@@ -165,6 +199,43 @@ export class UserService {
         Object.assign(target, updates)
         await target.save()
 
+        // Sync updates to PostgreSQL
+        try {
+            const { prisma } = await import("@/lib/prisma")
+            const pgUser = await prisma.user.findFirst({
+                where: { email: target.email.toLowerCase(), deletedAt: null }
+            })
+            if (pgUser) {
+                const pgUpdates: Record<string, any> = {}
+                if (updates.isActive !== undefined) {
+                    pgUpdates.status = updates.isActive ? 'ACTIVE' : 'DISABLED'
+                }
+                if (updates.role !== undefined) {
+                    const tenantId = adminUser.tenantId || pgUser.tenantId
+                    const roleCode = updates.role.toLowerCase()
+                    let role = await prisma.role.findFirst({
+                        where: { tenantId, code: roleCode, deletedAt: null }
+                    })
+                    if (!role) {
+                        role = await prisma.role.create({
+                            data: {
+                                tenantId,
+                                code: roleCode,
+                                name: updates.role.charAt(0) + updates.role.slice(1).toLowerCase(),
+                            }
+                        })
+                    }
+                    pgUpdates.roleId = role.id
+                }
+                await prisma.user.update({
+                    where: { id: pgUser.id },
+                    data: pgUpdates
+                })
+            }
+        } catch (err) {
+            console.error("Failed to sync user updates to PostgreSQL:", err)
+        }
+
         await AuditLog.create({
             userId: adminUser.id,
             action: "USER_ROLE_UPDATED",
@@ -204,6 +275,25 @@ export class UserService {
         user.isActive = false
         await user.save()
 
+        // Sync soft delete to PostgreSQL
+        try {
+            const { prisma } = await import("@/lib/prisma")
+            const pgUser = await prisma.user.findFirst({
+                where: { email: user.email.toLowerCase(), deletedAt: null }
+            })
+            if (pgUser) {
+                await prisma.user.update({
+                    where: { id: pgUser.id },
+                    data: {
+                        deletedAt: new Date(),
+                        status: 'DISABLED'
+                    }
+                })
+            }
+        } catch (err) {
+            console.error("Failed to sync user deletion to PostgreSQL:", err)
+        }
+
         await AuditLog.create({
             userId: adminUser.id,
             action: "USER_DELETED",
@@ -231,6 +321,24 @@ export class UserService {
 
         user.password = await hash(data.newPassword, 12)
         await user.save()
+
+        // Sync password reset to PostgreSQL
+        try {
+            const { prisma } = await import("@/lib/prisma")
+            const pgUser = await prisma.user.findFirst({
+                where: { email: user.email.toLowerCase(), deletedAt: null }
+            })
+            if (pgUser) {
+                await prisma.user.update({
+                    where: { id: pgUser.id },
+                    data: {
+                        passwordHash: user.password
+                    }
+                })
+            }
+        } catch (err) {
+            console.error("Failed to sync password reset to PostgreSQL:", err)
+        }
 
         await AuditLog.create({
             userId: requestor.id,

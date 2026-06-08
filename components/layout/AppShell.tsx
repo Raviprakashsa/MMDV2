@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { logoutAction } from '@/lib/actions/module1-auth'
 import { Sidebar } from '@/components/layout/AppSidebar'
 import { TopNav } from '@/components/layout/TopNav'
@@ -15,6 +16,9 @@ interface AppShellProps {
 }
 
 export function AppShell({ children, userRole, userName }: Readonly<AppShellProps>) {
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
+
   const handleSignOut = async () => {
     try {
       await logoutAction()
@@ -29,11 +33,27 @@ export function AppShell({ children, userRole, userName }: Readonly<AppShellProp
       <AmbientBackground variant="constellation" intensity={1} transparentBg={false} overlayMode="soft" />
 
       <div className="flex h-full relative z-10 overflow-hidden">
-        <Sidebar userRole={userRole} userName={userName} onSignOut={handleSignOut} />
+        {/* Backdrop for mobile drawer */}
+        {mobileOpen && (
+          <div
+            onClick={() => setMobileOpen(false)}
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 lg:hidden"
+          />
+        )}
+
+        <Sidebar
+          userRole={userRole}
+          userName={userName}
+          onSignOut={handleSignOut}
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
+        />
 
         <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-          <TopNav userName={userName} userRole={userRole} />
-          <main id="main-content" tabIndex={-1} className="ops-modern-page flex-1 p-6 pb-12 overflow-y-auto custom-scrollbar scroll-smooth">
+          <TopNav userName={userName} userRole={userRole} onMenuClick={() => setMobileOpen(true)} />
+          <main id="main-content" tabIndex={-1} className="ops-modern-page flex-1 p-4 md:p-6 pb-12 overflow-y-auto custom-scrollbar scroll-smooth">
             <Breadcrumbs />
             {children}
           </main>

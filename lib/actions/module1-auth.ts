@@ -169,7 +169,7 @@ export const createUserAction = createProtectedAction(
   CreateUserSchema,
   async (payload, session) => {
     const user = await UserService.create(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role, tenantId: session.user.tenantId },
       payload
     )
     revalidatePath('/dashboard/users')
@@ -191,7 +191,7 @@ export const updateUserRoleAction = createProtectedAction(
   UpdateUserRoleSchema,
   async (payload, session) => {
     const user = await UserService.updateRole(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role, tenantId: session.user.tenantId },
       payload
     )
     revalidatePath('/dashboard/users')
@@ -221,7 +221,7 @@ export const getUsers = createProtectedAction(
   GetUsersFilterSchema,
   async (filters, session) => {
     const users = await UserService.getAll(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role, tenantId: session.user.tenantId },
       filters
     )
     return users
@@ -234,7 +234,7 @@ export const getUserById = createProtectedAction(
   GetByIdSchema,
   async (payload, session) => {
     const user = await UserService.getById(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role, tenantId: session.user.tenantId },
       payload.id
     )
     return user
@@ -247,7 +247,7 @@ export const deleteUser = createProtectedAction(
   DeleteUserSchema,
   async (payload, session) => {
     await UserService.delete(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role, tenantId: session.user.tenantId },
       payload.id
     )
     revalidatePath('/dashboard/users')
@@ -267,7 +267,7 @@ export const resetPassword = createProtectedAction(
   ResetPasswordSchema,
   async (payload, session) => {
     await UserService.resetPassword(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role, tenantId: session.user.tenantId },
       payload
     )
     revalidatePath('/dashboard/settings')

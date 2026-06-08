@@ -19,7 +19,7 @@ export const archiveRequirement = createProtectedAction(
   ArchiveSchema,
   async (payload, session) => {
     await RequirementService.delete(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     return { success: true }
@@ -30,7 +30,7 @@ export const restoreRequirement = createProtectedAction(
   ArchiveSchema,
   async (payload, session) => {
     await RequirementService.restore(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     return { success: true }
@@ -42,7 +42,7 @@ export const archiveCandidate = createProtectedAction(
   ArchiveSchema,
   async (payload, session) => {
     await CandidateService.delete(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     return { success: true }
@@ -53,7 +53,7 @@ export const restoreCandidate = createProtectedAction(
   ArchiveSchema,
   async (payload, session) => {
     await CandidateService.restore(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     return { success: true }
@@ -65,7 +65,7 @@ export const archiveCompany = createProtectedAction(
   ArchiveSchema,
   async (payload, session) => {
     await CompanyService.delete(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     return { success: true }
@@ -76,7 +76,7 @@ export const restoreCompany = createProtectedAction(
   ArchiveSchema,
   async (payload, session) => {
     await CompanyService.restore(
-      { id: session.user.id, role: session.user.role },
+      { id: session.user.mongoUserId || session.user.id, role: session.user.role },
       payload.id
     )
     return { success: true }

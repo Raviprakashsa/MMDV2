@@ -362,7 +362,7 @@ export function AdminDashboard({ metrics, userName, selectedRange = '30d' }: Rea
       >
         <div className="flex flex-col gap-3 xl:flex-row xl:items-start xl:justify-between">
           <div>
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-slate-800">Admin Dashboard</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-slate-800">Admin Dashboard</h1>
             <p className="mt-1 text-base text-slate-600">Welcome back {userName}, here&apos;s your staffing overview</p>
           </div>
 
