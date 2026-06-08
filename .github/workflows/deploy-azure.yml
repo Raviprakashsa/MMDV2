@@ -40,13 +40,59 @@ jobs:
         run: npm run lint
 
   # ──────────────────────────────────────────────
-  # Job 2: Build & Deploy to Azure Container Apps
+  # Job 2: Run Prisma Migrations against production PostgreSQL
+  # This MUST run before deployment so the schema is ready.
   # ──────────────────────────────────────────────
-  deploy:
+  migrate-and-seed:
     needs: quality-gate
     runs-on: ubuntu-latest
     env:
       POSTGRES_DATABASE_URL: ${{ secrets.POSTGRES_DATABASE_URL }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Verify POSTGRES_DATABASE_URL is set
+        run: |
+          if [ -z "$POSTGRES_DATABASE_URL" ]; then
+            echo "❌ FATAL: POSTGRES_DATABASE_URL is not set in GitHub secrets."
+            echo "   Go to: https://github.com/Raviprakashsa/MMDV2/settings/secrets/actions"
+            echo "   Add secret: POSTGRES_DATABASE_URL = <your production connection string>"
+            exit 1
+          fi
+          echo "✅ POSTGRES_DATABASE_URL is set (length: ${#POSTGRES_DATABASE_URL})"
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Run Prisma migrations against production PostgreSQL
+        run: |
+          echo "🚀 Running prisma migrate deploy..."
+          npx prisma migrate deploy
+          echo "✅ Migrations complete"
+
+      - name: Seed PostgreSQL admin user (idempotent upsert)
+        run: |
+          echo "🌱 Seeding PostgreSQL (idempotent — safe to run on every deploy)..."
+          npm run db:seed:prisma
+          echo "✅ Seed complete"
+
+  # ──────────────────────────────────────────────
+  # Job 3: Build & Deploy to Azure Container Apps
+  # ──────────────────────────────────────────────
+  deploy:
+    needs: migrate-and-seed
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -92,32 +138,35 @@ jobs:
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --image ${{ env.CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
 
-      # ── Run Prisma Migrations against production PostgreSQL ──
-      - name: Setup Node for migrations
-        if: env.POSTGRES_DATABASE_URL != ''
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies for migration
-        if: env.POSTGRES_DATABASE_URL != ''
-        run: npm ci --legacy-peer-deps
-
-      - name: Run Prisma migrations against production PostgreSQL
-        if: env.POSTGRES_DATABASE_URL != ''
+      - name: Wait for revision to become healthy
         run: |
-          echo "Running Prisma migrate deploy against production PostgreSQL..."
-          npx prisma generate
-          npx prisma migrate deploy
-          echo "✅ Migrations complete"
+          echo "⏳ Waiting up to 120s for the new revision to become healthy..."
+          for i in $(seq 1 24); do
+            STATE=$(az containerapp show \
+              --name ${{ env.CONTAINER_APP_NAME }} \
+              --resource-group ${{ env.RESOURCE_GROUP }} \
+              --query "properties.runningStatus" -o tsv 2>/dev/null || echo "unknown")
+            echo "  [${i}/24] Running state: $STATE"
+            if [ "$STATE" = "Running" ]; then
+              echo "✅ Application is running!"
+              break
+            fi
+            sleep 5
+          done
 
-      - name: Seed PostgreSQL admin user (idempotent)
-        if: env.POSTGRES_DATABASE_URL != ''
+      - name: Health check against live URL
         run: |
-          echo "Seeding PostgreSQL (idempotent upsert)..."
-          npm run db:seed:prisma
-          echo "✅ Seed complete"
+          URL="https://mmd-recruit-crm.blackbay-54673e45.centralindia.azurecontainerapps.io/api/health"
+          echo "🔍 Probing: $URL"
+          for i in $(seq 1 12); do
+            STATUS=$(curl -fsS -o /dev/null -w "%{http_code}" "$URL" 2>/dev/null || echo "000")
+            echo "  [${i}/12] HTTP status: $STATUS"
+            if [ "$STATUS" = "200" ]; then
+              echo "✅ Health check passed!"
+              break
+            fi
+            sleep 10
+          done
 
       - name: Print Live App URL
         run: |
