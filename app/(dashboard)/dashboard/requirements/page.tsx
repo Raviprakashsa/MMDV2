@@ -41,7 +41,7 @@ import {
   freezeRequirementAction,
   reassignRequirementAction,
 } from '@/lib/actions/module4-requirement'
-import { getCompanies } from '@/lib/actions/module3-company'
+import { getRequirementCompanies } from '@/lib/actions/module4-requirement-company'
 import { AutomationPanel } from '@/components/automation/AutomationPanel'
 import { createExportJobAction, listExportJobsAction } from '@/lib/actions/module15-export'
 
@@ -1035,7 +1035,7 @@ export default function RequirementsPage() {
 
     setIsLoadingCompanies(true)
     setCompaniesLoadError(null)
-    const res = await getCompanies({})
+    const res = await getRequirementCompanies({})
     if (res.success) {
       const normalizedCompanies = normalizeCompanyPayload(res.data)
       setCompanies(normalizedCompanies)
