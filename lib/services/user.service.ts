@@ -68,6 +68,7 @@ export class UserService {
             name: data.name,
             role: data.role,
             isActive: true,
+            deletedAt: null,
         })
 
         // Sync to PostgreSQL
