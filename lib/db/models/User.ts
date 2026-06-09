@@ -53,6 +53,7 @@ const UserSchema = new Schema<IUser>(
 // Indexes for efficient queries
 UserSchema.index({ email: 1 }, { unique: true })
 UserSchema.index({ deletedAt: 1 })
+UserSchema.index({ createdAt: -1 })
 
 const User: Model<IUser> = mongoose.models?.User || mongoose.model<IUser>('User', UserSchema)
 

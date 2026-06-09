@@ -101,7 +101,13 @@ export class UserService {
                 }
             })
         } catch (err) {
-            console.error("Failed to sync user creation to PostgreSQL:", err)
+            console.error("Failed to sync user creation to PostgreSQL, rolling back MongoDB user:", err)
+            try {
+                await User.deleteOne({ _id: user._id })
+            } catch (mongoErr) {
+                console.error("Critical: MongoDB rollback failed after PostgreSQL sync failure:", mongoErr)
+            }
+            throw err
         }
 
         await AuditLog.create({

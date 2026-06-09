@@ -22,6 +22,7 @@ export default tseslint.config(
       "**/*.min.js",
       "**/*bundle*.js",
       "**/venv/**",
+      "scratch/**",
     ],
   },
   // JavaScript recommended rules
