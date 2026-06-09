@@ -44,3 +44,16 @@ next-env.d.ts
 .DS_Store
 *.pem
 new_nextauth_secret.txt
+
+# Playwright test outputs
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Temporary and Generated Assets
+tmp/
+temp/
+artifacts/
+screenshots/
+*.png
+
