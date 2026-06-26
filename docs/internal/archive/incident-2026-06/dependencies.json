@@ -1,0 +1,437 @@
+[
+  {
+    "file": "app/(dashboard)/dashboard/insights/page.tsx",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/(dashboard)/dashboard/page.tsx",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/(dashboard)/dashboard/settings/_components/SettingsAccessConsole.tsx",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/api/admin/seed-admin-user/route.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/api/automation/realtime/route.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/api/candidates/[id]/resume/route.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/api/notifications/route.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/api/public/applications/upload-resume/route.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/api/search/route.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/api/v1/requirements/[id]/matches/route.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "app/api/v1/webhooks/inbound/[name]/route.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/actions/archive.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/actions/dashboard.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/actions/module15-mail.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/actions/module4-requirement-company.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/auth/rbac.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/auth.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/automation/content-generator.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/automation/cron/dailyAlerts.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/automation/matching.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Account.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Activity.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/AnalyticsEvent.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/ApiKey.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/ApplicationForm.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/AuditLog.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/AutomationPipelineRun.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Candidate.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/CandidateActivity.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/CommunicationMessage.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/CommunicationThread.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Company.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Counter.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/DataAccessLog.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Document.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/ExportJob.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/HRContact.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/IntegrationConfig.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Invoice.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Lead.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Message.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Notification.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Placement.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/ReportSchedule.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Requirement.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Session.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Template.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Timesheet.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/User.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/Webhook.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/models/WebhookDelivery.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/db/mongodb.ts",
+    "dependency": "Mongoose",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/foundation/repositories/data-access-log.repository.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/foundation/repositories/export-job.repository.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/foundation/services/user-resolution.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/prisma.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/reports/generators.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/activity.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/analytics.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/api-key.service.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/audit.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/automation-pipeline.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/automation.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/candidate.service.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/communication.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/company.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/document.service.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/export.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/external-intake.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/integration.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/invoice.service.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/leads.service.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/notification.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/placement.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/reporting.service.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/requirement.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/sequence.service.ts",
+    "dependency": "Mongoose, Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/template.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/timesheet.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/user.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/services/webhook.service.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/workflow/governance.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "lib/workflow/state-machine.ts",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "components/forms/user-management.tsx",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "components/leads/LeadBoard.tsx",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "components/templates/TemplateSelector.tsx",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  },
+  {
+    "file": "components/timesheets/WorkLogger.tsx",
+    "dependency": "Mongo Models / MongoDB Connection",
+    "impact": "Critical failure. The file directly queries Legacy MongoDB / Cosmos DB. Deleting Cosmos DB will result in runtime errors (e.g. connection timeouts or undefined model exceptions)."
+  }
+]
